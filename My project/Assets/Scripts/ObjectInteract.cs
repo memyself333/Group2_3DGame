@@ -12,15 +12,21 @@ using Cursor = UnityEngine.Cursor;
 public class ObjectInteract : MonoBehaviour
 {
     public GameObject offset;
+    public GameObject readOffset;
+    public GameObject player;
     private PlayerInput playerInput;
     GameObject targetObject;
 
     public bool isExamining = false;
+    public bool isReading = false;
 
     public Canvas canva;
     public Canvas interactMenu;
+    public Canvas readCanva;
 
     public GameObject tableObject;
+
+    public Animator bookAnimator;
 
     private Vector3 lastMousePosition;
 
@@ -28,7 +34,12 @@ public class ObjectInteract : MonoBehaviour
 
     private Vector3 mousePosition;
 
-     private Rect screenArea = new Rect(UnityEngine.Screen.width / 2 - 300, UnityEngine.Screen.height / 2 - 200, 600, 400);
+    private Vector2 screenCentre = new Vector2(UnityEngine.Screen.width / 2, UnityEngine.Screen.height / 2);
+
+    private int xValue;
+    private int yValue;
+
+    private Rect screenArea = new Rect(UnityEngine.Screen.width / 2 - 600, UnityEngine.Screen.height / 2 - 375, 1200, 750);
 
 
     //List of position and rotation of the interactble objects 
@@ -41,6 +52,7 @@ public class ObjectInteract : MonoBehaviour
     {
         canva.enabled = false;
         interactMenu.enabled = false;
+        readCanva.enabled = false;
         targetObject = GameObject.Find("PlayerCapsule");
         playerInput = targetObject.GetComponent<PlayerInput>();
     }
@@ -51,6 +63,24 @@ public class ObjectInteract : MonoBehaviour
         // If it does, it toggles the examination state and stores the examined object's original position and rotation.
         mousePosition = Mouse.current.position.ReadValue();
         float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
+
+        if (mousePosition.x < screenCentre.x)
+        {
+            xValue = -1;
+        }
+        else if (mousePosition.x > screenCentre.x)
+        {
+            xValue = 1;
+        }
+
+        if (mousePosition.y < screenCentre.y)
+        {
+            yValue = -1;
+        }
+        else if (mousePosition.y > screenCentre.y)
+        {
+            yValue = 1;
+        }
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
@@ -91,9 +121,16 @@ public class ObjectInteract : MonoBehaviour
 
             if (isExamining)
             {
-                canva.enabled = false;
                 interactMenu.enabled = true;
-                Examine(); StartExamination();
+                canva.enabled = false;
+                if (isReading)
+                {
+                    ReadBook();
+                }
+                else
+                {
+                    Examine(); StartExamination();
+                }
             }
             else
             {
@@ -108,6 +145,19 @@ public class ObjectInteract : MonoBehaviour
     public void ExitButtonPressed()
     {        
         isExamining = false;
+    }
+
+    public void ReadButtonPressed()
+    {
+        isReading = true;
+        PlayBookAnimation();
+    }
+
+    public void CloseButtonPressed()
+    {
+        readCanva.enabled = false;
+        isReading = false;
+        PlayBookAnimation();
     }
 
 
@@ -139,6 +189,7 @@ public class ObjectInteract : MonoBehaviour
 
     void Examine()
     {
+        readCanva.enabled = false;
         if (examinedObject != null)
         {
             if (screenArea.Contains(mousePosition))
@@ -186,6 +237,26 @@ public class ObjectInteract : MonoBehaviour
         // Check if they are close based on the threshold
         return (distance < 2);
 
+    }
+
+    public void PlayBookAnimation()
+    {
+        examinedObject.transform.position = Vector3.Lerp(examinedObject.transform.position, readOffset.transform.position, 0.2f);
+        examinedObject.transform.forward = -player.transform.forward;
+        if (isReading)
+        {
+            bookAnimator.SetBool("CloseBook", false);
+            bookAnimator.SetBool("OpenBook", true);   
+        }
+        else
+        {
+            bookAnimator.SetBool("OpenBook", false);
+            bookAnimator.SetBool("CloseBook", true);
+        }
+    }
+    public void ReadBook()
+    {
+        readCanva.enabled = true;
     }
 
 }
