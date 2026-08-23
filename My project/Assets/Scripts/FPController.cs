@@ -15,7 +15,8 @@ public class FPController : MonoBehaviour
     private Vector3 velocity;
     private float verticalRotation = 0f;
 
-    public GameObject notifBox;
+    public GameObject notifBob;
+    public GameObject notifJohn;
     public NPC_Talk npcTalk;
     public Canvas npcCanvas;
     public Canvas hudCanvas;
@@ -85,7 +86,7 @@ public class FPController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == notifBox)
+        if (other.gameObject == notifBob || other.gameObject == notifJohn)
         {
             npcTalk.nearNPC = true;
         }
@@ -93,7 +94,7 @@ public class FPController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == notifBox)
+        if (other.gameObject == notifBob || other.gameObject == notifJohn)
         {
             npcTalk.nearNPC = false;
         }

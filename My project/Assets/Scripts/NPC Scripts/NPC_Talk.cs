@@ -1,16 +1,22 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
+using System.Collections.Generic;
 
 public class NPC_Talk : MonoBehaviour
 {
     //public Animator animator;
     public Controls controls;
-    public DialogueSO dialogueSO;
+    public List<DialogueSO> conversations;
+    public DialogueSO currentConversation;
     public bool nearNPC = false;
+    public GameObject thisNPC;
+    public string npcName;
 
     private void Awake()
     {
+        npcName = thisNPC.name;
         //animator = GetComponent<Animator>();
     }
     public void OnEnable()
@@ -36,8 +42,22 @@ public class NPC_Talk : MonoBehaviour
                 }
                 else
                 {
-                    DialogueManager.Instance.StartDialogue(dialogueSO);
+                    CheckForNewConversation();
+                    DialogueManager.Instance.StartDialogue(currentConversation);
                 }
+            }
+        }
+    }
+
+    private void CheckForNewConversation()
+    {
+        for (int i= 0; i < conversations.Count; i++)
+        {
+            var convo = conversations[i];
+            if (convo != null && convo.IsConditionMet())
+            {
+                conversations.RemoveAt(i);
+                currentConversation = convo;
             }
         }
     }

@@ -106,14 +106,7 @@ public class ObjectInteract : MonoBehaviour
                 objectIntCanva.enabled = false;
                 interactMenu.enabled = true;
                 hudCanvas.enabled = false;
-                if (isReading)
-                {
-                    ReadBook();
-                }
-                else
-                {
-                    Examine(); StartExamination();
-                }
+                Examine(); StartExamination();
             }
             else
             {
@@ -184,19 +177,21 @@ public class ObjectInteract : MonoBehaviour
 
     void Examine()
     {
-        readCanva.enabled = false;
-        if (examinedObject != null)
+        if (!isReading)
         {
-            if (screenArea.Contains(mousePosition))
-            {  
-                examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, 0.2f);
-                if (Mouse.current.leftButton.isPressed)
-                {
-                    Vector3 deltaMouse = mousePosition - lastMousePosition;
-                    float rotationSpeed = 1.0f;
-                    examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
-                    examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
-                    lastMousePosition = mousePosition;
+            if (examinedObject != null)
+            {
+                if (screenArea.Contains(mousePosition))
+                {  
+                    examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, 0.2f);
+                    if (Mouse.current.leftButton.isPressed)
+                    {
+                        Vector3 deltaMouse = mousePosition - lastMousePosition;
+                        float rotationSpeed = 1.0f;
+                        examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
+                        examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
+                        lastMousePosition = mousePosition;
+                    }
                 }
             }
         }

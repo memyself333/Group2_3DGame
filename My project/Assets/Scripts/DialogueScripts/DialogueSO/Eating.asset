@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
-  m_Name: TestTalk
+  m_Name: Eating
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Are you behaving in there, prisoner?
+    text: Have you been eating your food, prisoner?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: I want to die
+    text: Yes, but my body can't stomach it, I have been casting it up.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: That's what I like to hear!
+    text: How dare you not appreciate the food we give you!
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000, guid: e8730aca28eaec2429ea5aab951bc45f, type: 2}
+  requiredConvos: []
