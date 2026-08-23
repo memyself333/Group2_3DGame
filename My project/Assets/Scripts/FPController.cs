@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class FPController : MonoBehaviour
@@ -16,8 +17,12 @@ public class FPController : MonoBehaviour
     private float verticalRotation = 0f;
 
     public GameObject notifBob;
+    public GameObject notifPaperBob;
     public GameObject notifJohn;
+    public GameObject notifExecute;
     public NPC_Talk npcTalk;
+    public Marking marking;
+    public Execution execution;
     public Canvas npcCanvas;
     public Canvas hudCanvas;
     public bool isTalking;
@@ -90,6 +95,17 @@ public class FPController : MonoBehaviour
         {
             npcTalk.nearNPC = true;
         }
+
+        if (other.gameObject == notifPaperBob)
+        {
+            marking.nearPaper = true;
+            marking.currentPrisoner = other.gameObject.name;
+        }
+
+        if (other.gameObject == notifExecute)
+        {
+            execution.nearExecuter = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -97,6 +113,17 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifBob || other.gameObject == notifJohn)
         {
             npcTalk.nearNPC = false;
+
+        }
+        if (other.gameObject == notifPaperBob)
+        {
+            marking.nearPaper = false;
+        }
+
+        if (other.gameObject == notifExecute)
+        {
+            execution.nearExecuter = false;
         }
     }
+
 }

@@ -1,37 +1,73 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 public class Marking : MonoBehaviour
 {
     public bool isMarking = false;
+    public bool nearPaper = false;
     public Canvas markCanva;
-    public Canvas talkCanva;
-    public string currentSpeaker;
+    public Canvas paperNotif;
+    public TMP_Text prisonerName;
+    public string currentPrisoner;
+    public string currentPaper;
     public int currentPrisonerPoints;
-    public NPC_Talk npcTalk;
+
+    public PlayerInput playerInput;
 
     public void Awake()
     {
         isMarking = false;
         markCanva.enabled = false;
     }
-    public void MarkButtonPressed()
+
+    public void Update()
     {
-        //camera move down
-        //ui anim to appear
-        isMarking = true;
-        markCanva.enabled = true;
-        talkCanva.enabled = false;
-        currentPrisonerPoints = 0;
+        if (nearPaper)
+        {
+            if(isMarking)
+            {
+                paperNotif.enabled = false;
+            }
+            else
+            {
+                paperNotif.enabled = true;
+            }
+            
+        }
+        else
+        {
+            paperNotif.enabled = false;
+        }
+
+    }
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (nearPaper)
+            {
+                isMarking = true;
+                markCanva.enabled = true;
+                prisonerName.text = currentPrisoner;
+
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                UnityEngine.Cursor.visible = true;
+
+                playerInput.actions.FindAction("Movement").Disable();
+                playerInput.actions.FindAction("Look").Disable();
+            }
+        }
     }
 
     public void ExitButtonPressed()
     {
-        PrisonerSO[] allPrisonerSOs = Resources.LoadAll<PrisonerSO>("Group2_3DGame\\My project\\Assets\\Scripts\\NPC Scripts\\PrisonerSO");
-        PrisonerSO matchedSO = allPrisonerSOs.FirstOrDefault(so => so.prisonerName == currentSpeaker);
+        PrisonerSO[] allPrisonerSOs = Resources.LoadAll<PrisonerSO>("PrisonerSO");
+        PrisonerSO matchedSO = allPrisonerSOs.FirstOrDefault(so => so.prisonerName == currentPrisoner);
         if (matchedSO != null)
         {
             matchedSO.prisonerPoints = currentPrisonerPoints;
@@ -41,9 +77,13 @@ public class Marking : MonoBehaviour
             Debug.Log("No matching ScriptableObject found.");
         }
 
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+
         isMarking = false;
         markCanva.enabled = false;
-        talkCanva.enabled = false;
+        playerInput.actions.FindAction("Movement").Enable();
+        playerInput.actions.FindAction("Look").Enable();
 
 
 
@@ -62,9 +102,4 @@ public class Marking : MonoBehaviour
         else currentPrisonerPoints++;
     }
 
-    public void Update()
-    {
-        if (isMarking)
-        currentSpeaker = npcTalk.npcName;
-    }
 }

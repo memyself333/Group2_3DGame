@@ -5,4 +5,5 @@ public class PrisonerSO : ScriptableObject
 {
     public string prisonerName;
     public int prisonerPoints;
+    public bool isAlive;
 }
