@@ -20,9 +20,11 @@ public class ObjectInteract : MonoBehaviour
     public bool isExamining = false;
     public bool isReading = false;
 
-    public Canvas canva;
+
+    public Canvas objectIntCanva;
     public Canvas interactMenu;
     public Canvas readCanva;
+    public Canvas hudCanvas;
 
     public GameObject tableObject;
 
@@ -34,10 +36,9 @@ public class ObjectInteract : MonoBehaviour
 
     private Vector3 mousePosition;
 
-    private Vector2 screenCentre = new Vector2(UnityEngine.Screen.width / 2, UnityEngine.Screen.height / 2);
+    public bool isHitting;
 
-    private int xValue;
-    private int yValue;
+
 
     private Rect screenArea = new Rect(UnityEngine.Screen.width / 2 - 600, UnityEngine.Screen.height / 2 - 375, 1200, 750);
 
@@ -50,7 +51,7 @@ public class ObjectInteract : MonoBehaviour
 
     void Start()
     {
-        canva.enabled = false;
+        objectIntCanva.enabled = false;
         interactMenu.enabled = false;
         readCanva.enabled = false;
         targetObject = GameObject.Find("PlayerCapsule");
@@ -63,35 +64,18 @@ public class ObjectInteract : MonoBehaviour
         // If it does, it toggles the examination state and stores the examined object's original position and rotation.
         mousePosition = Mouse.current.position.ReadValue();
         float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
-
-        if (mousePosition.x < screenCentre.x)
-        {
-            xValue = -1;
-        }
-        else if (mousePosition.x > screenCentre.x)
-        {
-            xValue = 1;
-        }
-
-        if (mousePosition.y < screenCentre.y)
-        {
-            yValue = -1;
-        }
-        else if (mousePosition.y > screenCentre.y)
-        {
-            yValue = 1;
-        }
+        readOffset.transform.forward = -player.transform.forward;
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
 
-            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-            RaycastHit hit;
+            Ray interactRay = Camera.main.ScreenPointToRay(mousePosition);
+            RaycastHit interactHit;
 
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(interactRay, out interactHit))
             {
-                if (hit.collider.CompareTag("Object"))
+                if (interactHit.collider.CompareTag("Object"))
                 {
                     if (distance < 2)
                     {
@@ -100,12 +84,13 @@ public class ObjectInteract : MonoBehaviour
                         // Store the currently examined object and its original position and rotation
                         if (isExamining)
                         {
-                            examinedObject = hit.transform;
+                            examinedObject = interactHit.transform;
                             originalPositions[examinedObject] = examinedObject.position;
                             originalRotations[examinedObject] = examinedObject.rotation;
                         }
                     }
                 }
+               
             }
 
 
@@ -114,15 +99,13 @@ public class ObjectInteract : MonoBehaviour
 
         //It then checks if the player is close to an interactable object using the CheckUserClose() method.
         //If the player is close, it calls either Examine() or NonExamine() and enables or disables the canvas component accordingly.
-
-        if (CheckUserClose())
+        if (CheckUserCloseToTable())
         {
-
-
             if (isExamining)
             {
+                objectIntCanva.enabled = false;
                 interactMenu.enabled = true;
-                canva.enabled = false;
+                hudCanvas.enabled = false;
                 if (isReading)
                 {
                     ReadBook();
@@ -134,16 +117,28 @@ public class ObjectInteract : MonoBehaviour
             }
             else
             {
-                canva.enabled = true;
+                objectIntCanva.enabled = true;
                 interactMenu.enabled = false;
+                hudCanvas.enabled = true;
                 NonExamine(); StopExamination();
             }
         }
-        else canva.enabled = false;
+        else
+        {
+            hudCanvas.enabled = true;
+            objectIntCanva.enabled = false;
+        }
+
     }
 
     public void ExitButtonPressed()
     {        
+        if (isReading)
+        {
+            readCanva.enabled = false;
+            isReading = false;
+            PlayBookAnimation();
+        }
         isExamining = false;
     }
 
@@ -229,7 +224,7 @@ public class ObjectInteract : MonoBehaviour
 
     // This method calculates the distance between the player(targetObject) and 
     // an object called tableObject.If the distance is less than 2 units, it returns true, indicating that the player is close to the object.
-    bool CheckUserClose()
+    public bool CheckUserCloseToTable()
     {
         // Calculate the distance between the two GameObjects
         float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
@@ -238,15 +233,15 @@ public class ObjectInteract : MonoBehaviour
         return (distance < 2);
 
     }
-
     public void PlayBookAnimation()
     {
-        examinedObject.transform.position = Vector3.Lerp(examinedObject.transform.position, readOffset.transform.position, 0.2f);
-        examinedObject.transform.forward = -player.transform.forward;
+        examinedObject.transform.position = readOffset.transform.position;
+        Quaternion desiredRotation = Quaternion.LookRotation(player.transform.forward, Vector3.up) * Quaternion.Euler(-60f, 0f, 0f);
+        examinedObject.transform.rotation = desiredRotation;
         if (isReading)
         {
             bookAnimator.SetBool("CloseBook", false);
-            bookAnimator.SetBool("OpenBook", true);   
+            bookAnimator.SetBool("OpenBook", true);
         }
         else
         {
@@ -254,6 +249,7 @@ public class ObjectInteract : MonoBehaviour
             bookAnimator.SetBool("CloseBook", true);
         }
     }
+
     public void ReadBook()
     {
         readCanva.enabled = true;

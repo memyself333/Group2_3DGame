@@ -14,6 +14,13 @@ public class FPController : MonoBehaviour
     private Vector2 lookInput;
     private Vector3 velocity;
     private float verticalRotation = 0f;
+
+    public GameObject notifBox;
+    public NPC_Talk npcTalk;
+    public Canvas npcCanvas;
+    public Canvas hudCanvas;
+    public bool isTalking;
+    public DialogueManager dm;
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -22,8 +29,29 @@ public class FPController : MonoBehaviour
     }
     private void Update()
     {
+        isTalking = dm.isDialogueActive;
+
         HandleMovement();
         HandleLook();
+
+        if (npcTalk.nearNPC)
+        {
+            if (isTalking)
+            {
+                hudCanvas.enabled = false;
+                npcCanvas.enabled = false;
+            }
+            else
+            {
+                hudCanvas.enabled = true;
+                npcCanvas.enabled = true;
+            }
+        }
+        else
+        {
+            hudCanvas.enabled = true;
+            npcCanvas.enabled = false;
+        }
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -53,5 +81,21 @@ public class FPController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation,
         0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == notifBox)
+        {
+            npcTalk.nearNPC = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == notifBox)
+        {
+            npcTalk.nearNPC = false;
+        }
     }
 }
