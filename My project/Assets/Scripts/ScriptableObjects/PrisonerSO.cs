@@ -4,6 +4,6 @@ using UnityEngine;
 public class PrisonerSO : ScriptableObject
 {
     public string prisonerName;
-    public int prisonerPoints;
-    public bool isAlive;
+    public int prisonerPoints = 0;
+    public bool isAlive = true;
 }
