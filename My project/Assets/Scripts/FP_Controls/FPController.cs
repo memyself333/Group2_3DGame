@@ -18,11 +18,14 @@ public class FPController : MonoBehaviour
 
     public GameObject notifPrisoner1;
     public GameObject notifP1Paper;
+    public GameObject notifP2Paper;
     public GameObject notifPrisoner2;
     public GameObject notifExecute;
+    public GameObject notifDoor;
     public NPC_Talk npcTalk;
     public Marking marking;
     public Execution execution;
+    public JumpscareBox jumpscareBox;
     public Canvas npcCanvas;
     public Canvas hudCanvas;
     public bool isTalking;
@@ -83,7 +86,7 @@ public class FPController : MonoBehaviour
         float mouseX = lookInput.x * lookSensitivity;
         float mouseY = lookInput.y * lookSensitivity;
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, - verticalLookLimit, verticalLookLimit);
+        verticalRotation = Mathf.Clamp(verticalRotation, -verticalLookLimit, verticalLookLimit);
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
@@ -103,7 +106,7 @@ public class FPController : MonoBehaviour
             Debug.Log("Not found npc_talk");
         }
 
-        if (other.gameObject == notifP1Paper)
+        if (other.gameObject == notifP1Paper || other.gameObject == notifP2Paper)
         {
             marking.nearPaper = true;
             marking.currentPrisoner = other.gameObject.name;
@@ -112,6 +115,11 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifExecute)
         {
             execution.nearExecuter = true;
+        }
+
+        if (other.gameObject == notifDoor)
+        {
+            jumpscareBox.inJumpscare = true;
         }
     }
 
@@ -122,7 +130,7 @@ public class FPController : MonoBehaviour
             npcTalk.nearNPC = false;
         }
 
-        if (other.gameObject == notifP1Paper)
+        if (other.gameObject == notifP1Paper || other.gameObject == notifP2Paper)
         {
             marking.nearPaper = false;
         }
@@ -130,6 +138,11 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifExecute)
         {
             execution.nearExecuter = false;
+        }
+
+        if (other.gameObject == notifDoor)
+        {
+            jumpscareBox.inJumpscare = false;
         }
     }
 

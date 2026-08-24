@@ -77,7 +77,7 @@ public class ObjectInteract : MonoBehaviour
             {
                 if (interactHit.collider.CompareTag("Object"))
                 {
-                    if (distance < 2)
+                    if (distance < 1.5f)
                     {
                         isExamining = true;
 
@@ -224,7 +224,7 @@ public class ObjectInteract : MonoBehaviour
         float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
 
         // Check if they are close based on the threshold
-        return (distance < 2);
+        return (distance < 1.5f);
 
     }
     public void PlayBookAnimation()
