@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
-  m_Name: Sins
+  m_Name: BeginningConvoBob
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you repent for the sins you have commited?
-  - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: What sins have I commited Keeper? I was meerly giving bread to those who
-      needed.
+    text: Are you behaving in there, prisoner?
+  - speaker: {fileID: 11400000, guid: 3f6288731ce029749915fd04743cd09d, type: 2}
+    text: I want to die.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Precisely! Do you not understand the waste that comes with keeping those
-      close to death alive. Only the strong should survive, and currently, you are
-      not part of that group.
+    text: That's what I like to hear!
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: That is all the questions I have, prisoner.
-  options: []
+    text: (What should I ask?)
+  options:
+  - optionText: Have you been eating?
+    nextDialogue: {fileID: 11400000, guid: 1b46730c38d04514f8e842f9c41ce266, type: 2}
   requiredConvos: []

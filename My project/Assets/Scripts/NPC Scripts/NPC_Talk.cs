@@ -36,6 +36,7 @@ public class NPC_Talk : MonoBehaviour
         {
             if (nearNPC)
             {
+                Debug.Log("should start convo");
                 if (DialogueManager.Instance.isDialogueActive)
                 {
                     DialogueManager.Instance.AdvanceDialogue();

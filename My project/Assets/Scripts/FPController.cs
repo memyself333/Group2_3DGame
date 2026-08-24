@@ -91,9 +91,17 @@ public class FPController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == notifBob || other.gameObject == notifJohn)
+        var foundNpcTalk = other.GetComponentInParent<NPC_Talk>();
+        if (foundNpcTalk != null)
         {
+            Debug.Log("Found npc_talk");
+            npcTalk = foundNpcTalk;
             npcTalk.nearNPC = true;
+            return;
+        }
+        else
+        {
+            Debug.Log("Not found npc_talk");
         }
 
         if (other.gameObject == notifPaperBob)
@@ -113,8 +121,8 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifBob || other.gameObject == notifJohn)
         {
             npcTalk.nearNPC = false;
-
         }
+
         if (other.gameObject == notifPaperBob)
         {
             marking.nearPaper = false;

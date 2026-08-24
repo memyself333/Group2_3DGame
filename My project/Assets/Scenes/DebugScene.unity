@@ -10092,7 +10092,7 @@ GameObject:
   - component: {fileID: 1617124594}
   - component: {fileID: 1617124593}
   m_Layer: 0
-  m_Name: JohnLennon
+  m_Name: JOHN_BOX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10812,6 +10812,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2024878025}
+        m_TargetAssemblyTypeName: NPC_Talk, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1824427657}
         m_TargetAssemblyTypeName: Marking, Assembly-CSharp
         m_MethodName: OnInteract
@@ -10826,6 +10838,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 293823753}
         m_TargetAssemblyTypeName: Execution, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2050884833}
+        m_TargetAssemblyTypeName: ObjectInteract, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
@@ -11120,7 +11144,7 @@ GameObject:
   - component: {fileID: 1787027102}
   - component: {fileID: 1787027101}
   m_Layer: 0
-  m_Name: Bob Odenkirk
+  m_Name: BOB_BOX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12280,8 +12304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC_Talk
   conversations:
-  - {fileID: 11400000, guid: 2ffe549bdf53bf445a282389987d2d6c, type: 2}
-  - {fileID: 11400000, guid: 10ac2cf2fe9c66f4d91f8f6f67ee7c26, type: 2}
+  - {fileID: 11400000, guid: 103f8ea9b1ad63f4f9695f1906bb4146, type: 2}
+  - {fileID: 11400000, guid: d6411b0fffb00054b87d0cd5a2814d2d, type: 2}
   currentConversation: {fileID: 0}
   nearNPC: 0
   thisNPC: {fileID: 2024878024}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
-  m_Name: AlreadySpokenTo
+  m_Name: AlreadySpokenTo1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
