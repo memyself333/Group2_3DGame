@@ -16,9 +16,9 @@ public class FPController : MonoBehaviour
     private Vector3 velocity;
     private float verticalRotation = 0f;
 
-    public GameObject notifBob;
-    public GameObject notifPaperBob;
-    public GameObject notifJohn;
+    public GameObject notifPrisoner1;
+    public GameObject notifP1Paper;
+    public GameObject notifPrisoner2;
     public GameObject notifExecute;
     public NPC_Talk npcTalk;
     public Marking marking;
@@ -69,11 +69,12 @@ public class FPController : MonoBehaviour
     }
     public void HandleMovement()
     {
-        Vector3 move = transform.right * moveInput.x + transform.forward *
-        moveInput.y;
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(move * moveSpeed * Time.deltaTime);
         if (controller.isGrounded && velocity.y < 0)
+        {
             velocity.y = -2f;
+        }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -82,10 +83,8 @@ public class FPController : MonoBehaviour
         float mouseX = lookInput.x * lookSensitivity;
         float mouseY = lookInput.y * lookSensitivity;
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -
-        verticalLookLimit, verticalLookLimit);
-        cameraTransform.localRotation = Quaternion.Euler(verticalRotation,
-        0f, 0f);
+        verticalRotation = Mathf.Clamp(verticalRotation, - verticalLookLimit, verticalLookLimit);
+        cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
 
@@ -104,7 +103,7 @@ public class FPController : MonoBehaviour
             Debug.Log("Not found npc_talk");
         }
 
-        if (other.gameObject == notifPaperBob)
+        if (other.gameObject == notifP1Paper)
         {
             marking.nearPaper = true;
             marking.currentPrisoner = other.gameObject.name;
@@ -118,12 +117,12 @@ public class FPController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == notifBob || other.gameObject == notifJohn)
+        if (other.gameObject == notifPrisoner1 || other.gameObject == notifPrisoner2)
         {
             npcTalk.nearNPC = false;
         }
 
-        if (other.gameObject == notifPaperBob)
+        if (other.gameObject == notifP1Paper)
         {
             marking.nearPaper = false;
         }

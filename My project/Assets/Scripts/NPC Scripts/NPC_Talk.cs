@@ -12,21 +12,19 @@ public class NPC_Talk : MonoBehaviour
     public DialogueSO currentConversation;
     public bool nearNPC = false;
     public GameObject thisNPC;
-    public string npcName;
 
     private void Awake()
     {
-        npcName = thisNPC.name;
-        //animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>(); These will be added when models are added
     }
     public void OnEnable()
     {
-        //animator.Play("Stand");
+        //animator.Play("Stand"); These will be added when models are added
     }
 
     public void OnDisable()
     {
-        //animator.Play("Sit");
+        //animator.Play("Sit"); These will be added when models are added
     }
 
 
@@ -36,7 +34,6 @@ public class NPC_Talk : MonoBehaviour
         {
             if (nearNPC)
             {
-                Debug.Log("should start convo");
                 if (DialogueManager.Instance.isDialogueActive)
                 {
                     DialogueManager.Instance.AdvanceDialogue();

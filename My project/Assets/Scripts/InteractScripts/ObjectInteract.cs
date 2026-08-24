@@ -15,7 +15,7 @@ public class ObjectInteract : MonoBehaviour
     public GameObject readOffset;
     public GameObject player;
     private PlayerInput playerInput;
-    GameObject targetObject;
+    private GameObject targetObject;
 
     public bool isExamining = false;
     public bool isReading = false;
@@ -147,7 +147,6 @@ public class ObjectInteract : MonoBehaviour
         isReading = false;
         PlayBookAnimation();
     }
-
 
     // This method is called when the player starts examining an object. It locks the cursor,
     // makes it visible, and disables the PlayerInput component to prevent player movement during examination.
