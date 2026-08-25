@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 498243a2e23135b4db31a01bf2ad6bb9, type: 3}
-  m_Name: Bob Odenkirk
+  m_Name: Oswald Greenhill
   m_EditorClassIdentifier: Assembly-CSharp::ActorSO
-  actorName: Bob Odenkirk
+  actorName: Oswald Greenhill

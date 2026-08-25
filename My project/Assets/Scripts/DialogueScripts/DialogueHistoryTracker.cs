@@ -29,4 +29,6 @@ public class DialogueHistoryTracker : MonoBehaviour
     {
         return spokenConvos.Contains(dialogueSO);
     }
+
+    //Used to check if the player has already talked to a prisoner.
 }

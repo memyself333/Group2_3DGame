@@ -35,4 +35,6 @@ public class NPC : MonoBehaviour
         }
     }
 
+    //This isn't really used too much, as the NPC doesn't have any other state than talk, but when animations are added and we want to change which animation it performs, this will be useful
+
 }

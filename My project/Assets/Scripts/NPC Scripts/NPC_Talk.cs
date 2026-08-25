@@ -27,7 +27,7 @@ public class NPC_Talk : MonoBehaviour
         //animator.Play("Sit"); These will be added when models are added
     }
 
-
+    //Checks when NPC is interacted with to start dialogue
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -47,6 +47,7 @@ public class NPC_Talk : MonoBehaviour
         }
     }
 
+    //Checks if any conditions need to be met for any conversations
     private void CheckForNewConversation()
     {
         for (int i= 0; i < conversations.Count; i++)

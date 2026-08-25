@@ -41,4 +41,6 @@ public class JumpscareBox : MonoBehaviour
         }
     }
 
+    //The Jumpscare is a very simple png jumpscare for now, but once we have started animating and importing our models, the actual monster will jumpscare.
+
 }

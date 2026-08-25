@@ -45,6 +45,7 @@ public class Marking : MonoBehaviour
         }
 
     }
+    //Disable playerInput, make cursor visible, and make marking canva visible
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -84,10 +85,9 @@ public class Marking : MonoBehaviour
         markCanva.enabled = false;
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
-
-
-
     }
+
+    //Check toggle values and add them to the prisoner points in PrisonerSO
     public void GoodToggleValueChanged(UnityEngine.UI.Toggle toggle)
     {
         if (toggle.isOn)

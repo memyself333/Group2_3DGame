@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.Device;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using Cursor = UnityEngine.Cursor;
 
 public class ObjectInteract : MonoBehaviour
@@ -26,13 +25,15 @@ public class ObjectInteract : MonoBehaviour
     public Canvas readCanva;
     public Canvas hudCanvas;
 
+    public GameObject interactBorder;
+
     public GameObject tableObject;
 
     public Animator bookAnimator;
 
     private Vector3 lastMousePosition;
 
-    private Transform examinedObject; // Store the currently examined object
+    private Transform examinedObject; 
 
     private Vector3 mousePosition;
 
@@ -105,6 +106,14 @@ public class ObjectInteract : MonoBehaviour
             {
                 objectIntCanva.enabled = false;
                 interactMenu.enabled = true;
+                if (isReading)
+                {
+                    interactBorder.SetActive(false);
+                }
+                else
+                {
+                    interactBorder.SetActive(true);
+                }
                 hudCanvas.enabled = false;
                 Examine(); StartExamination();
             }
@@ -227,6 +236,7 @@ public class ObjectInteract : MonoBehaviour
         return (distance < 1.5f);
 
     }
+    //Play Book Animations when changing between reading and examining
     public void PlayBookAnimation()
     {
         examinedObject.transform.position = readOffset.transform.position;
@@ -244,6 +254,7 @@ public class ObjectInteract : MonoBehaviour
         }
     }
 
+    //From Book script to make sure the readCanva is enabled after the animation is done
     public void ReadBook()
     {
         readCanva.enabled = true;

@@ -42,7 +42,8 @@ public class FPController : MonoBehaviour
 
         HandleMovement();
         HandleLook();
-
+        
+        //Make sure HUD disappears when interacting with NPCs
         if (npcTalk.nearNPC)
         {
             if (isTalking)
@@ -91,6 +92,7 @@ public class FPController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
+    //Checks all of the box triggers which allow the player to interact with the mechanics of the game
     private void OnTriggerEnter(Collider other)
     {
         var foundNpcTalk = other.GetComponentInParent<NPC_Talk>();

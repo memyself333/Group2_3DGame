@@ -23,6 +23,8 @@ public class Execution : MonoBehaviour
         executeCanva.enabled = false;
     }
 
+
+    //assigning prisoner names and scores to the textboxes in the canva
     public void Update()
     {
         for (int i = 0; i < prisonerNames.Length; i++)
@@ -50,6 +52,7 @@ public class Execution : MonoBehaviour
         }
     }
 
+    //Disable playerInput, make cursor visible, and make execute canva visible
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -81,6 +84,7 @@ public class Execution : MonoBehaviour
         playerInput.actions.FindAction("Look").Enable();
 
     }
+    //Checks when toggles are changed, and applying the changed value to the PrisonerSO
     public void ExecutionToggleChanged(UnityEngine.UI.Toggle toggle)
     {
         if (toggle.isOn)

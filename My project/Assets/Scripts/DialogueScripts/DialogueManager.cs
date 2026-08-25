@@ -41,6 +41,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //Start dialogue when talking to NPC
     public void StartDialogue(DialogueSO dialogueSO)
     {
         currentDialogue = dialogueSO;
@@ -54,6 +55,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //Determine if there is more conversation or if choices must be displayed
     public void AdvanceDialogue()
     {
         if (dialogueIndex < currentDialogue.lines.Length)
@@ -65,6 +67,8 @@ public class DialogueManager : MonoBehaviour
             ShowChoices();
         }
     }
+
+    //Show the dialogue lines and disable other canavases and playerInput
     private void ShowDialogue()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -87,6 +91,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIndex++;
     }
 
+
+    //Show choices and check if out of options, so that they can display the "Farewell" option
     private void ShowChoices()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -114,6 +120,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //After option is chosen
     private void ChooseOption(DialogueSO dialogueSO)
     {
         if(dialogueSO == null)
@@ -127,6 +134,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //Turn off dialogue canvas and re-enable the other canavases and the playerInput
     public void EndDialogue()
     {
         dialogueIndex = 0;
@@ -144,6 +152,7 @@ public class DialogueManager : MonoBehaviour
         playerInput.actions.FindAction("Look").Enable();
     }
 
+    //Makes sure previous choices don't linger
     private void ClearChoices()
     {
         foreach (var button in choiceButtons)

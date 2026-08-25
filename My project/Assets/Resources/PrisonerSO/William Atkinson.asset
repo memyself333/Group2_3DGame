@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44e863cec814bfa40a7d8ff70fe68efb, type: 3}
-  m_Name: John Lennon
+  m_Name: William Atkinson
   m_EditorClassIdentifier: Assembly-CSharp::PrisonerSO
-  prisonerName: John Lennon
+  prisonerName: William Atkinson
   prisonerPoints: 0
-  isAlive: 0
+  isAlive: 1
