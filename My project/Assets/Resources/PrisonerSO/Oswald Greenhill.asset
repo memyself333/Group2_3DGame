@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Oswald Greenhill
   m_EditorClassIdentifier: Assembly-CSharp::PrisonerSO
   prisonerName: Oswald Greenhill
-  prisonerPoints: 0
+  prisonerPoints: -2
   isAlive: 1

@@ -21,6 +21,16 @@ public class Execution : MonoBehaviour
     {
         isExecuting = false;
         executeCanva.enabled = false;
+
+    }
+
+    public void Start()
+    {
+        foreach (var prisoner in prisoners)
+        {
+            prisoner.prisonerPoints = 0;
+            prisoner.isAlive = true;
+        }
     }
 
 

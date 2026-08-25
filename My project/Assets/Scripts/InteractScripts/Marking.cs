@@ -15,6 +15,7 @@ public class Marking : MonoBehaviour
     public TMP_Text prisonerName;
     public string currentPrisoner;
     public string currentPaper;
+    public UnityEngine.UI.Toggle[] toggles;
     public int currentPrisonerPoints;
 
     public PlayerInput playerInput;
@@ -52,6 +53,11 @@ public class Marking : MonoBehaviour
         {
             if (nearPaper)
             {
+                foreach (var toggle in toggles)
+                {
+                    toggle.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
+                }
+                currentPrisonerPoints = 0;
                 isMarking = true;
                 markCanva.enabled = true;
                 prisonerName.text = currentPrisoner;

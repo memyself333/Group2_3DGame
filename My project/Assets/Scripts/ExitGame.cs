@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ExitGame : MonoBehaviour
 {
-    public void ExitGameButton()
+    public void OnExit(InputAction.CallbackContext context)
     {
-        Application.Quit();
+        if (context.performed)
+        {
+            Application.Quit();
+        }
     }
-
 }
