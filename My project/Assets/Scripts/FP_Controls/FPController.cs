@@ -22,10 +22,12 @@ public class FPController : MonoBehaviour
     public GameObject notifPrisoner2;
     public GameObject notifExecute;
     public GameObject notifDoor;
+    public GameObject notifExit;
     public NPC_Talk npcTalk;
     public Marking marking;
     public Execution execution;
     public JumpscareBox jumpscareBox;
+    public ExitOffice exitOffice;
     public Canvas npcCanvas;
     public Canvas hudCanvas;
     public bool isTalking;
@@ -123,6 +125,11 @@ public class FPController : MonoBehaviour
         {
             jumpscareBox.inJumpscare = true;
         }
+
+        if(other.gameObject == notifExit)
+        {
+            exitOffice.nearExit = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -145,6 +152,11 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifDoor)
         {
             jumpscareBox.inJumpscare = false;
+        }
+
+        if (other.gameObject == notifExit)
+        {
+            exitOffice.nearExit = false;
         }
     }
 

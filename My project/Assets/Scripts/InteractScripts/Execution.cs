@@ -92,7 +92,6 @@ public class Execution : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
-
     }
     //Checks when toggles are changed, and applying the changed value to the PrisonerSO
     public void ExecutionToggleChanged(UnityEngine.UI.Toggle toggle)
