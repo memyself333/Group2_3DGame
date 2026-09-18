@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: William Atkinson
   m_EditorClassIdentifier: Assembly-CSharp::PrisonerSO
   prisonerName: William Atkinson
-  prisonerPoints: 2
-  isAlive: 1
+  prisonerPoints: 0
+  isAlive: 0

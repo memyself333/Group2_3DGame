@@ -11,6 +11,8 @@ public class ExitOffice : MonoBehaviour
     public bool nearExit;
     public Canvas exitNotif;
     public PlayerInput playerInput;
+    public Animator playerAnim;
+    public Animator cameraAnim;
 
 
     public PlayableDirector director;
@@ -28,6 +30,15 @@ public class ExitOffice : MonoBehaviour
     private void Awake()
     {
         isExiting = false;
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+
+        playerInput.actions.FindAction("Movement").Enable();
+        playerInput.actions.FindAction("Look").Enable();
+
+        playerAnim.enabled = false;
+        cameraAnim.enabled = false;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -69,6 +80,9 @@ public class ExitOffice : MonoBehaviour
                 playerInput.actions.FindAction("Movement").Disable();
                 playerInput.actions.FindAction("Look").Disable();
 
+                playerAnim.enabled = true;
+                cameraAnim.enabled = true;
+
                 PlayExitAnimation();
             }
         }
@@ -96,11 +110,16 @@ public class ExitOffice : MonoBehaviour
     {
         isExiting = false;
 
+        playerAnim.enabled = false;
+        cameraAnim.enabled = false;
+
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
+
+
     }
 }
 
