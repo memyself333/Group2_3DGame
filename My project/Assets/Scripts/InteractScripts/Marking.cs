@@ -6,84 +6,90 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static ExitOffice;
 public class Marking : MonoBehaviour
 {
     public bool isMarking = false;
     public bool nearPaper = false;
     public Canvas markCanva;
-    public Canvas paperNotif;
     public TMP_Text prisonerName;
     public string currentPrisoner;
     public string currentPaper;
     public UnityEngine.UI.Toggle[] toggles;
     public int currentPrisonerPoints;
+    private int currentPrisonerIndex = 0;
 
     public PlayerInput playerInput;
+
+    [System.Serializable]
+    public struct Prisoner
+    {         
+        public string prisonerName;
+        public PrisonerSO prisonerSO;
+        public bool[] isToggleOn;
+    }
+
+    [SerializeField] private Prisoner[] prisoners;
 
     public void Awake()
     {
         isMarking = false;
         markCanva.enabled = false;
+        currentPrisoner = prisoners[0].prisonerName;
+        foreach (var toggle in toggles)
+        {
+            toggle.isOn = false;
+        }
     }
 
     public void Update()
     {
-        if (nearPaper)
+        for (int i = 0; i < prisoners.Length; i++)
         {
-            if(isMarking)
+            if (prisoners[i].prisonerName == currentPrisoner)
             {
-                paperNotif.enabled = false;
+                for (int j = 0; j < prisoners[i].isToggleOn.Length; j++)
+                {
+                    prisoners[i].isToggleOn[j] = toggles[j].isOn;
+                }
             }
-            else
-            {
-                paperNotif.enabled = true;
-            }
-            
         }
-        else
-        {
-            paperNotif.enabled = false;
-        }
-
     }
     //Disable playerInput, make cursor visible, and make marking canva visible
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnMark(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (nearPaper)
+            isMarking = true;
+            markCanva.enabled = true;
+            prisonerName.text = currentPrisoner;
+
+            for (int i = 0; i < prisoners.Length; i++)
             {
-                foreach (var toggle in toggles)
+                if (prisoners[i].prisonerName == currentPrisoner)
                 {
-                    toggle.GetComponent<UnityEngine.UI.Toggle>().isOn = false;
+                    for (int j = 0; j < prisoners[i].isToggleOn.Length; j++)
+                    {
+                        toggles[j].isOn = prisoners[i].isToggleOn[j];
+                    }
                 }
-                currentPrisonerPoints = 0;
-                isMarking = true;
-                markCanva.enabled = true;
-                prisonerName.text = currentPrisoner;
-
-                UnityEngine.Cursor.lockState = CursorLockMode.None;
-                UnityEngine.Cursor.visible = true;
-
-                playerInput.actions.FindAction("Movement").Disable();
-                playerInput.actions.FindAction("Look").Disable();
             }
+
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
+
+            playerInput.actions.FindAction("Movement").Disable();
+            playerInput.actions.FindAction("Look").Disable();
         }
     }
 
     public void ExitButtonPressed()
     {
-        PrisonerSO[] allPrisonerSOs = Resources.LoadAll<PrisonerSO>("PrisonerSO");
-        PrisonerSO matchedSO = allPrisonerSOs.FirstOrDefault(so => so.prisonerName == currentPrisoner);
-        if (matchedSO != null)
+        for (int i = 0; i < prisoners.Length; i++)
         {
-            matchedSO.prisonerPoints = currentPrisonerPoints;
+            int goodPoints = prisoners[i].isToggleOn.Count(b => b);
+            prisoners[i].prisonerSO.prisonerPoints = goodPoints;
         }
-        else
-        {
-            Debug.Log("No matching ScriptableObject found.");
-        }
-
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
 
@@ -93,19 +99,40 @@ public class Marking : MonoBehaviour
         playerInput.actions.FindAction("Look").Enable();
     }
 
-    //Check toggle values and add them to the prisoner points in PrisonerSO
-    public void GoodToggleValueChanged(UnityEngine.UI.Toggle toggle)
+    public void RightArrowPressed()
     {
-        if (toggle.isOn)
-            currentPrisonerPoints++;
-        else currentPrisonerPoints--;
+        currentPrisonerIndex = (currentPrisonerIndex + 1) % prisoners.Length;
+        currentPrisoner = prisoners[currentPrisonerIndex].prisonerName;
+        prisonerName.text = currentPrisoner;
+
+        for (int i = 0; i < prisoners.Length; i++)
+        {
+            if (prisoners[i].prisonerName == currentPrisoner)
+            {
+                for (int j = 0; j < prisoners[i].isToggleOn.Length; j++)
+                {
+                    toggles[j].isOn = prisoners[i].isToggleOn[j];
+                }
+            }
+        }
     }
 
-    public void BadToggleValueChanged(UnityEngine.UI.Toggle toggle)
+    public void LeftArrowPressed()
     {
-        if (toggle.isOn)
-            currentPrisonerPoints--;
-        else currentPrisonerPoints++;
+        currentPrisonerIndex = (currentPrisonerIndex <= 0) ? prisoners.Length - 1 : currentPrisonerIndex - 1;
+        currentPrisoner = prisoners[currentPrisonerIndex].prisonerName;
+        prisonerName.text = currentPrisoner;
+
+        for (int i = 0; i < prisoners.Length; i++)
+        {
+            if (prisoners[i].prisonerName == currentPrisoner)
+            {
+                for (int j = 0; j < prisoners[i].isToggleOn.Length; j++)
+                {
+                    toggles[j].isOn = prisoners[i].isToggleOn[j];
+                }
+            }
+        }
     }
 
 }

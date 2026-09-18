@@ -17,14 +17,11 @@ public class FPController : MonoBehaviour
     private float verticalRotation = 0f;
 
     public GameObject notifPrisoner1;
-    public GameObject notifP1Paper;
-    public GameObject notifP2Paper;
     public GameObject notifPrisoner2;
     public GameObject notifExecute;
     public GameObject notifDoor;
     public GameObject notifExit;
     public NPC_Talk npcTalk;
-    public Marking marking;
     public Execution execution;
     public JumpscareBox jumpscareBox;
     public ExitOffice exitOffice;
@@ -110,11 +107,6 @@ public class FPController : MonoBehaviour
             Debug.Log("Not found npc_talk");
         }
 
-        if (other.gameObject == notifP1Paper || other.gameObject == notifP2Paper)
-        {
-            marking.nearPaper = true;
-            marking.currentPrisoner = other.gameObject.name;
-        }
 
         if (other.gameObject == notifExecute)
         {
@@ -137,11 +129,6 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifPrisoner1 || other.gameObject == notifPrisoner2)
         {
             npcTalk.nearNPC = false;
-        }
-
-        if (other.gameObject == notifP1Paper || other.gameObject == notifP2Paper)
-        {
-            marking.nearPaper = false;
         }
 
         if (other.gameObject == notifExecute)
