@@ -28,7 +28,7 @@ public class NPC_Talk : MonoBehaviour
     }
 
     //Checks when NPC is interacted with to start dialogue
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnTalk(InputAction.CallbackContext context)
     {
         if (context.performed)
         {

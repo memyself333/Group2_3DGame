@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q3C
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Do you repent for the sins you have commited?
+  - speaker: {fileID: 11400000, guid: acc9eb1cf5a20f94bb38876b48cc38e2, type: 2}
+    text: What sins have I commited Keeper? I was meerly giving bread to those who
+      needed.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Precisely! Do you not understand the waste that comes with keeping those
+      close to death alive. Only the strong should survive, and currently, you are
+      not part of that group.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: Have you been eating?
+    nextDialogue: {fileID: 11400000, guid: 536f20fb21feda84492ba1b5968e7f65, type: 2}
+  - optionText: Do you have any family?
+    nextDialogue: {fileID: 11400000, guid: 205090cd187c17b4383a68fece89770f, type: 2}
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000, guid: fdb1504509e93ad41a69d1d0440af39d, type: 2}
+  requiredConvos: []

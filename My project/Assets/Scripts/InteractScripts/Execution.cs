@@ -12,10 +12,22 @@ public class Execution : MonoBehaviour
     public Canvas executeCanva;
     public Canvas executeNotif;
     public TMP_Text[] prisonerNames;
-    public TMP_Text[] prisonerScores;
+    public TMP_Text[] prisonerScoresTexts;
+    public int[] prisonerScores;
     public PrisonerSO[] prisoners;
+    
 
     public PlayerInput playerInput;
+
+    [System.Serializable]
+    public struct PrisonerAlive
+    {
+        public string prisonerName;
+        public PrisonerSO prisonerSO;
+        public UnityEngine.UI.Toggle toggle;
+    }
+
+    [SerializeField] private PrisonerAlive[] prisonerAlives;
 
     private void Awake()
     {
@@ -41,9 +53,25 @@ public class Execution : MonoBehaviour
         {
             prisonerNames[i].text = prisoners[i].prisonerName;
         }
-        for (int i = 0; i < prisonerScores.Length; i++)
+        for (int i = 0; i < prisonerScoresTexts.Length; i++)
         {
-            prisonerScores[i].text = prisoners[i].prisonerPoints.ToString();
+            prisonerScores[i] = prisoners[i].prisonerPoints;
+            if (prisonerScores[i] < 2)
+            {
+                prisonerScoresTexts[i].text = "Misbehaved";
+            }
+            else if (prisonerScores[i] == 2)
+            {
+                prisonerScoresTexts[i].text = "Neutral";
+            }
+            else if (prisonerScores[i] > 2)
+            {
+                prisonerScoresTexts[i].text = "Well Behaved";
+            }
+        }
+        for (int i = 0; i < prisonerAlives.Length; i++)
+        {
+            prisonerAlives[i].prisonerSO.isAlive = !prisonerAlives[i].toggle.isOn;
         }
         if (nearExecuter)
         {
@@ -92,35 +120,5 @@ public class Execution : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
-    }
-    //Checks when toggles are changed, and applying the changed value to the PrisonerSO
-    public void ExecutionToggleChanged(UnityEngine.UI.Toggle toggle)
-    {
-        if (toggle.isOn)
-        {
-            PrisonerSO[] allPrisonerSOs = Resources.LoadAll<PrisonerSO>("PrisonerSO");
-            PrisonerSO matchedSO = allPrisonerSOs.FirstOrDefault(so => so.prisonerName == toggle.gameObject.name);
-            if (matchedSO != null)
-            {
-                matchedSO.isAlive = false;
-            }
-            else
-            {
-                Debug.Log("No matching ScriptableObject found.");
-            }
-        }
-        else
-        {
-            PrisonerSO[] allPrisonerSOs = Resources.LoadAll<PrisonerSO>("PrisonerSO");
-            PrisonerSO matchedSO = allPrisonerSOs.FirstOrDefault(so => so.prisonerName == toggle.gameObject.name);
-            if (matchedSO != null)
-            {
-                matchedSO.isAlive = true;
-            }
-            else
-            {
-                Debug.Log("No matching ScriptableObject found.");
-            }
-        }
     }
 }

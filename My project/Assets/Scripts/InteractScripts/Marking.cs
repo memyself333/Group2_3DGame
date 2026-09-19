@@ -18,8 +18,11 @@ public class Marking : MonoBehaviour
     public UnityEngine.UI.Toggle[] toggles;
     public int currentPrisonerPoints;
     private int currentPrisonerIndex = 0;
+    public GameObject[] menus;
+    public CanvasGroup currentMenu;
 
     public PlayerInput playerInput;
+
 
     [System.Serializable]
     public struct Prisoner
@@ -44,6 +47,21 @@ public class Marking : MonoBehaviour
 
     public void Update()
     {
+        foreach (GameObject canva in menus)
+        {
+            if (!isMarking)
+            {
+                if (canva.GetComponent<Canvas>().enabled == true)
+                {
+                    currentMenu = canva.GetComponent<CanvasGroup>();
+                    break;
+                }
+                else
+                {
+                    currentMenu = null;
+                }
+            }
+        }
         for (int i = 0; i < prisoners.Length; i++)
         {
             if (prisoners[i].prisonerName == currentPrisoner)
@@ -60,6 +78,12 @@ public class Marking : MonoBehaviour
     {
         if (context.performed)
         {
+            if (currentMenu != null)
+            {
+                currentMenu.alpha = 0;
+                currentMenu.blocksRaycasts = false;
+                currentMenu.interactable = false;
+            }
             isMarking = true;
             markCanva.enabled = true;
             prisonerName.text = currentPrisoner;
@@ -85,18 +109,27 @@ public class Marking : MonoBehaviour
 
     public void ExitButtonPressed()
     {
+        if (currentMenu != null)
+        {
+            currentMenu.alpha = 1;
+            currentMenu.blocksRaycasts = true;
+            currentMenu.interactable = true;
+        }
         for (int i = 0; i < prisoners.Length; i++)
         {
             int goodPoints = prisoners[i].isToggleOn.Count(b => b);
             prisoners[i].prisonerSO.prisonerPoints = goodPoints;
         }
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
-
         isMarking = false;
         markCanva.enabled = false;
-        playerInput.actions.FindAction("Movement").Enable();
-        playerInput.actions.FindAction("Look").Enable();
+
+        if (currentMenu == null)
+        { 
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+            playerInput.actions.FindAction("Movement").Enable();
+            playerInput.actions.FindAction("Look").Enable();
+        }
     }
 
     public void RightArrowPressed()

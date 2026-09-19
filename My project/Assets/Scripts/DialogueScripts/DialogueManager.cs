@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
 
     [Header("UI References")]
-    public CanvasGroup canvasGroup;
+    public Canvas dialogueCanvas;
     public TMP_Text actorName;
     public TMP_Text dialogueText;
     public Button[] choiceButtons;
@@ -31,9 +31,7 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
+        dialogueCanvas.enabled = false;
 
         foreach (var button in choiceButtons)
         {
@@ -71,8 +69,8 @@ public class DialogueManager : MonoBehaviour
     //Show the dialogue lines and disable other canavases and playerInput
     private void ShowDialogue()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         DialogueLine line = currentDialogue.lines[dialogueIndex];
 
@@ -82,9 +80,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueText.text = line.text;
 
-        canvasGroup.alpha = 1;
-        canvasGroup.interactable = true;
-        canvasGroup.blocksRaycasts = true;
+        dialogueCanvas.enabled = true;
 
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable();
@@ -95,8 +91,6 @@ public class DialogueManager : MonoBehaviour
     //Show choices and check if out of options, so that they can display the "Farewell" option
     private void ShowChoices()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
         ClearChoices();
 
@@ -110,6 +104,12 @@ public class DialogueManager : MonoBehaviour
                 choiceButtons[i].gameObject.SetActive(true);
 
                 choiceButtons[i].onClick.AddListener(() => ChooseOption(option.nextDialogue));
+            }
+            if (currentDialogue.options.Length < 4)
+            {
+                choiceButtons[3].GetComponentInChildren<TMP_Text>().text = "Farewell";
+                choiceButtons[3].onClick.AddListener(EndDialogue);
+                choiceButtons[3].gameObject.SetActive(true);
             }
         }
         else
@@ -141,9 +141,7 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         ClearChoices();
 
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
+        dialogueCanvas.enabled = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

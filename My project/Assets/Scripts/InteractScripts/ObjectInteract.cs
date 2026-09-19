@@ -18,11 +18,12 @@ public class ObjectInteract : MonoBehaviour
 
     public bool isExamining = false;
     public bool isReading = false;
+    public Marking marking;
 
 
     public Canvas objectIntCanva;
     public Canvas interactMenu;
-    public Canvas readCanva;
+    public GameObject readMenu;
     public Canvas hudCanvas;
 
     public GameObject interactBorder;
@@ -54,7 +55,7 @@ public class ObjectInteract : MonoBehaviour
     {
         objectIntCanva.enabled = false;
         interactMenu.enabled = false;
-        readCanva.enabled = false;
+        readMenu.SetActive(false);
         targetObject = GameObject.Find("PlayerCapsule");
         playerInput = targetObject.GetComponent<PlayerInput>();
     }
@@ -122,7 +123,8 @@ public class ObjectInteract : MonoBehaviour
                 objectIntCanva.enabled = true;
                 interactMenu.enabled = false;
                 hudCanvas.enabled = true;
-                NonExamine(); StopExamination();
+                NonExamine();
+                
             }
         }
         else
@@ -137,11 +139,12 @@ public class ObjectInteract : MonoBehaviour
     {        
         if (isReading)
         {
-            readCanva.enabled = false;
+            readMenu.SetActive(false);
             isReading = false;
             PlayBookAnimation();
         }
         isExamining = false;
+        StopExamination();
     }
 
     public void ReadButtonPressed()
@@ -152,7 +155,7 @@ public class ObjectInteract : MonoBehaviour
 
     public void CloseButtonPressed()
     {
-        readCanva.enabled = false;
+        readMenu.SetActive(false);
         isReading = false;
         PlayBookAnimation();
     }
@@ -166,7 +169,8 @@ public class ObjectInteract : MonoBehaviour
         lastMousePosition = mousePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        playerInput.enabled = false;
+        playerInput.actions.FindAction("Movement").Disable();
+        playerInput.actions.FindAction("Look").Disable(); ;
     }
 
     //This method is called when the player stops examining an object. It locks the cursor again,
@@ -174,9 +178,11 @@ public class ObjectInteract : MonoBehaviour
 
     void StopExamination()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        playerInput.enabled = true;
+        playerInput.actions.FindAction("Movement").Enable();
+        playerInput.actions.FindAction("Look").Enable(); ;
     }
 
 
@@ -257,7 +263,7 @@ public class ObjectInteract : MonoBehaviour
     //From Book script to make sure the readCanva is enabled after the animation is done
     public void ReadBook()
     {
-        readCanva.enabled = true;
+        readMenu.SetActive(true);
     }
 
 }
