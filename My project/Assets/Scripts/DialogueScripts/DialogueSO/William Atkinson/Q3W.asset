@@ -16,18 +16,15 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Do you repent for the sins you have commited?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: What sins have I commited Keeper? I was meerly giving bread to those who
-      needed.
+    text: 
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Precisely! Do you not understand the waste that comes with keeping those
-      close to death alive. Only the strong should survive, and currently, you are
-      not part of that group.
+    text: 
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Have you been eating?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: 5a488e8cf8945c244bde42405e4f266c, type: 2}
-  - optionText: Do you have any family?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: 407e83e351dbcf440b7fa0efe70f262e, type: 2}
   - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 51059be4525630c459ce1f6f10f8c1fb, type: 2}

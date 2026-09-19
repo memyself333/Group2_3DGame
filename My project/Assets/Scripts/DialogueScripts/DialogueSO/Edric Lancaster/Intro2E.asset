@@ -20,9 +20,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What should I ask?)
   options:
-  - optionText: Have you been eating?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: 2525ae462b74c4f44b1210392b06bbd1, type: 2}
-  - optionText: Do you have any family?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: d2cd2f0ab0653e84686f350456ce8d5c, type: 2}
   - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 25f09e20363240a4d8ce78f4ceb65664, type: 2}

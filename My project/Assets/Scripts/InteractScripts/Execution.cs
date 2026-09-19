@@ -25,6 +25,7 @@ public class Execution : MonoBehaviour
         public string prisonerName;
         public PrisonerSO prisonerSO;
         public UnityEngine.UI.Toggle toggle;
+        public GameObject breakLine;
     }
 
     [SerializeField] private PrisonerAlive[] prisonerAlives;
@@ -120,5 +121,19 @@ public class Execution : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
+    }
+
+    public void CheckDeadPrisoners(string pName)
+    {
+        for (int i = 0; i < prisoners.Length; i++)
+        {
+            if (prisoners[i].prisonerName == pName)
+            {
+                prisonerAlives[i].toggle.isOn = false;
+                prisonerAlives[i].toggle.interactable = false;
+                prisonerAlives[i].breakLine.SetActive(true);
+
+            }
+        }
     }
 }

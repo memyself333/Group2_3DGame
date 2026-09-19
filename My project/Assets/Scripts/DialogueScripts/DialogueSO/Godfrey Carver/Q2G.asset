@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you have any next of kin?
+    text: What crime did you commit to be sent here?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: My mother, yet she is frail and will not live for many more years.
+    text: 
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: We will be sure to deal with this issue.
+    text: 
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Have you been eating?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: f5d89c9c320ab0d4e85772260bc9cc7f, type: 2}
   - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 22586fe4d928e0f42849dd9a4ecd346f, type: 2}
