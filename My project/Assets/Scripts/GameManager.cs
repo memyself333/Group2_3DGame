@@ -50,4 +50,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    //This Gamemanager isn't used in this first prototype, but if we need scene changes (possible day cycle), then it will be used.
 }
