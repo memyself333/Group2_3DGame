@@ -16,15 +16,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Are you behaving in there, prisoner?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: I want to die.
+    text: I do not believe this, a lowly jailor is trying to belittle Godfrey Carver,
+      the eighth son of-
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: That's what I like to hear!
+    text: Silence! No more out of your wretched mouth.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What should I ask?)
   options:
-  - optionText: Have you been eating?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: f5d89c9c320ab0d4e85772260bc9cc7f, type: 2}
-  - optionText: Do you have any family?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: 6dedbedcee5751047b3b7804f9d483e4, type: 2}
   - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 22586fe4d928e0f42849dd9a4ecd346f, type: 2}

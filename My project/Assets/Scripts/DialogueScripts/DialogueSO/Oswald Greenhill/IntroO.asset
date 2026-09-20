@@ -16,15 +16,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Are you behaving in there, prisoner?
   - speaker: {fileID: 11400000, guid: 3f6288731ce029749915fd04743cd09d, type: 2}
-    text: I want to die.
+    text: As much as one can with nothing but a bucket.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: That's what I like to hear!
+    text: That humour may get you in favour with the church, but the royal court
+      still wants your head.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What should I ask?)
   options:
-  - optionText: Have you been eating?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: fd618896391fa62448f93c9cceafb9eb, type: 2}
-  - optionText: Do you have any family?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: e694af36fd2a2d24bb29c69316af389b, type: 2}
   - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 4de44e78953e89345a10dce3a78eccca, type: 2}

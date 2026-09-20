@@ -20,13 +20,13 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What should I ask?)
   options:
-  - optionText: Have you been eating?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: fd618896391fa62448f93c9cceafb9eb, type: 2}
-  - optionText: Do you have any family?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: e694af36fd2a2d24bb29c69316af389b, type: 2}
   - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 4de44e78953e89345a10dce3a78eccca, type: 2}
   - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 7c70b54dc35e15d4dabda6f600a81ad0, type: 2}
   requiredConvos:
-  - {fileID: 11400000, guid: 2ffe549bdf53bf445a282389987d2d6c, type: 2}
+  - {fileID: 11400000, guid: 550a2aaf7d5c3544fae05e3c51e269ae, type: 2}

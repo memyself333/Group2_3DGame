@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Have you been eating your food, prisoner?
+    text: Which kingdom do you owe your loyalty to?
   - speaker: {fileID: 11400000, guid: 3f6288731ce029749915fd04743cd09d, type: 2}
-    text: Yes, but my body can't stomach it, I have been casting it up.
+    text: The kingdom of the people, the lowly who deserve to run this wretched place.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: How dare you not appreciate the food we give you!
+    text: Unfortunate, that those lowly people have no say in what we can subject
+      you to.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Do you have any family?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: e694af36fd2a2d24bb29c69316af389b, type: 2}
   - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 4de44e78953e89345a10dce3a78eccca, type: 2}

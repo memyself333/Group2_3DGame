@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
+using TMPro;
 
 public class ExitOffice : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class ExitOffice : MonoBehaviour
     public PlayerInput playerInput;
     public Animator playerAnim;
     public Animator cameraAnim;
+    public Marking marking;
+    public Execution execution;
+
+    public int currentDay = 1;
+    public TMP_Text dayText;
 
 
     public PlayableDirector director;
@@ -22,10 +28,12 @@ public class ExitOffice : MonoBehaviour
     public struct Prisoner
     {
         public PrisonerSO prisonerName;
+        public string prisonerNameString;
         public GameObject prisonerGameObject;
     }
 
     [SerializeField] private Prisoner[] prisoners;
+
 
     private void Awake()
     {
@@ -90,6 +98,17 @@ public class ExitOffice : MonoBehaviour
 
     public void PlayExitAnimation()
     {
+        currentDay++;
+        if (currentDay == 2)
+        {
+            dayText.text = "Day " + currentDay.ToString();
+            currentDay = 1;
+        }
+        else
+        {
+            dayText.text = "Day " + currentDay.ToString();
+        }
+
         director.Play();
         foreach (var prisoner in prisoners)
         {
@@ -100,8 +119,11 @@ public class ExitOffice : MonoBehaviour
             else
             {
                 prisoner.prisonerGameObject.SetActive(false);
+                marking.CheckDeadPrisoners(prisoner.prisonerNameString);
+                execution.CheckDeadPrisoners(prisoner.prisonerNameString);
             }
         }
+        
     }
 
 
@@ -118,8 +140,6 @@ public class ExitOffice : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
-
-
     }
 }
 

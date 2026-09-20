@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 public class FPController : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class FPController : MonoBehaviour
     private Vector2 lookInput;
     private Vector3 velocity;
     private float verticalRotation = 0f;
+
+    public AudioClip[] footstepStoneClips;
+    public AudioClip[] keyJingleClips;
+    public AudioSource audioSource;
+    public AudioSource keyAudioSource;
+    public int lastClipIndex1 = -1;
+    public int lastClipIndex2 = -1;
 
     public GameObject notifPrisoner1;
     public GameObject notifPrisoner2;
@@ -60,6 +68,15 @@ public class FPController : MonoBehaviour
         {
             hudCanvas.enabled = true;
             npcCanvas.enabled = false;
+        }
+
+        if (!audioSource.isPlaying && controller.isGrounded && moveInput.magnitude > 0.1f)
+        {
+            PlayStoneFootstep();
+        }
+        if (!keyAudioSource.isPlaying && controller.isGrounded && moveInput.magnitude > 0.1f)
+        {
+            PlayKeyJingle();
         }
     }
     public void OnMove(InputAction.CallbackContext context)
@@ -126,9 +143,17 @@ public class FPController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == notifPrisoner1 || other.gameObject == notifPrisoner2)
+        var foundNpcTalk = other.GetComponentInParent<NPC_Talk>();
+        if (foundNpcTalk != null)
         {
+            Debug.Log("Found npc_talk");
+            npcTalk = foundNpcTalk;
             npcTalk.nearNPC = false;
+            return;
+        }
+        else
+        {
+            Debug.Log("Not found npc_talk");
         }
 
         if (other.gameObject == notifExecute)
@@ -147,4 +172,31 @@ public class FPController : MonoBehaviour
         }
     }
 
+    public void PlayStoneFootstep()
+    {
+        if (footstepStoneClips.Length == 0) return;
+
+        int nextClipIndex;
+        do
+        {
+            nextClipIndex = UnityEngine.Random.Range(0, footstepStoneClips.Length);
+        } while (nextClipIndex == lastClipIndex1); // Avoid repeating the same sound
+
+        lastClipIndex1 = nextClipIndex;
+        audioSource.PlayOneShot(footstepStoneClips[nextClipIndex]);
+    }
+
+    public void PlayKeyJingle()
+    {
+        if (keyJingleClips.Length == 0) return;
+
+        int nextClipIndex;
+        do
+        {
+            nextClipIndex = UnityEngine.Random.Range(0, keyJingleClips.Length);
+        } while (nextClipIndex == lastClipIndex2); // Avoid repeating the same sound
+
+        lastClipIndex2 = nextClipIndex;
+        keyAudioSource.PlayOneShot(keyJingleClips[nextClipIndex]);
+    }
 }

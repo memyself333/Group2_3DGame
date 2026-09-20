@@ -168,4 +168,23 @@ public class Marking : MonoBehaviour
         }
     }
 
+    public void CheckDeadPrisoners(string pName)
+    {
+        prisoners = prisoners.Where(prisoner => prisoner.prisonerName != pName).ToArray();
+        currentPrisonerIndex = 0;
+        currentPrisoner = prisoners[currentPrisonerIndex].prisonerName;
+        prisonerName.text = currentPrisoner;
+
+        for (int i = 0; i < prisoners.Length; i++)
+        {
+            if (prisoners[i].prisonerName == currentPrisoner)
+            {
+                for (int j = 0; j < prisoners[i].isToggleOn.Length; j++)
+                {
+                    toggles[j].isOn = prisoners[i].isToggleOn[j];
+                }
+            }
+        }
+    }
+
 }
