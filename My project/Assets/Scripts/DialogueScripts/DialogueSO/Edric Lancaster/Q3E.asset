@@ -16,9 +16,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Do you repent for the sins you have commited?
   - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
-    text: 
+    text: 'Aye sir. My daughter has surely passed of starvation in my absence. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: 'May she receive a better man as her father in her next life. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:

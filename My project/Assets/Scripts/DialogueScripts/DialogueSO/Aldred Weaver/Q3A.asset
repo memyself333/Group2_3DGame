@@ -16,9 +16,10 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Do you repent for the sins you have commited?
   - speaker: {fileID: 11400000, guid: 9422cbed940533746945e8f2853fd658, type: 2}
-    text: 
+    text: ' I confess my sins to the Almighty every day in the hopes that I may be
+      redeemed.'
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: 'You shall likely have the opportunity to ask him yourself soon enough. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:

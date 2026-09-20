@@ -126,9 +126,17 @@ public class FPController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == notifPrisoner1 || other.gameObject == notifPrisoner2)
+        var foundNpcTalk = other.GetComponentInParent<NPC_Talk>();
+        if (foundNpcTalk != null)
         {
+            Debug.Log("Found npc_talk");
+            npcTalk = foundNpcTalk;
             npcTalk.nearNPC = false;
+            return;
+        }
+        else
+        {
+            Debug.Log("Not found npc_talk");
         }
 
         if (other.gameObject == notifExecute)

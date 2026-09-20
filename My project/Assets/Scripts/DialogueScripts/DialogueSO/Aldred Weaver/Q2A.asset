@@ -16,9 +16,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: What crime did you commit to be sent here?
   - speaker: {fileID: 11400000, guid: 9422cbed940533746945e8f2853fd658, type: 2}
-    text: 
+    text: "I can\u2019t seem to remember, the years have taken a toll on my memory "
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: 'A shame to be imprisoned for a crime you cannot remember. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:

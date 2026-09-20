@@ -16,9 +16,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Who do you worship, prisoner?
   - speaker: {fileID: 11400000, guid: acc9eb1cf5a20f94bb38876b48cc38e2, type: 2}
-    text: 
+    text: 'My pagan gods are the world itself. The wind, the grass, the water. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: 'We shall see how much your so-called-Gods will be of help in the end. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:

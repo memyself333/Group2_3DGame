@@ -16,9 +16,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Who do you worship, prisoner?
   - speaker: {fileID: 11400000, guid: 9422cbed940533746945e8f2853fd658, type: 2}
-    text: 
+    text: 'The one true God, sir. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: ' I see. You seem to be a simple man. Carry on then.'
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:

@@ -29,4 +29,4 @@ MonoBehaviour:
   - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: fdb1504509e93ad41a69d1d0440af39d, type: 2}
   requiredConvos:
-  - {fileID: 11400000, guid: 2ffe549bdf53bf445a282389987d2d6c, type: 2}
+  - {fileID: 11400000, guid: 29738daeae8253248844af99949ca2d4, type: 2}

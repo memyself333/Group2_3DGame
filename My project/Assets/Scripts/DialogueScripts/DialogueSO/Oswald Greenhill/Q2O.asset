@@ -16,9 +16,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: What crime did you commit to be sent here?
   - speaker: {fileID: 11400000, guid: 3f6288731ce029749915fd04743cd09d, type: 2}
-    text: 
+    text: "I saved those people, without me, they would\u2019ve starved on the street."
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: '"Saved" is a strong word for a lowly thief.'
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:

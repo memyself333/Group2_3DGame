@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -79,7 +80,7 @@ public class ObjectInteract : MonoBehaviour
             {
                 if (interactHit.collider.CompareTag("Object"))
                 {
-                    if (distance < 1.5f)
+                    if (distance < 2f)
                     {
                         isExamining = true;
 
@@ -201,7 +202,7 @@ public class ObjectInteract : MonoBehaviour
                     if (Mouse.current.leftButton.isPressed)
                     {
                         Vector3 deltaMouse = mousePosition - lastMousePosition;
-                        float rotationSpeed = 1.0f;
+                        float rotationSpeed = 0.5f;
                         examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
                         examinedObject.Rotate(deltaMouse.y * rotationSpeed * Vector3.left, Space.World);
                         lastMousePosition = mousePosition;
@@ -239,7 +240,7 @@ public class ObjectInteract : MonoBehaviour
         float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
 
         // Check if they are close based on the threshold
-        return (distance < 1.5f);
+        return (distance < 2f);
 
     }
     //Play Book Animations when changing between reading and examining
@@ -247,16 +248,38 @@ public class ObjectInteract : MonoBehaviour
     {
         examinedObject.transform.position = readOffset.transform.position;
         Quaternion desiredRotation = Quaternion.LookRotation(player.transform.forward, Vector3.up) * Quaternion.Euler(-60f, 0f, 0f);
-        examinedObject.transform.rotation = desiredRotation;
-        if (isReading)
+        if (examinedObject.name == "Letter")
         {
-            bookAnimator.SetBool("CloseBook", false);
-            bookAnimator.SetBool("OpenBook", true);
+            examinedObject.transform.rotation = desiredRotation * Quaternion.Euler(0f, 180f, 0f);
         }
         else
         {
-            bookAnimator.SetBool("OpenBook", false);
-            bookAnimator.SetBool("CloseBook", true);
+            examinedObject.transform.rotation = desiredRotation;
+        }
+            
+        if (isReading)
+        {
+            if(examinedObject.name == "Book")
+            {
+                bookAnimator.SetBool("CloseBook", false);
+                bookAnimator.SetBool("OpenBook", true);
+            }
+            else 
+            {
+                StartCoroutine(ReadLetter());
+            }
+        }
+        else
+        {
+            if (examinedObject.name == "Book")
+            {
+                bookAnimator.SetBool("CloseBook", true);
+                bookAnimator.SetBool("OpenBook", false);
+            }
+            else
+            {
+                return;
+            }
         }
     }
 
@@ -266,4 +289,11 @@ public class ObjectInteract : MonoBehaviour
         readMenu.SetActive(true);
     }
 
+    public IEnumerator ReadLetter()
+    {
+        Debug.Log("ReadLetter Coroutine started");
+        yield return new WaitForSeconds(1f);
+        Debug.Log("ReadLetter Coroutine finished, enabling readMenu");
+        readMenu.SetActive(true);
+    }
 }

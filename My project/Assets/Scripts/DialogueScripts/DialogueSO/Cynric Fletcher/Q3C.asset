@@ -16,9 +16,11 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Do you repent for the sins you have commited?
   - speaker: {fileID: 11400000, guid: acc9eb1cf5a20f94bb38876b48cc38e2, type: 2}
-    text: 
+    text: "When you die, you shall see then I am not the one that must beg God\u2019s
+      forgiveness. "
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: 'Take comfort in this belief before the fiery pits of hell come to greet
+      you. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:

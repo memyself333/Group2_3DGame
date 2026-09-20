@@ -16,9 +16,10 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Which kingdom do you owe your loyalty to?
   - speaker: {fileID: 11400000, guid: 3f6288731ce029749915fd04743cd09d, type: 2}
-    text: 
+    text: The kingdom of the people, the lowly who deserve to run this wretched place.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: Unfortunate, that those lowly people have no say in what we can subject
+      you to.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
