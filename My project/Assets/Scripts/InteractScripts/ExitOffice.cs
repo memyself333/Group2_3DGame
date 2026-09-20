@@ -118,9 +118,18 @@ public class ExitOffice : MonoBehaviour
             }
             else
             {
-                prisoner.prisonerGameObject.SetActive(false);
-                marking.CheckDeadPrisoners(prisoner.prisonerNameString);
-                execution.CheckDeadPrisoners(prisoner.prisonerNameString);
+                if (prisoner.prisonerNameString == "William Atkinson")
+                {
+                    prisoner.prisonerName.isAlive = true;
+                    prisoner.prisonerGameObject.SetActive(true);
+                }
+                else
+                {
+                    prisoner.prisonerGameObject.SetActive(false);
+                    marking.CheckDeadPrisoners(prisoner.prisonerNameString);
+                    execution.CheckDeadPrisoners(prisoner.prisonerNameString);
+                }
+                
             }
         }
         
