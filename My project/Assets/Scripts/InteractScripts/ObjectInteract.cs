@@ -29,6 +29,8 @@ public class ObjectInteract : MonoBehaviour
 
     public GameObject interactBorder;
 
+    public GameObject lightObject;
+
     public GameObject tableObject;
 
     public Animator bookAnimator;
@@ -59,6 +61,7 @@ public class ObjectInteract : MonoBehaviour
         readMenu.SetActive(false);
         targetObject = GameObject.Find("PlayerCapsule");
         playerInput = targetObject.GetComponent<PlayerInput>();
+        lightObject.SetActive(false);
     }
 
     void Update()
@@ -172,6 +175,7 @@ public class ObjectInteract : MonoBehaviour
         Cursor.visible = true;
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable(); ;
+        lightObject.SetActive(true);
     }
 
     //This method is called when the player stops examining an object. It locks the cursor again,
@@ -183,7 +187,8 @@ public class ObjectInteract : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playerInput.actions.FindAction("Movement").Enable();
-        playerInput.actions.FindAction("Look").Enable(); ;
+        playerInput.actions.FindAction("Look").Enable(); 
+        lightObject.SetActive(false);
     }
 
 

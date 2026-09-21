@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q3O2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Who will bring you food today?
+  - speaker: {fileID: 11400000, guid: 3f6288731ce029749915fd04743cd09d, type: 2}
+    text: I hope that one of the strangers I helped could return the favour, but
+      I do not expect payment.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: I am sure that those you "helped" have already died of starvation.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: ill you stand in front of the church court?
+    nextDialogue: {fileID: 11400000, guid: fa48940fd75755e4c9e25a3b95ed84b9, type: 2}
+  - optionText: Who were your accomplices?
+    nextDialogue: {fileID: 11400000, guid: 3ea8b57369a10114da40b7ddabc567f0, type: 2}
+  - optionText: Was your crime the work of the Devil?
+    nextDialogue: {fileID: 11400000, guid: 5caf3546e6f0b4a47b3e28780f89f583, type: 2}
+  requiredConvos: []

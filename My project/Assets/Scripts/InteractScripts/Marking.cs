@@ -187,4 +187,15 @@ public class Marking : MonoBehaviour
         }
     }
 
+    public void ResetMarking()
+    {
+        currentPrisoner = prisoners[0].prisonerName;
+        foreach (var prisoner in prisoners)
+        {
+            for (int j = 0; j < prisoner.isToggleOn.Length; j++)
+            {
+                prisoner.isToggleOn[j] = false;
+            }
+        }
+    }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q3E1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Do you repent for the sins you have commited?
+  - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
+    text: 'Aye sir. My daughter has surely passed of starvation in my absence. '
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: 'May she receive a better man as her father in her next life. '
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: Who are you loyal to?
+    nextDialogue: {fileID: 11400000, guid: 2525ae462b74c4f44b1210392b06bbd1, type: 2}
+  - optionText: What crime did you commit?
+    nextDialogue: {fileID: 11400000, guid: d2cd2f0ab0653e84686f350456ce8d5c, type: 2}
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000, guid: dbfbd1ba93ec3744cba734e80eb70a83, type: 2}
+  requiredConvos: []

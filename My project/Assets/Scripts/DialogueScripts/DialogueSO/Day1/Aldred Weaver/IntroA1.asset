@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: IntroA1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Are you behaving in there, prisoner?
+  - speaker: {fileID: 11400000, guid: 9422cbed940533746945e8f2853fd658, type: 2}
+    text: Aye sir, I am but trying to while away the hours.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: 'Very well, I hope counting the bricks of this cell shall remain as interesting
+      as it was all the days before. '
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What should I ask?)
+  options:
+  - optionText: Who are you loyal to?
+    nextDialogue: {fileID: 11400000, guid: 1b46730c38d04514f8e842f9c41ce266, type: 2}
+  - optionText: What crime did you commit?
+    nextDialogue: {fileID: 11400000, guid: 8d1e07f2010d85949b23c1b3c27d1178, type: 2}
+  - optionText: Do you repent for your sins?
+    nextDialogue: {fileID: 11400000, guid: 5f62df19686d80847ac169210cbdd5bb, type: 2}
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000, guid: e8730aca28eaec2429ea5aab951bc45f, type: 2}
+  requiredConvos: []

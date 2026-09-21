@@ -6,7 +6,7 @@ public class DialogueHistoryTracker : MonoBehaviour
 {
     public static DialogueHistoryTracker Instance;
 
-    private readonly List<DialogueSO> spokenConvos = new List<DialogueSO>();
+    public readonly List<DialogueSO> spokenConvos = new List<DialogueSO>();
 
     private void Awake()
     {

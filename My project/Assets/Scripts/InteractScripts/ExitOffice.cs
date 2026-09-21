@@ -16,10 +16,18 @@ public class ExitOffice : MonoBehaviour
     public Animator cameraAnim;
     public Marking marking;
     public Execution execution;
+    public Canvas hudCanvas;
+    public TMP_Text readText;
+    [TextArea(3, 5)] public string textDay1;
+    [TextArea(3, 5)] public string textDay2;
+
+
 
     public int currentDay = 1;
     public TMP_Text dayText;
 
+    public GameObject letterObject;
+    public GameObject bookObject;
 
     public PlayableDirector director;
 
@@ -30,6 +38,8 @@ public class ExitOffice : MonoBehaviour
         public PrisonerSO prisonerName;
         public string prisonerNameString;
         public GameObject prisonerGameObject;
+        public List<DialogueSO> prisonerConvosDay1;
+        public List<DialogueSO> prisonerConvosDay2;
     }
 
     [SerializeField] private Prisoner[] prisoners;
@@ -47,6 +57,9 @@ public class ExitOffice : MonoBehaviour
 
         playerAnim.enabled = false;
         cameraAnim.enabled = false;
+        bookObject.SetActive(false);
+        exitNotif.enabled = false;
+        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +70,7 @@ public class ExitOffice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (nearExit)
         {
             if (isExiting)
@@ -98,11 +112,13 @@ public class ExitOffice : MonoBehaviour
 
     public void PlayExitAnimation()
     {
+        hudCanvas.enabled = false;
+        marking.ResetMarking();
         currentDay++;
-        if (currentDay == 2)
+        if (currentDay == 3)
         {
-            dayText.text = "Day " + currentDay.ToString();
             currentDay = 1;
+            dayText.text = "Day " + currentDay.ToString();
         }
         else
         {
@@ -128,17 +144,32 @@ public class ExitOffice : MonoBehaviour
                     prisoner.prisonerGameObject.SetActive(false);
                     marking.CheckDeadPrisoners(prisoner.prisonerNameString);
                     execution.CheckDeadPrisoners(prisoner.prisonerNameString);
+                    execution.ResetGeneral();
                 }
                 
             }
         }
         
+        if (currentDay == 1)
+        {
+            letterObject.SetActive(true);
+            bookObject.SetActive(false);
+            readText.text = textDay1;
+        }
+        else if (currentDay == 2)
+        {
+            letterObject.SetActive(false);
+            bookObject.SetActive(true);
+            readText.text = textDay2;   
+        }
     }
 
 
 
     public void ControlReturn()
     {
+        execution.executionDone = false;
+        hudCanvas.enabled = true;
         isExiting = false;
 
         playerAnim.enabled = false;
@@ -149,6 +180,19 @@ public class ExitOffice : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
+
+        for (int i = 0; i < prisoners.Length; i++)
+        {
+            if (currentDay == 1)
+            {
+                prisoners[i].prisonerGameObject.GetComponent<NPC_Talk>().conversations = prisoners[i].prisonerConvosDay1;
+            }
+            else if (currentDay == 2)
+            {
+                prisoners[i].prisonerGameObject.GetComponent<NPC_Talk>().conversations = prisoners[i].prisonerConvosDay2;
+            }
+        }
+
     }
 }
 

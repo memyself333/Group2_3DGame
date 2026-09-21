@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q3C2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Who will bring you food today?
+  - speaker: {fileID: 11400000, guid: acc9eb1cf5a20f94bb38876b48cc38e2, type: 2}
+    text: 'Their relation to me is of no consequence to you. '
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: "Careful with your words prisoner, lest you end up like yesterday\u2019s
+      example. "
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: ill you stand in front of the church court?
+    nextDialogue: {fileID: 11400000, guid: ef312ff9cf9f3e440918d1a4745ece14, type: 2}
+  - optionText: Who were your accomplices?
+    nextDialogue: {fileID: 11400000, guid: e2848c88b1c01aa43bd13a51e42e599f, type: 2}
+  - optionText: Was your crime the work of the Devil?
+    nextDialogue: {fileID: 11400000, guid: 7db0b5037aae45245b1515d7dc738e32, type: 2}
+  requiredConvos: []

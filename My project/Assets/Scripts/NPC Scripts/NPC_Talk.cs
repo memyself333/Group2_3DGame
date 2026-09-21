@@ -12,6 +12,7 @@ public class NPC_Talk : MonoBehaviour
     public DialogueSO currentConversation;
     public bool nearNPC = false;
     public GameObject thisNPC;
+    public GameObject executionBox;
 
     private void Awake()
     {
@@ -32,21 +33,21 @@ public class NPC_Talk : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Step 1");
+            
             if (nearNPC)
             {
-                Debug.Log("Step 2");
+                executionBox.SetActive(true);
                 if (DialogueManager.Instance.isDialogueActive)
                 {
                     DialogueManager.Instance.AdvanceDialogue();
                 }
                 else
                 {
-                    Debug.Log("Step 3");
+                    
                     CheckForNewConversation();
-                    Debug.Log("Step 4");
+                    
                     DialogueManager.Instance.StartDialogue(currentConversation);
-                    Debug.Log("Step 5");
+                    
                 }
             }
         }

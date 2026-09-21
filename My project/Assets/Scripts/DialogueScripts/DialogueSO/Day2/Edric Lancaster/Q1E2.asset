@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q1E2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Do you claim the right of the clergy?
+  - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
+    text: Whatever shall grant me mercy sir, please.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: "Perhaps the clergy\u2019s communion with God shall serve you the mercy
+      you desire, however unlikely. "
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: Who were your accomplices?
+    nextDialogue: {fileID: 11400000, guid: 26660ece72be6034b99e51731d6611ee, type: 2}
+  - optionText: Who will bring your food?
+    nextDialogue: {fileID: 11400000, guid: 304cf3ca2fee01a43bd60097a750b03b, type: 2}
+  - optionText: Was your crime the work of the Devil?
+    nextDialogue: {fileID: 11400000, guid: c1e7e2a58e77da44fae510635e3901f7, type: 2}
+  requiredConvos: []

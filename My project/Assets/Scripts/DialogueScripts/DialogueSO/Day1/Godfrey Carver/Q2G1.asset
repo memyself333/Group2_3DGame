@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q2G1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: What crime did you commit to be sent here?
+  - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
+    text: "That brother of mine practically begged for it. He did not wish to share
+      his wealth with the true heir to King Carver\u2019s throne."
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: You thought murdering your brother would put you in good graces with your
+      father? You are more foolish than the last.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: Who are you loyal to?
+    nextDialogue: {fileID: 11400000, guid: f5d89c9c320ab0d4e85772260bc9cc7f, type: 2}
+  - optionText: Do you repent for your sins?
+    nextDialogue: {fileID: 11400000, guid: 22586fe4d928e0f42849dd9a4ecd346f, type: 2}
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000, guid: 2942cc4a64fe3344e845c4f073bda1ec, type: 2}
+  requiredConvos: []

@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -7,6 +9,8 @@ using UnityEngine.UIElements;
 
 public class Execution : MonoBehaviour
 {
+    public GameObject executionBox;
+    public GameObject exitBox;
     public bool isExecuting;
     public bool nearExecuter;
     public Canvas executeCanva;
@@ -15,7 +19,8 @@ public class Execution : MonoBehaviour
     public TMP_Text[] prisonerScoresTexts;
     public int[] prisonerScores;
     public PrisonerSO[] prisoners;
-    
+    public bool executionDone = false;
+    public ExitOffice exitOffice;
 
     public PlayerInput playerInput;
 
@@ -34,11 +39,15 @@ public class Execution : MonoBehaviour
     {
         isExecuting = false;
         executeCanva.enabled = false;
+        
 
     }
 
     public void Start()
     {
+        executionBox.SetActive(false);
+        exitBox.SetActive(false);
+        executionDone = false;
         foreach (var prisoner in prisoners)
         {
             prisoner.prisonerPoints = 0;
@@ -89,6 +98,17 @@ public class Execution : MonoBehaviour
         {
             executeNotif.enabled = false;
         }
+
+
+        if (executionDone)
+        {
+            exitBox.SetActive(true);
+        }
+        else
+        {
+            exitOffice.nearExit = false;
+            exitBox.SetActive(false);
+        }
     }
 
     //Disable playerInput, make cursor visible, and make execute canva visible
@@ -121,6 +141,8 @@ public class Execution : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
+
+        executionDone = true;
     }
 
     public void CheckDeadPrisoners(string pName)
@@ -129,11 +151,21 @@ public class Execution : MonoBehaviour
         {
             if (prisoners[i].prisonerName == pName)
             {
-                prisonerAlives[i].toggle.isOn = false;
                 prisonerAlives[i].toggle.interactable = false;
                 prisonerAlives[i].breakLine.SetActive(true);
 
             }
         }
     }
+
+    public void ResetGeneral()
+    {
+        for (int i = 0; i < prisoners.Length; i++)
+        {
+            prisonerAlives[i].toggle.isOn = false;
+        }
+        executionBox.SetActive(false);
+    }
+
+
 }

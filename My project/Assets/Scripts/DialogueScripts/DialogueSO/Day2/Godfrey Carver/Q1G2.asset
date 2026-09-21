@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q1G2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Do you claim the right of the clergy?
+  - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
+    text: Never, those stupid little zealots will never be as powerful as the royal
+      court.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: I do hope you realise the royal court sees less in you than the church
+      court.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: Who were your accomplices?
+    nextDialogue: {fileID: 11400000, guid: a39fcc61527967d4eb61b9aa1959f415, type: 2}
+  - optionText: Who will bring your food?
+    nextDialogue: {fileID: 11400000, guid: 3877593dfc89c51498d46ffa539f9652, type: 2}
+  - optionText: Was your crime the work of the Devil?
+    nextDialogue: {fileID: 11400000, guid: 21f7a023b14092d4a8db0de5e6f78e5d, type: 2}
+  requiredConvos: []

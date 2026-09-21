@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0d82623321fa54b9e2111f8662b1f0, type: 3}
+  m_Name: Q1E1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
+  lines:
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: Which kingdom do you owe your loyalty to?
+  - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
+    text: I suppose the one that may grant me freedom, sir.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: 'A rather spineless loyalty you seem to have. '
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (What else should I ask?)
+  options:
+  - optionText: What crime did you commit?
+    nextDialogue: {fileID: 11400000, guid: d2cd2f0ab0653e84686f350456ce8d5c, type: 2}
+  - optionText: Do you repent for your sins?
+    nextDialogue: {fileID: 11400000, guid: 25f09e20363240a4d8ce78f4ceb65664, type: 2}
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000, guid: dbfbd1ba93ec3744cba734e80eb70a83, type: 2}
+  requiredConvos: []
