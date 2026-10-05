@@ -27,8 +27,6 @@ public class ObjectInteract : MonoBehaviour
     public GameObject readMenu;
     public Canvas hudCanvas;
 
-    public GameObject interactBorder;
-
     public GameObject lightObject;
 
     public GameObject tableObject;
@@ -74,15 +72,21 @@ public class ObjectInteract : MonoBehaviour
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
+            var tempTex = Camera.main.targetTexture;
+            Camera.main.targetTexture = null;
 
+            Debug.Log("Step1");
             Ray interactRay = Camera.main.ScreenPointToRay(mousePosition);
             RaycastHit interactHit;
 
+            Camera.main.targetTexture = tempTex;
 
             if (Physics.Raycast(interactRay, out interactHit))
             {
+                Debug.Log("Step2");
                 if (interactHit.collider.CompareTag("Object"))
                 {
+                    Debug.Log("Step3");
                     if (distance < 2f)
                     {
                         isExamining = true;
@@ -111,29 +115,18 @@ public class ObjectInteract : MonoBehaviour
             {
                 objectIntCanva.enabled = false;
                 interactMenu.enabled = true;
-                if (isReading)
-                {
-                    interactBorder.SetActive(false);
-                }
-                else
-                {
-                    interactBorder.SetActive(true);
-                }
-                hudCanvas.enabled = false;
                 Examine(); StartExamination();
             }
             else
             {
                 objectIntCanva.enabled = true;
                 interactMenu.enabled = false;
-                hudCanvas.enabled = true;
                 NonExamine();
                 
             }
         }
         else
         {
-            hudCanvas.enabled = true;
             objectIntCanva.enabled = false;
         }
 
@@ -173,6 +166,7 @@ public class ObjectInteract : MonoBehaviour
         lastMousePosition = mousePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        hudCanvas.enabled = false;
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable(); ;
         lightObject.SetActive(true);
@@ -186,6 +180,7 @@ public class ObjectInteract : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        hudCanvas.enabled = true;
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable(); 
         lightObject.SetActive(false);

@@ -15,6 +15,7 @@ public class Execution : MonoBehaviour
     public bool nearExecuter;
     public Canvas executeCanva;
     public Canvas executeNotif;
+    public Canvas hudCanvas;
     public TMP_Text[] prisonerNames;
     public TMP_Text[] prisonerScoresTexts;
     public int[] prisonerScores;
@@ -124,6 +125,8 @@ public class Execution : MonoBehaviour
                 UnityEngine.Cursor.lockState = CursorLockMode.None;
                 UnityEngine.Cursor.visible = true;
 
+                hudCanvas.enabled = false;
+
                 playerInput.actions.FindAction("Movement").Disable();
                 playerInput.actions.FindAction("Look").Disable();
 
@@ -138,6 +141,8 @@ public class Execution : MonoBehaviour
 
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+
+        hudCanvas.enabled = true; 
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();

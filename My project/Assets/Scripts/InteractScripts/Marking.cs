@@ -12,6 +12,7 @@ public class Marking : MonoBehaviour
     public bool isMarking = false;
     public bool nearPaper = false;
     public Canvas markCanva;
+    public Canvas hudCanvas;
     public TMP_Text prisonerName;
     public string currentPrisoner;
     public string currentPaper;
@@ -19,7 +20,15 @@ public class Marking : MonoBehaviour
     public int currentPrisonerPoints;
     private int currentPrisonerIndex = 0;
     public GameObject[] menus;
+    public TMP_Text[] questions;
     public CanvasGroup currentMenu;
+    public ExitOffice exitOffice;
+
+    public string[] day1Questions;
+    public string[] day2Questions;
+    public string[] day3Questions;
+    public string[] day4Questions;
+
 
     public PlayerInput playerInput;
 
@@ -99,8 +108,30 @@ public class Marking : MonoBehaviour
                 }
             }
 
+            for (int i = 0; i < questions.Length; i++)
+            {
+                if (exitOffice.currentDay == 1)
+                {
+                    questions[i].text = day1Questions[i];
+                }
+                else if (exitOffice.currentDay == 2)
+                {
+                    questions[i].text = day2Questions[i];
+                }
+                else if (exitOffice.currentDay == 3)
+                {
+                    questions[i].text = day3Questions[i];
+                }
+                else if (exitOffice.currentDay == 4)
+                {
+                    questions[i].text = day4Questions[i];
+                }
+            }
+
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
+
+            hudCanvas.enabled = false;
 
             playerInput.actions.FindAction("Movement").Disable();
             playerInput.actions.FindAction("Look").Disable();
@@ -127,6 +158,9 @@ public class Marking : MonoBehaviour
         { 
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
+
+            hudCanvas.enabled = true;
+
             playerInput.actions.FindAction("Movement").Enable();
             playerInput.actions.FindAction("Look").Enable();
         }

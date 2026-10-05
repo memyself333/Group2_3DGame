@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498243a2e23135b4db31a01bf2ad6bb9, type: 3}
   m_Name: Aldred Weaver
   m_EditorClassIdentifier: Assembly-CSharp::ActorSO
-  actorName: Aldred Weaver
+  actorName: Aldred

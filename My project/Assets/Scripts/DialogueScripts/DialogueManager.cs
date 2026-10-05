@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text actorName;
     public TMP_Text dialogueText;
     public Button[] choiceButtons;
+    public Canvas hudCanvas;
 
     public bool isDialogueActive = false;
 
@@ -71,6 +72,8 @@ public class DialogueManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        hudCanvas.enabled = false;
 
         DialogueLine line = currentDialogue.lines[dialogueIndex];
 
@@ -145,6 +148,8 @@ public class DialogueManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        hudCanvas.enabled = true;
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();

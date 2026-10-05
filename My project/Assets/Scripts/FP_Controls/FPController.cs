@@ -16,6 +16,7 @@ public class FPController : MonoBehaviour
     private Vector2 lookInput;
     private Vector3 velocity;
     private float verticalRotation = 0f;
+    public bool isSprinting = false;
 
     public AudioClip[] footstepStoneClips;
     public AudioClip[] keyJingleClips;
@@ -34,7 +35,6 @@ public class FPController : MonoBehaviour
     public JumpscareBox jumpscareBox;
     public ExitOffice exitOffice;
     public Canvas npcCanvas;
-    public Canvas hudCanvas;
     public bool isTalking;
     public DialogueManager dm;
     private void Awake()
@@ -47,27 +47,42 @@ public class FPController : MonoBehaviour
     {
         isTalking = dm.isDialogueActive;
 
-        HandleMovement();
-        HandleLook();
-        
-        //Make sure HUD disappears when interacting with NPCs
         if (npcTalk.nearNPC)
         {
-            if (isTalking)
+            if (isTalking) 
             {
-                hudCanvas.enabled = false;
                 npcCanvas.enabled = false;
             }
             else
             {
-                hudCanvas.enabled = true;
                 npcCanvas.enabled = true;
             }
         }
         else
         {
-            hudCanvas.enabled = true;
             npcCanvas.enabled = false;
+        }
+        HandleMovement();
+        HandleLook();
+
+        if(isSprinting)
+        {
+            audioSource.pitch = 1.5f; // Increase pitch for sprinting
+            keyAudioSource.pitch = 1.5f; // Increase pitch for sprinting
+        }
+        else
+        {
+            audioSource.pitch = 1f; 
+            keyAudioSource.pitch = 1f; 
+        }
+
+        if (isSprinting)
+        {
+            moveSpeed = 4f; // Sprint speed
+        }
+        else
+        {
+            moveSpeed = 2f; // Normal speed
         }
 
         if (!audioSource.isPlaying && controller.isGrounded && moveInput.magnitude > 0.1f)
@@ -97,6 +112,18 @@ public class FPController : MonoBehaviour
         }
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isSprinting = true;
+        }
+        else if (context.canceled)
+        {
+            isSprinting = false;
+        }
     }
     public void HandleLook()
     {
