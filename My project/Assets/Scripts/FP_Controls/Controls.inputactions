@@ -348,33 +348,11 @@
                 },
                 {
                     "name": "",
-                    "id": "2c9371c7-46f5-43f9-84ba-54d12286a58a",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Talk",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c098e288-1b85-4549-bfa4-6af0515057d1",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Talk",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "310d9d99-8b6f-43ab-98e0-055707d64fb3",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "Talk",
                     "isComposite": false,
                     "isPartOfComposite": false

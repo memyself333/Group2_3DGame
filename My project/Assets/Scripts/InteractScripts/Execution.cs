@@ -1,11 +1,11 @@
 using JetBrains.Annotations;
 using System;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Execution : MonoBehaviour
 {
@@ -14,24 +14,38 @@ public class Execution : MonoBehaviour
     public bool isExecuting;
     public bool nearExecuter;
     public Canvas executeCanva;
-    public Canvas executeNotif;
     public Canvas hudCanvas;
     public TMP_Text[] prisonerNames;
     public TMP_Text[] prisonerScoresTexts;
     public int[] prisonerScores;
+    public Image[] prisonerBlood;
     public PrisonerSO[] prisoners;
     public bool executionDone = false;
     public ExitOffice exitOffice;
+    public ObjectInteract interact;
+    public FPController fpController;
+    public GameObject exitButton;
+    public bool hasTalked = false;
+    public bool isLookingAtPaper = false;
+    public Image cursor;
+    public Sprite cursorReticle;
+    public Sprite cursorQuill;
+
+    public Canvas notifCanvas;
+    public TMP_Text notifText;
 
     public PlayerInput playerInput;
+
+    public Animator[] bloodAnimations;
+    public AudioSource bloodAudio;
+    public AudioClip bloodClip;
 
     [System.Serializable]
     public struct PrisonerAlive
     {
         public string prisonerName;
         public PrisonerSO prisonerSO;
-        public UnityEngine.UI.Toggle toggle;
-        public GameObject breakLine;
+        public Button button;
     }
 
     [SerializeField] private PrisonerAlive[] prisonerAlives;
@@ -40,14 +54,11 @@ public class Execution : MonoBehaviour
     {
         isExecuting = false;
         executeCanva.enabled = false;
-        
-
+        bloodAudio.clip = bloodClip;
     }
 
     public void Start()
     {
-        executionBox.SetActive(false);
-        exitBox.SetActive(false);
         executionDone = false;
         foreach (var prisoner in prisoners)
         {
@@ -80,35 +91,33 @@ public class Execution : MonoBehaviour
                 prisonerScoresTexts[i].text = "Well Behaved";
             }
         }
-        for (int i = 0; i < prisonerAlives.Length; i++)
-        {
-            prisonerAlives[i].prisonerSO.isAlive = !prisonerAlives[i].toggle.isOn;
-        }
         if (nearExecuter)
         {
-            if (isExecuting)
+            Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            RaycastHit cursorHit;
+
+            if (Physics.Raycast(cursorRay, out cursorHit))
             {
-                executeNotif.enabled = false;
+                if (cursorHit.collider.CompareTag("ExecutionPaper"))
+                {
+                    isLookingAtPaper = true;
+                    cursor.sprite = cursorQuill;
+                }
+                else
+                {
+                    isLookingAtPaper = false;
+                    cursor.sprite = cursorReticle;
+                }
             }
-            else
-            {
-                executeNotif.enabled = true;
-            }
+        }
+        else if (exitOffice.nearExit || interact.CheckUserCloseToTable() || fpController.nearANPC)
+        {
+
         }
         else
         {
-            executeNotif.enabled = false;
-        }
-
-
-        if (executionDone)
-        {
-            exitBox.SetActive(true);
-        }
-        else
-        {
-            exitOffice.nearExit = false;
-            exitBox.SetActive(false);
+            isLookingAtPaper = false;
+            cursor.sprite = cursorReticle;
         }
     }
 
@@ -117,18 +126,28 @@ public class Execution : MonoBehaviour
     {
         if (context.performed)
         {
-            if (nearExecuter)
+            if (isLookingAtPaper)
             {
-                isExecuting = true;
-                executeCanva.enabled = true;
+                if (hasTalked)
+                {
+                    fpController.seenExecuteTip = true;
+                    isExecuting = true;
+                    executeCanva.enabled = true;
 
-                UnityEngine.Cursor.lockState = CursorLockMode.None;
-                UnityEngine.Cursor.visible = true;
+                    UnityEngine.Cursor.lockState = CursorLockMode.None;
+                    UnityEngine.Cursor.visible = true;
 
-                hudCanvas.enabled = false;
+                    hudCanvas.enabled = false;
 
-                playerInput.actions.FindAction("Movement").Disable();
-                playerInput.actions.FindAction("Look").Disable();
+                    playerInput.actions.FindAction("Movement").Disable();
+                    playerInput.actions.FindAction("Look").Disable();
+
+                    exitButton.SetActive(false);
+                }
+                else
+                {
+                    StartCoroutine(DisplayTip());
+                }
 
             }
         }
@@ -148,6 +167,7 @@ public class Execution : MonoBehaviour
         playerInput.actions.FindAction("Look").Enable();
 
         executionDone = true;
+        nearExecuter = false;
     }
 
     public void CheckDeadPrisoners(string pName)
@@ -156,9 +176,8 @@ public class Execution : MonoBehaviour
         {
             if (prisoners[i].prisonerName == pName)
             {
-                prisonerAlives[i].toggle.interactable = false;
-                prisonerAlives[i].breakLine.SetActive(true);
-
+                prisonerAlives[i].button.interactable = false;
+                prisonerBlood[i].enabled = true;
             }
         }
     }
@@ -167,10 +186,36 @@ public class Execution : MonoBehaviour
     {
         for (int i = 0; i < prisoners.Length; i++)
         {
-            prisonerAlives[i].toggle.isOn = false;
+            prisonerAlives[i].button.interactable = true;
         }
-        executionBox.SetActive(false);
     }
 
+    public void ExecutePrisoner(UnityEngine.UI.Button button)
+    {
+        for (int i = 0; i < prisonerAlives.Length; i++)
+        {
+            if (prisonerAlives[i].button == button)
+            {
+                prisonerAlives[i].prisonerSO.isAlive = false;
+                prisonerBlood[i].enabled = true;
+                bloodAnimations[i].Play("P" + (i + 1) + "Blood");
+                prisonerAlives[i].button.animator.SetTrigger("Selected");
+                bloodAudio.Play();
+                prisonerAlives[i].button.interactable = false;
+            }
+            else
+            {
+                prisonerAlives[i].button.interactable = false;
+            }
+        }
+        exitButton.SetActive(true);
+    }
 
+    public IEnumerator DisplayTip()
+    {
+        notifCanvas.enabled = true;
+        notifText.text = "I must interrogate the prisoners first";
+        yield return new WaitForSeconds(3f);
+        notifCanvas.enabled = false;
+    }
 }

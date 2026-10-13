@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Device;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using Cursor = UnityEngine.Cursor;
 
 public class ObjectInteract : MonoBehaviour
@@ -16,13 +16,19 @@ public class ObjectInteract : MonoBehaviour
     public GameObject player;
     private PlayerInput playerInput;
     private GameObject targetObject;
+    public Image cursor;
+    public Sprite cursorHand;
+    public Sprite cursorReticle;
 
     public bool isExamining = false;
     public bool isReading = false;
     public Marking marking;
 
+    public Execution execution;
+    public FPController fpController;
+    public ExitOffice exitOffice;
 
-    public Canvas objectIntCanva;
+
     public Canvas interactMenu;
     public GameObject readMenu;
     public Canvas hudCanvas;
@@ -54,7 +60,6 @@ public class ObjectInteract : MonoBehaviour
 
     void Start()
     {
-        objectIntCanva.enabled = false;
         interactMenu.enabled = false;
         readMenu.SetActive(false);
         targetObject = GameObject.Find("PlayerCapsule");
@@ -72,22 +77,14 @@ public class ObjectInteract : MonoBehaviour
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            var tempTex = Camera.main.targetTexture;
-            Camera.main.targetTexture = null;
-
-            Debug.Log("Step1");
-            Ray interactRay = Camera.main.ScreenPointToRay(mousePosition);
+            Ray interactRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit interactHit;
-
-            Camera.main.targetTexture = tempTex;
 
             if (Physics.Raycast(interactRay, out interactHit))
             {
-                Debug.Log("Step2");
                 if (interactHit.collider.CompareTag("Object"))
                 {
-                    Debug.Log("Step3");
-                    if (distance < 2f)
+                    if (distance < 1.75f)
                     {
                         isExamining = true;
 
@@ -111,23 +108,38 @@ public class ObjectInteract : MonoBehaviour
         //If the player is close, it calls either Examine() or NonExamine() and enables or disables the canvas component accordingly.
         if (CheckUserCloseToTable())
         {
-            if (isExamining)
+            Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            RaycastHit cursorHit;
+            if (Physics.Raycast(cursorRay, out cursorHit))
             {
-                objectIntCanva.enabled = false;
-                interactMenu.enabled = true;
-                Examine(); StartExamination();
+                if (cursorHit.collider.CompareTag("Object"))
+                {
+                    cursor.sprite = cursorHand;
+                }
+                else
+                {
+                    cursor.sprite = cursorReticle;
+                }
             }
-            else
-            {
-                objectIntCanva.enabled = true;
-                interactMenu.enabled = false;
-                NonExamine();
-                
-            }
+                if (isExamining)
+                {
+                    interactMenu.enabled = true;
+                    Examine(); StartExamination();
+                }
+                else
+                {
+                    interactMenu.enabled = false;
+                    NonExamine();
+
+                }
+        }
+        else if (execution.nearExecuter || fpController.nearANPC || exitOffice.nearExit)
+        {
+
         }
         else
         {
-            objectIntCanva.enabled = false;
+            cursor.sprite = cursorReticle;
         }
 
     }
@@ -240,7 +252,7 @@ public class ObjectInteract : MonoBehaviour
         float distance = Vector3.Distance(targetObject.transform.position, tableObject.transform.position);
 
         // Check if they are close based on the threshold
-        return (distance < 2f);
+        return (distance < 1.75f);
 
     }
     //Play Book Animations when changing between reading and examining

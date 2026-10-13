@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Object
   - NPC
+  - ExecutionPaper
+  - Door
+  - Exit
   layers:
   - Default
   - TransparentFX

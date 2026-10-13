@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f19226ffefd0d6f4e9d2ed3c6a8b3513
+guid: de2918d6dde3c4341b114f6bce83f9a3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ornate_Arrow_0
+      name: Ornate_Arrow 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab08f8c6808d099469b57dc61aab961c
-      internalID: 1897238261
+      spriteID: 3b04bfb9769dc3f45ac2766a915c385f
+      internalID: 1696970248
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5a3a203e2d8bec6499a52d39e7d15d1a
+    spriteID: 98040406fa2ab9f4a94888fe9879c99b
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +134,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":30.0,"y":30.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ornate_Arrow_0: 1897238261
+      Ornate_Arrow 1_0: 1696970248
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

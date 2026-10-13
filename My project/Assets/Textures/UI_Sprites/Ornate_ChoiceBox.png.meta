@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fb152d304a7bea408306a08c86686c1
-      internalID: -808899167
+      spriteID: 1382243653c299e4c9cadae6fa6205d6
+      internalID: -387613045
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eda1243522d7d2743aafb41649db9624
-      internalID: 801331807
+      spriteID: 5837010a46cf912439085040b55c9093
+      internalID: 1389713425
       vertices: []
       indices: 
       edges: []
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b1a7ddd07750bf478ef29d82814df47
-      internalID: -743799212
+      spriteID: 5e07eecb97b108f4c81981e7ed22399d
+      internalID: -373570118
       vertices: []
       indices: 
       edges: []
@@ -178,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccdb7d6b99eee20468cd5060442d352a
-      internalID: 192337055
+      spriteID: 14fadcdd49489fa48bf236dbe7691654
+      internalID: -1588495001
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 317e71fcd563ae74cb3eabd3c7281849
-      internalID: 109648762
+      spriteID: 1bad9092de93eef498d8493f079645b3
+      internalID: 94128373
       vertices: []
       indices: 
       edges: []
@@ -222,8 +222,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bef3b947b6cf5e84b93be9c9719079a5
-      internalID: 1203747956
+      spriteID: 78edbb3fe102c8a47b5ea991122d8bc5
+      internalID: 923796255
       vertices: []
       indices: 
       edges: []
@@ -244,8 +244,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a0a3b2fd622d8b429f880791cba9bee
-      internalID: 572563191
+      spriteID: f446e51edce2a1240b796a56ebc88fee
+      internalID: 1569465136
       vertices: []
       indices: 
       edges: []
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 145c8730927d21149b88202dfcda6c59
-      internalID: 1870291206
+      spriteID: ccdb09b7ebb6cb4478254b3b4c550abb
+      internalID: -1470614627
       vertices: []
       indices: 
       edges: []
@@ -288,8 +288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68d404dd4107d6745bcd87d25bb10848
-      internalID: 396421966
+      spriteID: 5f84c5d02477260448ade5193f74726d
+      internalID: 1291060100
       vertices: []
       indices: 
       edges: []
@@ -310,8 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fbe75d510ff7ef46878a3835d7d4f6b
-      internalID: 1359192801
+      spriteID: 60786c275a75bcc41bf32a0af505a1fb
+      internalID: 901297177
       vertices: []
       indices: 
       edges: []
@@ -320,7 +320,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e13088ee2430fe04b96e871f8d52e4bb
+    spriteID: 0a4b70acc1b67604296c20f783f33b91
     internalID: 0
     vertices: []
     indices: 
@@ -332,16 +332,16 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":62.0,"y":21.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ornate_ChoiceBox_0: -808899167
-      Ornate_ChoiceBox_1: 801331807
-      Ornate_ChoiceBox_2: -743799212
-      Ornate_ChoiceBox_3: 192337055
-      Ornate_ChoiceBox_4: 109648762
-      Ornate_ChoiceBox_5: 1203747956
-      Ornate_ChoiceBox_6: 572563191
-      Ornate_ChoiceBox_7: 1870291206
-      Ornate_ChoiceBox_8: 396421966
-      Ornate_ChoiceBox_9: 1359192801
+      Ornate_ChoiceBox_0: -387613045
+      Ornate_ChoiceBox_1: 1389713425
+      Ornate_ChoiceBox_2: -373570118
+      Ornate_ChoiceBox_3: -1588495001
+      Ornate_ChoiceBox_4: 94128373
+      Ornate_ChoiceBox_5: 923796255
+      Ornate_ChoiceBox_6: 1569465136
+      Ornate_ChoiceBox_7: -1470614627
+      Ornate_ChoiceBox_8: 1291060100
+      Ornate_ChoiceBox_9: 901297177
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

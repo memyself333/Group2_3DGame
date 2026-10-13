@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using TMPro;
+using System.Collections;
 
 public class ExitOffice : MonoBehaviour
 {
     public bool isExiting;
     public bool nearExit;
-    public Canvas exitNotif;
+    public Canvas notifCanvas;
+    public TMP_Text notifText;
     public PlayerInput playerInput;
     public Animator playerAnim;
     public Animator cameraAnim;
@@ -21,6 +23,12 @@ public class ExitOffice : MonoBehaviour
     [TextArea(3, 5)] public string textDay1;
     [TextArea(3, 5)] public string textDay2;
 
+    public Image cursor;
+    public Sprite cursorReticle;
+    public Sprite cursorHand;
+    public bool isLookingAtExit = false;
+    public ObjectInteract interact;
+    public FPController fpController;
 
 
     public int currentDay = 1;
@@ -58,7 +66,6 @@ public class ExitOffice : MonoBehaviour
         playerAnim.enabled = false;
         cameraAnim.enabled = false;
         bookObject.SetActive(false);
-        exitNotif.enabled = false;
         
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -70,21 +77,32 @@ public class ExitOffice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (nearExit)
         {
-            if (isExiting)
+            Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            RaycastHit cursorHit;
+            if (Physics.Raycast(cursorRay, out cursorHit))
             {
-                exitNotif.enabled = false;
+                if (cursorHit.collider.CompareTag("Exit"))
+                {
+                    isLookingAtExit = true;
+                    cursor.sprite = cursorHand;
+                }
+                else
+                {
+                    isLookingAtExit = false;
+                    cursor.sprite = cursorReticle;
+                }
             }
-            else
-            {
-                exitNotif.enabled = true;
-            }
+        }
+        else if (execution.nearExecuter || interact.CheckUserCloseToTable() || fpController.nearANPC)
+        {
+
         }
         else
         {
-            exitNotif.enabled = false;
+            isLookingAtExit = false;
+            cursor.sprite = cursorReticle;
         }
     }
 
@@ -92,20 +110,28 @@ public class ExitOffice : MonoBehaviour
     {
         if (context.performed)
         {
-            if (nearExit)
+            if (isLookingAtExit)
             {
-                isExiting = true;
+                if (execution.executionDone)
+                {
+                    fpController.seenExitTip = true;
+                    isExiting = true;
 
-                UnityEngine.Cursor.lockState = CursorLockMode.None;
-                UnityEngine.Cursor.visible = true;
+                    UnityEngine.Cursor.lockState = CursorLockMode.None;
+                    UnityEngine.Cursor.visible = true;
 
-                playerInput.actions.FindAction("Movement").Disable();
-                playerInput.actions.FindAction("Look").Disable();
+                    playerInput.actions.FindAction("Movement").Disable();
+                    playerInput.actions.FindAction("Look").Disable();
 
-                playerAnim.enabled = true;
-                cameraAnim.enabled = true;
+                    playerAnim.enabled = true;
+                    cameraAnim.enabled = true;
 
-                PlayExitAnimation();
+                    PlayExitAnimation();
+                }
+                else
+                {
+                    StartCoroutine(DisplayTip());
+                }
             }
         }
     }
@@ -114,11 +140,13 @@ public class ExitOffice : MonoBehaviour
     {
         hudCanvas.enabled = false;
         marking.ResetMarking();
+        execution.ResetGeneral();
+        execution.hasTalked = false;
         currentDay++;
         if (currentDay == 3)
         {
-            currentDay = 1;
-            dayText.text = "Day " + currentDay.ToString();
+            dayText.text = "The End";
+            dayText.fontSize = 600;
         }
         else
         {
@@ -143,8 +171,9 @@ public class ExitOffice : MonoBehaviour
                 {
                     prisoner.prisonerGameObject.SetActive(false);
                     marking.CheckDeadPrisoners(prisoner.prisonerNameString);
-                    execution.CheckDeadPrisoners(prisoner.prisonerNameString);
                     execution.ResetGeneral();
+                    execution.CheckDeadPrisoners(prisoner.prisonerNameString);
+                    
                 }
                 
             }
@@ -168,6 +197,11 @@ public class ExitOffice : MonoBehaviour
 
     public void ControlReturn()
     {
+
+        if (currentDay == 3)
+        {
+            Application.Quit();
+        }
         execution.executionDone = false;
         hudCanvas.enabled = true;
         isExiting = false;
@@ -193,6 +227,13 @@ public class ExitOffice : MonoBehaviour
             }
         }
 
+    }
+    public IEnumerator DisplayTip()
+    {
+        notifCanvas.enabled = true;
+        notifText.text = "I must execute a prisoner first";
+        yield return new WaitForSeconds(3f);
+        notifCanvas.enabled = false;
     }
 }
 

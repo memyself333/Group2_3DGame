@@ -71,8 +71,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureFormat: 4
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1168ae9f16f634a45a8107e2dc460fd4
-      internalID: -1223146792
+      spriteID: 190e53f335b9feb4d896d76e36a17455
+      internalID: -1233972836
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b1afe4ff3ff10240add7085a449f39d
-      internalID: 1275128386
+      spriteID: f8c1bfe7a7c4f3b4aaccf4161ac37ec8
+      internalID: -417084126
       vertices: []
       indices: 
       edges: []
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3764ec914e58cdf4dbd2b409caa81edf
-      internalID: -971388274
+      spriteID: 1eafb4ce7e75d67429ec68a71dceec35
+      internalID: 912901633
       vertices: []
       indices: 
       edges: []
@@ -178,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99f3abfde72c0724cb5271a8443cc4a4
-      internalID: 144776483
+      spriteID: 2c53432ddced76745aa5e84426456d53
+      internalID: 905949652
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fe5f72cba4b97c4cba5fcc53e4fdc31
-      internalID: -1720591655
+      spriteID: 4190889687c02b3438b8d3c5f6427b39
+      internalID: 1068547180
       vertices: []
       indices: 
       edges: []
@@ -222,8 +222,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a975da8d15a21941857593b804777a7
-      internalID: 1067054038
+      spriteID: 3a0637ddb90947f4ab12eb7ef8cf4c8a
+      internalID: -234844783
       vertices: []
       indices: 
       edges: []
@@ -244,8 +244,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2419740cc14d7c4a96fd2b31b06da2d
-      internalID: 1197825305
+      spriteID: bdaf072918609f241bc486473be0d381
+      internalID: -395799304
       vertices: []
       indices: 
       edges: []
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d358b890ac46c1741a2744fb8ccb2e35
-      internalID: -574703658
+      spriteID: 137cc2990dc41714a967c04b0a5b5770
+      internalID: -1964185577
       vertices: []
       indices: 
       edges: []
@@ -288,8 +288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aa4bcc5fcae8e14d8eeb33f0985ba7a
-      internalID: -879062501
+      spriteID: 5cc2685043d453642bb7abfd1bf77fa3
+      internalID: -1342761962
       vertices: []
       indices: 
       edges: []
@@ -310,8 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb1ac705103b0964ea57b0ebb166c9c6
-      internalID: 480168138
+      spriteID: 095beecf08c327444b0f9238e88c8530
+      internalID: -364501670
       vertices: []
       indices: 
       edges: []
@@ -332,8 +332,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cbe9e0fd86e13846b6afdc16d94a1a5
-      internalID: -219255797
+      spriteID: cdada9e6be13f164bacee57c7adcea49
+      internalID: 1612676567
       vertices: []
       indices: 
       edges: []
@@ -354,8 +354,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e52d64386c0be0849bdde8bd456ba25f
-      internalID: 1947336369
+      spriteID: 9972124b0025e1143aa9d5c460643484
+      internalID: -385888196
       vertices: []
       indices: 
       edges: []
@@ -376,8 +376,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4da92d32f6153848b9540c016596fba
-      internalID: -428247939
+      spriteID: 6a79d9fd1663fda449039f9ca7216181
+      internalID: 1791442961
       vertices: []
       indices: 
       edges: []
@@ -386,7 +386,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 302d1122e65d99246bcaa2151376da6d
+    spriteID: 24e9a805a0f9a2345b7778646ac27283
     internalID: 0
     vertices: []
     indices: 
@@ -398,19 +398,19 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":76.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ornate_DialogueBox_0: -1223146792
-      Ornate_DialogueBox_1: 1275128386
-      Ornate_DialogueBox_10: -219255797
-      Ornate_DialogueBox_11: 1947336369
-      Ornate_DialogueBox_12: -428247939
-      Ornate_DialogueBox_2: -971388274
-      Ornate_DialogueBox_3: 144776483
-      Ornate_DialogueBox_4: -1720591655
-      Ornate_DialogueBox_5: 1067054038
-      Ornate_DialogueBox_6: 1197825305
-      Ornate_DialogueBox_7: -574703658
-      Ornate_DialogueBox_8: -879062501
-      Ornate_DialogueBox_9: 480168138
+      Ornate_DialogueBox_0: -1233972836
+      Ornate_DialogueBox_1: -417084126
+      Ornate_DialogueBox_10: 1612676567
+      Ornate_DialogueBox_11: -385888196
+      Ornate_DialogueBox_12: 1791442961
+      Ornate_DialogueBox_2: 912901633
+      Ornate_DialogueBox_3: 905949652
+      Ornate_DialogueBox_4: 1068547180
+      Ornate_DialogueBox_5: -234844783
+      Ornate_DialogueBox_6: -395799304
+      Ornate_DialogueBox_7: -1964185577
+      Ornate_DialogueBox_8: -1342761962
+      Ornate_DialogueBox_9: -364501670
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

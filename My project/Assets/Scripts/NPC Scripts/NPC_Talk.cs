@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ public class NPC_Talk : MonoBehaviour
     public DialogueSO currentConversation;
     public bool nearNPC = false;
     public GameObject thisNPC;
-    public GameObject executionBox;
+    public Execution execution;
+    public FPController playerController;
+
 
     private void Awake()
     {
@@ -33,25 +36,30 @@ public class NPC_Talk : MonoBehaviour
     {
         if (context.performed)
         {
-            
             if (nearNPC)
             {
-                executionBox.SetActive(true);
-                if (DialogueManager.Instance.isDialogueActive)
-                {
-                    DialogueManager.Instance.AdvanceDialogue();
-                }
-                else
-                {
-                    
-                    CheckForNewConversation();
-                    
-                    DialogueManager.Instance.StartDialogue(currentConversation);
-                    
+                if (playerController.isLookingAtNPC)
+                { 
+                    playerController.seenTalkTip = true;
+                    execution.hasTalked = true;
+                    if (DialogueManager.Instance.isDialogueActive)
+                    {
+                        DialogueManager.Instance.AdvanceDialogue();
+                    }
+                    else
+                    {
+
+                        CheckForNewConversation();
+
+                        DialogueManager.Instance.StartDialogue(currentConversation);
+
+                    }
                 }
             }
         }
     }
+
+
 
     //Checks if any conditions need to be met for any conversations
     private void CheckForNewConversation()

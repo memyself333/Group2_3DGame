@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour
     public Button[] choiceButtons;
     public Canvas hudCanvas;
 
+    public Animator dialogueCanvasAnim;
+
     public bool isDialogueActive = false;
 
     public PlayerInput playerInput;
@@ -67,7 +69,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    //Show the dialogue lines and disable other canavases and playerInput
+
+
+
+    //Opened from DialogueBox_Open Anim
     private void ShowDialogue()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -85,8 +90,12 @@ public class DialogueManager : MonoBehaviour
 
         dialogueCanvas.enabled = true;
 
+        //DialogueBox_Open Anim
+
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable();
+
+
         dialogueIndex++;
     }
 
@@ -121,6 +130,7 @@ public class DialogueManager : MonoBehaviour
             choiceButtons[0].onClick.AddListener(EndDialogue);
             choiceButtons[0].gameObject.SetActive(true);
         }
+
     }
 
     //After option is chosen
@@ -137,12 +147,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    //Turn off dialogue canvas and re-enable the other canavases and the playerInput
     public void EndDialogue()
     {
+
         dialogueIndex = 0;
         isDialogueActive = false;
         ClearChoices();
+
+        //DialogueBox_Close Anim (should close before canvas is disabled)
 
         dialogueCanvas.enabled = false;
 
@@ -153,9 +165,10 @@ public class DialogueManager : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
+
+        
     }
 
-    //Makes sure previous choices don't linger
     private void ClearChoices()
     {
         foreach (var button in choiceButtons)

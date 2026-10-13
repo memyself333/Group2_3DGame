@@ -1,7 +1,10 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEditor.Rendering;
+using TMPro;
 public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -25,6 +28,18 @@ public class FPController : MonoBehaviour
     public int lastClipIndex1 = -1;
     public int lastClipIndex2 = -1;
 
+    public Image cursor;
+    public Sprite cursorSpeech;
+    public Sprite cursorReticle;
+    public bool isLookingAtNPC = false;
+    public bool nearANPC = false;
+    public ObjectInteract interact;
+
+    public bool seenTalkTip;
+    public bool seenExecuteTip;
+    public bool seenExitTip;
+
+
     public GameObject notifPrisoner1;
     public GameObject notifPrisoner2;
     public GameObject notifExecute;
@@ -34,34 +49,62 @@ public class FPController : MonoBehaviour
     public Execution execution;
     public JumpscareBox jumpscareBox;
     public ExitOffice exitOffice;
-    public Canvas npcCanvas;
     public bool isTalking;
     public DialogueManager dm;
+    public Animator hintAnimator;
+    public TMP_Text hintText;
+    public CanvasGroup hintCanvas;
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        seenExecuteTip = false;
+        seenExitTip = false;
+        seenTalkTip = false;
     }
     private void Update()
     {
         isTalking = dm.isDialogueActive;
 
-        if (npcTalk.nearNPC)
+        if (dm.isDialogueActive || execution.isExecuting || exitOffice.isExiting)
         {
-            if (isTalking) 
+            hintAnimator.SetBool("ShowHint", false);
+            hintAnimator.SetBool("HideHint", false);
+            hintAnimator.SetBool("Off", true);
+        }
+            if (npcTalk.nearNPC)
+        {
+            Debug.Log("Step1");
+            Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            RaycastHit cursorHit;
+
+            if (Physics.Raycast(cursorRay, out cursorHit))
             {
-                npcCanvas.enabled = false;
+                Debug.Log("Step2");
+                if (cursorHit.collider.CompareTag("NPC"))
+                {
+                    Debug.Log("Step3");
+                    cursor.sprite = cursorSpeech;
+                    isLookingAtNPC = true;
+                }
+                else
+                {
+                    cursor.sprite = cursorReticle;
+                    isLookingAtNPC = false;
+                }
             }
-            else
-            {
-                npcCanvas.enabled = true;
-            }
+        }
+        else if (execution.nearExecuter || exitOffice.nearExit || interact.CheckUserCloseToTable())
+        {
+
         }
         else
         {
-            npcCanvas.enabled = false;
+            cursor.sprite = cursorReticle;
+            isLookingAtNPC = false;
         }
+
         HandleMovement();
         HandleLook();
 
@@ -84,6 +127,8 @@ public class FPController : MonoBehaviour
         {
             moveSpeed = 2f; // Normal speed
         }
+
+
 
         if (!audioSource.isPlaying && controller.isGrounded && moveInput.magnitude > 0.1f)
         {
@@ -144,7 +189,27 @@ public class FPController : MonoBehaviour
             Debug.Log("Found npc_talk");
             npcTalk = foundNpcTalk;
             npcTalk.nearNPC = true;
-            return;
+            nearANPC = true;
+
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenTalkTip)
+                {
+                    if (foundNpcTalk.thisNPC.name == "Prisoner1")
+                    {
+                        hintText.text = "Press [E] while facing the prisoner to talk to him.";
+                        hintAnimator.SetBool("ShowHint", true);
+                        hintAnimator.SetBool("HideHint", false);
+                        hintAnimator.SetBool("Off", false);
+                    }
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
         }
         else
         {
@@ -155,6 +220,27 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifExecute)
         {
             execution.nearExecuter = true;
+
+            if (exitOffice.currentDay == 1)
+            {
+                if (execution.hasTalked)
+                {
+                    if (!seenExecuteTip)
+                    {
+                        hintText.text = "Press [E] while facing the paper to designate a prisoner to be executed.";
+                        hintAnimator.SetBool("ShowHint", true);
+                        hintAnimator.SetBool("HideHint", false);
+                        hintAnimator.SetBool("Off", false);
+                    }
+                    else
+                    {
+                        hintAnimator.SetBool("ShowHint", false);
+                        hintAnimator.SetBool("HideHint", false);
+                        hintAnimator.SetBool("Off", true);
+                    }
+                }
+
+            }
         }
 
         if (other.gameObject == notifDoor)
@@ -165,6 +251,26 @@ public class FPController : MonoBehaviour
         if(other.gameObject == notifExit)
         {
             exitOffice.nearExit = true;
+
+            if (exitOffice.currentDay == 1)
+            {
+                if (execution.executionDone)
+                {
+                    if (!seenExitTip)
+                    {
+                        hintText.text = "Press [E] to exit your office.";
+                        hintAnimator.SetBool("ShowHint", true);
+                        hintAnimator.SetBool("HideHint", false);
+                        hintAnimator.SetBool("Off", false);
+                    }
+                    else
+                    {
+                        hintAnimator.SetBool("ShowHint", false);
+                        hintAnimator.SetBool("HideHint", false);
+                        hintAnimator.SetBool("Off", true);
+                    }
+                }
+            }
         }
     }
 
@@ -176,7 +282,23 @@ public class FPController : MonoBehaviour
             Debug.Log("Found npc_talk");
             npcTalk = foundNpcTalk;
             npcTalk.nearNPC = false;
-            return;
+            nearANPC = false;
+
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenTalkTip)
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", true);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
         }
         else
         {
@@ -186,6 +308,22 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifExecute)
         {
             execution.nearExecuter = false;
+
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenExecuteTip)
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", true);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
         }
 
         if (other.gameObject == notifDoor)
@@ -196,6 +334,22 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifExit)
         {
             exitOffice.nearExit = false;
+
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenExitTip)
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", true);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
         }
     }
 
