@@ -21,12 +21,62 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.191
+    m_Value: 0.126
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.176
+    m_Value: 0.226
   rounded:
     m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &-6678197470720515765
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.Bloom
+  active: 1
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  scatter:
+    m_OverrideState: 0
+    m_Value: 1
+  clamp:
+    m_OverrideState: 0
+    m_Value: 65472
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 0.754717, g: 0.3174576, b: 0.3109054, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 0
+    m_Value: 0
+  filter:
+    m_OverrideState: 0
+    m_Value: 0
+  downscale:
+    m_OverrideState: 0
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 0
     m_Value: 0
 --- !u!114 &-6332774018727437096
 MonoBehaviour:
@@ -83,13 +133,13 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 3.25
+    m_Value: 3.3
   contrast:
     m_OverrideState: 1
-    m_Value: 33
+    m_Value: 10
   colorFilter:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.9496855, g: 0.9496855, b: 0.9496855, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
@@ -111,13 +161,13 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.9966605, y: 0.9596611, z: 1, w: -0.012936617}
+    m_Value: {x: 0.9142357, y: 0.97142893, z: 1, w: -0.012936617}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.91152424, y: 0.73465824, z: 1, w: -0.19404908}
+    m_Value: {x: 0.87217104, y: 0.53001636, z: 1, w: -0.19404908}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 0.4954289, y: 0.4533314, z: 1, w: 0.8408798}
+    m_Value: {x: 0.7773013, y: 1, z: 0.49082333, w: 0.8408798}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +187,8 @@ MonoBehaviour:
   - {fileID: 6873003273687753775}
   - {fileID: 4434529616185895501}
   - {fileID: -24438640544414297}
+  - {fileID: -6678197470720515765}
+  - {fileID: 6856636928010103725}
 --- !u!114 &4434529616185895501
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -162,6 +214,28 @@ MonoBehaviour:
   clamp:
     m_OverrideState: 1
     m_Value: 0.05
+--- !u!114 &6856636928010103725
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70afe9e12c7a7ed47911bb608a23a8ff, type: 3}
+  m_Name: SplitToning
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.SplitToning
+  active: 1
+  shadows:
+    m_OverrideState: 1
+    m_Value: {r: 0.36078432, g: 0.59607846, b: 0.37347627, a: 1}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {r: 0.3438352, g: 0.59748423, b: 0.5613623, a: 1}
+  balance:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &6873003273687753775
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -177,13 +251,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.6234647, y: 0.70010126, z: 1, w: 0.06820113}
+    m_Value: {x: 0.6799166, y: 1, z: 0.84921813, w: 0.06820113}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.7987222, y: 0.8067157, z: 1, w: 0}
+    m_Value: {x: 0.88372713, y: 0.65499806, z: 1, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9685858, z: 0.6286907, w: 0}
+    m_Value: {x: 1, y: 0.9498192, z: 0.4949695, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
