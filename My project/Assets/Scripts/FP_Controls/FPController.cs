@@ -48,6 +48,8 @@ public class FPController : MonoBehaviour
     public GameObject notifExit;
     public GameObject notifTorch;
     public GameObject torchCollider;
+    public GameObject musicBox;
+    public AudioSource musicPlayer;
     public NPC_Talk npcTalk;
     public Execution execution;
     public JumpscareBox jumpscareBox;
@@ -59,6 +61,7 @@ public class FPController : MonoBehaviour
     public Animator hintAnimator;
     public TMP_Text hintText;
     public CanvasGroup hintCanvas;
+    public PauseMenu pause;
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -114,15 +117,15 @@ public class FPController : MonoBehaviour
         HandleMovement();
         HandleLook();
 
-        if(isSprinting)
+        if (isSprinting)
         {
             audioSource.pitch = 1.5f; // Increase pitch for sprinting
             keyAudioSource.pitch = 1.5f; // Increase pitch for sprinting
         }
         else
         {
-            audioSource.pitch = 1f; 
-            keyAudioSource.pitch = 1f; 
+            audioSource.pitch = 1f;
+            keyAudioSource.pitch = 1f;
         }
 
         if (isSprinting)
@@ -254,7 +257,7 @@ public class FPController : MonoBehaviour
             jumpscareBox.inJumpscare = true;
         }
 
-        if(other.gameObject == notifExit)
+        if (other.gameObject == notifExit)
         {
             exitOffice.nearExit = true;
 
@@ -295,6 +298,14 @@ public class FPController : MonoBehaviour
                 hintAnimator.SetBool("ShowHint", false);
                 hintAnimator.SetBool("HideHint", false);
                 hintAnimator.SetBool("Off", true);
+            }
+        }
+
+        if (other.gameObject == musicBox)
+        {
+            if (!musicPlayer.isPlaying)
+            {
+                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, pause.targetVolume));
             }
         }
     }
@@ -343,52 +354,52 @@ public class FPController : MonoBehaviour
                 Debug.Log("Not found npc_talk");
             }
         }
-            if (other.gameObject == notifExecute)
-            {
-                execution.nearExecuter = false;
+        if (other.gameObject == notifExecute)
+        {
+            execution.nearExecuter = false;
 
-                if (exitOffice.currentDay == 1)
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenExecuteTip)
                 {
-                    if (!seenExecuteTip)
-                    {
-                        hintAnimator.SetBool("ShowHint", false);
-                        hintAnimator.SetBool("HideHint", true);
-                        hintAnimator.SetBool("Off", false);
-                    }
-                    else
-                    {
-                        hintAnimator.SetBool("ShowHint", false);
-                        hintAnimator.SetBool("HideHint", false);
-                        hintAnimator.SetBool("Off", true);
-                    }
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", true);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
                 }
             }
+        }
 
-            if (other.gameObject == notifDoor)
+        if (other.gameObject == notifDoor)
+        {
+            jumpscareBox.inJumpscare = false;
+        }
+
+        if (other.gameObject == notifExit)
+        {
+            exitOffice.nearExit = false;
+
+            if (exitOffice.currentDay == 1)
             {
-                jumpscareBox.inJumpscare = false;
-            }
-
-            if (other.gameObject == notifExit)
-            {
-                exitOffice.nearExit = false;
-
-                if (exitOffice.currentDay == 1)
+                if (!seenExitTip)
                 {
-                    if (!seenExitTip)
-                    {
-                        hintAnimator.SetBool("ShowHint", false);
-                        hintAnimator.SetBool("HideHint", true);
-                        hintAnimator.SetBool("Off", false);
-                    }
-                    else
-                    {
-                        hintAnimator.SetBool("ShowHint", false);
-                        hintAnimator.SetBool("HideHint", false);
-                        hintAnimator.SetBool("Off", true);
-                    }
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", true);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
                 }
             }
+        }
 
         if (other.gameObject == notifTorch)
         {
@@ -406,6 +417,14 @@ public class FPController : MonoBehaviour
                 hintAnimator.SetBool("HideHint", false);
                 hintAnimator.SetBool("Off", true);
             }
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            pause.Pause();
         }
     }
 

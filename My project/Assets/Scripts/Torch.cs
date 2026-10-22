@@ -69,6 +69,7 @@ public class Torch : MonoBehaviour
         {
             if (isLookingAtTorch)
             {
+                cursor.sprite = cursorReticle;
                 fpController.seenTorchTip = true;
                 torchCollider.SetActive(false);
                 notifTorch.SetActive(false);

@@ -29,6 +29,7 @@ public class ObjectInteract : MonoBehaviour
     public FPController fpController;
     public ExitOffice exitOffice;
     public Torch torch;
+    public IntroScript intro;
 
 
     public Canvas interactMenu;
@@ -37,6 +38,7 @@ public class ObjectInteract : MonoBehaviour
     private int currentPageIndex;
     public Image leftButton;
     public Image rightButton;
+    public PauseMenu pause;
 
     [TextArea(3, 5)] public string[] textsDay1;
     [TextArea(3, 5)] public string[] textsDay2;
@@ -61,8 +63,7 @@ public class ObjectInteract : MonoBehaviour
     public bool isHitting;
 
     public AudioSource musicPlayer;
-    public AudioClip day3Music;
-    public AudioClip day4Music;
+    public AudioClip[] songs;
 
 
 
@@ -132,12 +133,6 @@ public class ObjectInteract : MonoBehaviour
             {
                 rightButton.enabled = false;
                 leftButton.enabled = true;
-                if (!musicPlayer.isPlaying)
-                {
-                    musicPlayer.clip = day4Music;
-                    StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, .5f));
-                }
-
             }
             else if (currentPageIndex == 0)
             {
@@ -150,6 +145,25 @@ public class ObjectInteract : MonoBehaviour
                 rightButton.enabled = true;
             }
 
+        }
+
+        if (!intro.introCurrentlyPlaying)
+        {
+            switch (exitOffice.currentDay)
+            {
+                case 1:
+                    musicPlayer.clip = songs[0];
+                    break;
+                case 2:
+                    musicPlayer.clip = songs[1];
+                    break;
+                case 3:
+                    musicPlayer.clip = songs[2];
+                    break;
+                case 4:
+                    musicPlayer.clip = songs[3];
+                    break;
+            }
         }
 
 
@@ -203,13 +217,9 @@ public class ObjectInteract : MonoBehaviour
         }
         isExamining = false;
         StopExamination();
-        if (exitOffice.currentDay == 4)
+        if (!musicPlayer.isPlaying)
         {
-            if (!musicPlayer.isPlaying)
-            {
-                musicPlayer.clip = day4Music;
-                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, .5f));
-            }
+            StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, pause.targetVolume));
         }
     }
 

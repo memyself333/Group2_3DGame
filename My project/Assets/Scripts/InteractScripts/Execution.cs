@@ -31,6 +31,7 @@ public class Execution : MonoBehaviour
     public Sprite cursorReticle;
     public Sprite cursorQuill;
     public Torch torch;
+    public AudioSource musicPlayer;
 
     public Animator hintAnimator;
     public TMP_Text hintText;
@@ -242,6 +243,7 @@ public class Execution : MonoBehaviour
             }
         }
         exitButton.SetActive(true);
+        musicPlayer.Stop();
     }
 
     public IEnumerator DisplayTip()

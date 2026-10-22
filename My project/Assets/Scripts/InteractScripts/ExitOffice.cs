@@ -87,8 +87,7 @@ public class ExitOffice : MonoBehaviour
         foreach (var boxes in triggerBoxes)
         {
             boxes.gameObject.SetActive(false);
-        }
-        jumpscareBox.SetActive(false);
+        } 
 
     }
 
@@ -226,11 +225,9 @@ public class ExitOffice : MonoBehaviour
             {
                 boxes.gameObject.SetActive(true);
             }
-            jumpscareBox.SetActive(true);
             
         }
 
-        musicPlayer.Stop();
     }
 
 
