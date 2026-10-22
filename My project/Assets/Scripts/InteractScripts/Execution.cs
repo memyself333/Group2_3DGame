@@ -185,6 +185,7 @@ public class Execution : MonoBehaviour
 
         executionDone = true;
         nearExecuter = false;
+        executionBox.SetActive(false);
     }
 
     public void CheckDeadPrisoners(string pName)

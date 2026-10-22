@@ -21,6 +21,7 @@ public class ExitOffice : MonoBehaviour
     public Execution execution;
     public Torch torch;
     public Canvas hudCanvas;
+    public GameObject executionBox;
 
     public Image cursor;
     public Sprite cursorReticle;
@@ -238,6 +239,7 @@ public class ExitOffice : MonoBehaviour
     {
 
         execution.executionDone = false;
+        executionBox.SetActive(true);
         hudCanvas.enabled = true;
         isExiting = false;
 
