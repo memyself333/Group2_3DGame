@@ -20,13 +20,11 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What should I ask?)
   options:
-  - optionText: Will you stand in front of the church court?
+  - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 1eb927200a1d28e488c6578a5a922154, type: 2}
-  - optionText: Who were your accomplices?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: 7649826941393814295ef19029ae692a, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Do you have any relations?
     nextDialogue: {fileID: 11400000, guid: b62dfc4dd68a96245a7aeaae70cebd75, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 3f17781d17565a540a4f13844e2b8a43, type: 2}
   requiredConvos:
   - {fileID: 11400000, guid: 2ffe549bdf53bf445a282389987d2d6c, type: 2}

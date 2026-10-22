@@ -14,18 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Who will bring you food today?
+    text: Do you think I am evil?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: I do not need to eat those rations. I have my meal right in front of me.
+    text: Oh dear player, you are not evil, you are only clicking buttons, are you
+      not? Unless, of course, you enjoyed killing them, jared.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "\u2026Y-You can\u2019t escape\u2026right?"
-  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: (What else should I ask?)
+    text: ...
   options:
-  - optionText: ill you stand in front of the church court?
+  - optionText: Do you work with the Devil?
     nextDialogue: {fileID: 11400000, guid: 9215fc193669cbe44a37ad8d138d46f2, type: 2}
-  - optionText: Who were your accomplices?
+  - optionText: Am I safe?
     nextDialogue: {fileID: 11400000, guid: 390e5f7a9b9047142b0ebb4cfc0287ea, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 2c6c5cc171cecfe4890a59b84f94a0e0, type: 2}
+  - optionText: Do you think you're evil?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []

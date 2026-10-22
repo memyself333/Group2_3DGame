@@ -9,11 +9,12 @@ TagManager:
   - ExecutionPaper
   - Door
   - Exit
+  - Torch
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcess
   - Water
   - UI
   - Interactable

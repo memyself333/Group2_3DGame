@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "Who were your accomplices in the crime you\u2019ve committed?"
+    text: Which kingdom do you owe your loyalty to?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: It was me and me alone. No one else can take what is rightfully mine, even
-      the acts I committed to achieve it.
+    text: The one and only King Carver, my father; who shalt not allow this treason
+      to continue any further.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "Well, that certainly makes the executioner\u2019s task simpler."
+    text: Hah! Humorous that you believe your father even cares to see your face.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Will you stand in front of the church court?
+  - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 70acaba59f1d55c49bbbb2694b6a02c7, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Who are you loyal to?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Do you have any relations?
     nextDialogue: {fileID: 11400000, guid: 3877593dfc89c51498d46ffa539f9652, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 21f7a023b14092d4a8db0de5e6f78e5d, type: 2}
   requiredConvos: []

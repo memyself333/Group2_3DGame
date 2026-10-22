@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you repent for the sins you have commited?
+    text: What motive possesed you to commit this act?
   - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
-    text: 'Aye sir. My daughter has surely passed of starvation in my absence. '
+    text: Freedom! Free from the tyrannical pig you call a-
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 'May she receive a better man as her father in her next life. '
+    text: Enough. The king is gracious to have not killed you immediately.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who are you loyal to?
-    nextDialogue: {fileID: 11400000, guid: 2525ae462b74c4f44b1210392b06bbd1, type: 2}
   - optionText: What crime did you commit?
+    nextDialogue: {fileID: 11400000, guid: 2525ae462b74c4f44b1210392b06bbd1, type: 2}
+  - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: d2cd2f0ab0653e84686f350456ce8d5c, type: 2}
-  - optionText: Who do you worship?
-    nextDialogue: {fileID: 11400000, guid: dbfbd1ba93ec3744cba734e80eb70a83, type: 2}
+  - optionText: What was your motive?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []

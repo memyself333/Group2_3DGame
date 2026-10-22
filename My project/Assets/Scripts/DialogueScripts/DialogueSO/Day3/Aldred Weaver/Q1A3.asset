@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: Do you work on behalf of the Devil?
   - speaker: {fileID: 11400000, guid: 9422cbed940533746945e8f2853fd658, type: 2}
-    text: 
+    text: Do my actions reflect such accusations?
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: I...cannot tell anymore.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: 
-    nextDialogue: {fileID: 11400000, guid: b44b2fdb8b1d4774fa87bece1a4068dc, type: 2}
-  - optionText: 
-    nextDialogue: {fileID: 11400000, guid: 01bbcd92fdbbca44094b7acfaac8e385, type: 2}
-  - optionText: 
-    nextDialogue: {fileID: 11400000, guid: 181e623369013534db8d955372a21743, type: 2}
+  - optionText: Do you work with the Devil?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Am I safe?
+    nextDialogue: {fileID: 11400000, guid: 87d373c8a4723ac4f9a19ac246566393, type: 2}
+  - optionText: Do you think you're evil?
+    nextDialogue: {fileID: 11400000, guid: cd4bc5c82f38b8c40aa34b05377abb26, type: 2}
   requiredConvos: []

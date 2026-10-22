@@ -14,19 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "Who were your accomplices in the crime you\u2019ve committed?"
+    text: Am I safe?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: It was me and me alone. No one else can take what is rightfully mine, even
-      the acts I committed to achieve it.
+    text: 'Down the river there plied, with wind and tide,
+
+      A pig with vast
+      celerity;
+
+      And the Devil look''d wise as he saw how the while,
+
+      It
+      cut its own throat. "There!" quoth he with a smile,
+
+      "Goes ''England''s
+      commercial prosperity.''"'
+  - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
+    text: 'As he went through Cold-Bath Fields he saw
+
+      A solitary cell;
+
+      And
+      the Devil was pleased, for it gave him a hint
+
+      For improving his prisons
+      in Hell.'
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "Well, that certainly makes the executioner\u2019s task simpler."
-  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: (What else should I ask?)
+    text: ...
   options:
-  - optionText: Will you stand in front of the church court?
+  - optionText: Do you work with the Devil?
     nextDialogue: {fileID: 11400000, guid: 9f1f558acf2a6f04a92a4f4a3320d03c, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Am I safe?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Do you think you're evil?
     nextDialogue: {fileID: 11400000, guid: bd62ad738aab75542b1425d651839b85, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: ffdbb35998eecf148b5ddf563638b17b, type: 2}
   requiredConvos: []

@@ -14,18 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: Do you work on behalf of the Devil?
   - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
-    text: 
+    text: "N-no. But\u2026I feel a darkness in this dungeon."
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: ...How do I stop it?
+  - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
+    text: It might be too late, jailor.
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: ...
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: 
+  - optionText: Do you work with the Devil?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Am I safe?
     nextDialogue: {fileID: 11400000, guid: aee894f776d5e0b4e8c5d2f0c195a51a, type: 2}
-  - optionText: 
+  - optionText: Do you think you're evil?
     nextDialogue: {fileID: 11400000, guid: f1fa4e9e00307314da8a35d432503223, type: 2}
-  - optionText: 
-    nextDialogue: {fileID: 11400000, guid: c7313203e243aae44b85bb699c1f6a94, type: 2}
   requiredConvos: []

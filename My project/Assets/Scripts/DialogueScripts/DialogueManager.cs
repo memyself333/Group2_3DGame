@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using ChristinaCreatesGames.Typography.Typewriter;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,8 +14,9 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogueText;
     public Button[] choiceButtons;
     public Canvas hudCanvas;
-
     public Animator dialogueCanvasAnim;
+    [SerializeField] private TypewriterEffect dialogueTypewriter;
+    public Image eTipImage;
 
     public bool isDialogueActive = false;
 
@@ -40,6 +42,11 @@ public class DialogueManager : MonoBehaviour
         {
             button.gameObject.SetActive(false);
         }
+    }
+
+    public void Update()
+    {
+
     }
 
     //Start dialogue when talking to NPC
@@ -86,7 +93,7 @@ public class DialogueManager : MonoBehaviour
 
         actorName.text = line.speaker.actorName;
 
-        dialogueText.text = line.text;
+        dialogueTypewriter.SetText(line.text);
 
         dialogueCanvas.enabled = true;
 
@@ -105,8 +112,9 @@ public class DialogueManager : MonoBehaviour
     {
 
         ClearChoices();
+        eTipImage.enabled = false;
 
-        if(currentDialogue.options.Length  > 0)
+        if (currentDialogue.options.Length  > 0)
         {
             for (int i = 0; i < currentDialogue.options.Length; i++)
             {

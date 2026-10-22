@@ -14,20 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you repent for the sins you have commited?
+    text: What motive possesed you to commit this act?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: Sins are what maketh the man, and they are not what should divide the humans.
-      No, I do not repent, for I have nothing to repent jailor.
+    text: To honour my Lord, the one who truly sees the world for what it is.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: What blasphemy you speak of! You should have been executed before your
-      eyes even saw light.
+    text: I will pray for him to spit on you for even considering your act of evil
+      would be what He would want.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who are you loyal to?
-    nextDialogue: {fileID: 11400000, guid: 5a488e8cf8945c244bde42405e4f266c, type: 2}
   - optionText: What crime did you commit?
+    nextDialogue: {fileID: 11400000, guid: 5a488e8cf8945c244bde42405e4f266c, type: 2}
+  - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 407e83e351dbcf440b7fa0efe70f262e, type: 2}
-  - optionText: Who do you worship?
-    nextDialogue: {fileID: 11400000, guid: 51059be4525630c459ce1f6f10f8c1fb, type: 2}
+  - optionText: What was your motive?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []

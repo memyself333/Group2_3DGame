@@ -14,19 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you claim the right of the clergy?
+    text: Do you work on behalf of the Devil?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: The church will not accept me, but that is okay, as I will escape this
-      cell, and I will come back for you.
+    text: 'I am thou as you are thou. We are all the Devil, achieving his desires.
+      You cannot deny you enjoy the pain you cause others, just as I enjoy the pain
+      I am inflicting on you, dear jailor. '
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: These cells are impenetrable. I-I would like to see you try.
+    text: "I do not, I\u2026 I wish to see justice, I wish to see your head, peasant."
+  - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
+    text: Ah, but for you see, my head would not be so different to yours, jared,
+      for our minds are more alike than you may believe.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: (What else should I ask?)
+    text: ...
   options:
-  - optionText: Who were your accomplices?
+  - optionText: Do you work with the Devil?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Am I safe?
     nextDialogue: {fileID: 11400000, guid: 390e5f7a9b9047142b0ebb4cfc0287ea, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Do you think you're evil?
     nextDialogue: {fileID: 11400000, guid: 0651386fb9181e8479fcfc4e53e512d3, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 2c6c5cc171cecfe4890a59b84f94a0e0, type: 2}
   requiredConvos: []

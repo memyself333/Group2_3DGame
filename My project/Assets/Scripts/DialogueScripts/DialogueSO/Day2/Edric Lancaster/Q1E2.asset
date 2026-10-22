@@ -14,19 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you claim the right of the clergy?
+    text: Do you believe in the one true God?
   - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
-    text: Whatever shall grant me mercy sir, please.
+    text: My Gods are the world itself. The wind, the grass, the water.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "Perhaps the clergy\u2019s communion with God shall serve you the mercy
-      you desire, however unlikely. "
+    text: We shall see how much your so-called-Gods will be of help in the end.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who were your accomplices?
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: 26660ece72be6034b99e51731d6611ee, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Do you have any relations?
     nextDialogue: {fileID: 11400000, guid: 304cf3ca2fee01a43bd60097a750b03b, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: c1e7e2a58e77da44fae510635e3901f7, type: 2}
   requiredConvos: []

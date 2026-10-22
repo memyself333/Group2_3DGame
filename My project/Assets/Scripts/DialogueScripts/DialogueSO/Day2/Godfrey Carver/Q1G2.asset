@@ -14,20 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you claim the right of the clergy?
+    text: Do you believe in the one true God?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: Never, those stupid little zealots will never be as powerful as the royal
-      court.
+    text: I BELIEVE IN THE TRUE KING CARVER, THE ONLY TRUE RIVAL TO THAT OF CHRIST!
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: I do hope you realise the royal court sees less in you than the church
-      court.
+    text: Lord, protect me from monsters such as these.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who were your accomplices?
+  - optionText: Who do you worship?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: a39fcc61527967d4eb61b9aa1959f415, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Do you have any relations?
     nextDialogue: {fileID: 11400000, guid: 3877593dfc89c51498d46ffa539f9652, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 21f7a023b14092d4a8db0de5e6f78e5d, type: 2}
   requiredConvos: []

@@ -14,20 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you claim the right of the clergy?
+    text: Do you work on behalf of the Devil?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: Never, those stupid little zealots will never be as powerful as the royal
-      court.
+    text: If he is the harbinger for the new world, than I will follow him till death.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: I do hope you realise the royal court sees less in you than the church
-      court.
+    text: I will be protected in the Rapture, you will burn in the pits he forged.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who were your accomplices?
+  - optionText: Do you work with the Devil?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Am I safe?
     nextDialogue: {fileID: 11400000, guid: e4429baf24f95e248b8225d67483431c, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Do you think you're evil?
     nextDialogue: {fileID: 11400000, guid: bd62ad738aab75542b1425d651839b85, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: ffdbb35998eecf148b5ddf563638b17b, type: 2}
   requiredConvos: []

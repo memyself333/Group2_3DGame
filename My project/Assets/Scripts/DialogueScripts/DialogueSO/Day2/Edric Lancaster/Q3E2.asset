@@ -14,18 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Who will bring you food today?
+    text: Do you have any relatives?
   - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
-    text: 'My wife, sir. '
+    text: I had my brothers in arms. They continue to fight.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "You should be grateful she still loves you after what you\u2019ve done. "
+    text: "I would not be so sure. The king\u2019s men have squashed many rats as
+      of late."
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: ill you stand in front of the church court?
+  - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 4c8604debbc2e2a4abba130b7e29edb5, type: 2}
-  - optionText: Who were your accomplices?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: 26660ece72be6034b99e51731d6611ee, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: c1e7e2a58e77da44fae510635e3901f7, type: 2}
+  - optionText: Do you have any relations?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []

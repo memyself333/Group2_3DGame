@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Device;
@@ -27,10 +28,22 @@ public class ObjectInteract : MonoBehaviour
     public Execution execution;
     public FPController fpController;
     public ExitOffice exitOffice;
+    public Torch torch;
 
 
     public Canvas interactMenu;
     public GameObject readMenu;
+    public TMP_Text readText;
+    private int currentPageIndex;
+    public Image leftButton;
+    public Image rightButton;
+
+    [TextArea(3, 5)] public string[] textsDay1;
+    [TextArea(3, 5)] public string[] textsDay2;
+    [TextArea(3, 5)] public string[] textsDay2Letters;
+    [TextArea(3, 5)] public string[] textsDay3;
+    [TextArea(3, 5)] public string[] textsDay4;
+
     public Canvas hudCanvas;
 
     public GameObject lightObject;
@@ -46,6 +59,10 @@ public class ObjectInteract : MonoBehaviour
     private Vector3 mousePosition;
 
     public bool isHitting;
+
+    public AudioSource musicPlayer;
+    public AudioClip day3Music;
+    public AudioClip day4Music;
 
 
 
@@ -97,9 +114,41 @@ public class ObjectInteract : MonoBehaviour
                         }
                     }
                 }
-               
+
             }
 
+
+        }
+
+
+        if (exitOffice.currentDay == 1 || exitOffice.currentDay == 2 || exitOffice.currentDay == 4)
+        {
+            leftButton.enabled = false;
+            rightButton.enabled = false;
+        }
+        else if (exitOffice.currentDay == 3)
+        {
+            if (currentPageIndex == 4)
+            {
+                rightButton.enabled = false;
+                leftButton.enabled = true;
+                if (!musicPlayer.isPlaying)
+                {
+                    musicPlayer.clip = day4Music;
+                    StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, .5f));
+                }
+
+            }
+            else if (currentPageIndex == 0)
+            {
+                leftButton.enabled = false;
+                rightButton.enabled= true;
+            }
+            else
+            {
+                leftButton.enabled = true;
+                rightButton.enabled = true;
+            }
 
         }
 
@@ -121,19 +170,19 @@ public class ObjectInteract : MonoBehaviour
                     cursor.sprite = cursorReticle;
                 }
             }
-                if (isExamining)
-                {
-                    interactMenu.enabled = true;
-                    Examine(); StartExamination();
-                }
-                else
-                {
-                    interactMenu.enabled = false;
-                    NonExamine();
+            if (isExamining)
+            {
+                interactMenu.enabled = true;
+                Examine(); StartExamination();
+            }
+            else
+            {
+                interactMenu.enabled = false;
+                NonExamine();
 
-                }
+            }
         }
-        else if (execution.nearExecuter || fpController.nearANPC || exitOffice.nearExit)
+        else if (execution.nearExecuter || fpController.nearANPC || exitOffice.nearExit || torch.nearTorch)
         {
 
         }
@@ -154,11 +203,46 @@ public class ObjectInteract : MonoBehaviour
         }
         isExamining = false;
         StopExamination();
+        if (exitOffice.currentDay == 4)
+        {
+            if (!musicPlayer.isPlaying)
+            {
+                musicPlayer.clip = day4Music;
+                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, .5f));
+            }
+        }
     }
 
     public void ReadButtonPressed()
     {
         isReading = true;
+        currentPageIndex = 0;
+        switch (exitOffice.currentDay)
+        {
+            case 1:
+                readText.text = textsDay1[0]; 
+                break;
+            case 2:
+                textsDay2[0] = textsDay2Letters[3];
+                for (int i = 0; i < execution.prisonerAlives.Length; i++)
+                {
+                    
+                    if (!execution.prisonerAlives[i].prisonerSO.isAlive)
+                    {
+                        textsDay2[0] = textsDay2Letters[i];
+                    }
+                    
+                }
+                    readText.text = textsDay2[0];
+                break;
+            case 3:
+                readText.text = textsDay3[0];
+                break;
+            case 4:
+                readText.text = textsDay4[0];
+                break;
+        }
+
         PlayBookAnimation();
     }
 
@@ -169,8 +253,54 @@ public class ObjectInteract : MonoBehaviour
         PlayBookAnimation();
     }
 
-    // This method is called when the player starts examining an object. It locks the cursor,
-    // makes it visible, and disables the PlayerInput component to prevent player movement during examination.
+    public void NextPageRight()
+    {
+        switch (exitOffice.currentDay)
+        {
+            case 1:
+                currentPageIndex = (currentPageIndex + 1) % textsDay1.Length;
+                readText.text = textsDay1[currentPageIndex]; ;
+                break;
+            case 2:
+                currentPageIndex = (currentPageIndex + 1) % textsDay2.Length;
+                readText.text = textsDay2[currentPageIndex]; ;
+                break;
+            case 3:
+                currentPageIndex = (currentPageIndex + 1) % textsDay3.Length;
+                readText.text = textsDay3[currentPageIndex]; ;
+                break;
+            case 4:
+                currentPageIndex = (currentPageIndex + 1) % textsDay4.Length;
+                readText.text = textsDay4[currentPageIndex]; ;
+                break;
+        }
+
+    }
+
+    public void PrevPageLeft()
+    {
+        switch (exitOffice.currentDay)
+        {
+            case 1:
+                currentPageIndex = (currentPageIndex <= 0) ? textsDay1.Length - 1 : currentPageIndex - 1;
+                readText.text = textsDay1[currentPageIndex]; ;
+                break;
+            case 2:
+                currentPageIndex = (currentPageIndex <= 0) ? textsDay2.Length - 1 : currentPageIndex - 1;
+                readText.text = textsDay2[currentPageIndex]; ;
+                break;
+            case 3:
+                currentPageIndex = (currentPageIndex <= 0) ? textsDay3.Length - 1 : currentPageIndex - 1;
+                readText.text = textsDay3[currentPageIndex]; ;
+                break;
+            case 4:
+                currentPageIndex = (currentPageIndex <= 0) ? textsDay4.Length - 1 : currentPageIndex - 1;
+                readText.text = textsDay4[currentPageIndex]; ;
+                break;
+        }
+
+    }
+
 
     void StartExamination()
     {

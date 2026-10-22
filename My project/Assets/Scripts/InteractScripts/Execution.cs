@@ -30,9 +30,14 @@ public class Execution : MonoBehaviour
     public Image cursor;
     public Sprite cursorReticle;
     public Sprite cursorQuill;
+    public Torch torch;
 
-    public Canvas notifCanvas;
-    public TMP_Text notifText;
+    public Animator hintAnimator;
+    public TMP_Text hintText;
+    public bool williamAttemptedExecution;
+    public TMP_Text[] behaviours;
+
+
 
     public PlayerInput playerInput;
 
@@ -48,7 +53,7 @@ public class Execution : MonoBehaviour
         public Button button;
     }
 
-    [SerializeField] private PrisonerAlive[] prisonerAlives;
+    [SerializeField] public PrisonerAlive[] prisonerAlives;
 
     private void Awake()
     {
@@ -75,22 +80,7 @@ public class Execution : MonoBehaviour
         {
             prisonerNames[i].text = prisoners[i].prisonerName;
         }
-        for (int i = 0; i < prisonerScoresTexts.Length; i++)
-        {
-            prisonerScores[i] = prisoners[i].prisonerPoints;
-            if (prisonerScores[i] < 2)
-            {
-                prisonerScoresTexts[i].text = "Misbehaved";
-            }
-            else if (prisonerScores[i] == 2)
-            {
-                prisonerScoresTexts[i].text = "Neutral";
-            }
-            else if (prisonerScores[i] > 2)
-            {
-                prisonerScoresTexts[i].text = "Well Behaved";
-            }
-        }
+
         if (nearExecuter)
         {
             Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
@@ -110,7 +100,7 @@ public class Execution : MonoBehaviour
                 }
             }
         }
-        else if (exitOffice.nearExit || interact.CheckUserCloseToTable() || fpController.nearANPC)
+        else if (exitOffice.nearExit || interact.CheckUserCloseToTable() || fpController.nearANPC || torch.nearTorch)
         {
 
         }
@@ -130,6 +120,33 @@ public class Execution : MonoBehaviour
             {
                 if (hasTalked)
                 {
+                    for (int i = 0; i < prisonerScoresTexts.Length; i++)
+                    {
+                        prisonerScores[i] = prisoners[i].prisonerPoints;
+                        if (prisonerScores[i] < 2)
+                        {
+                            prisonerScoresTexts[i].text = "Misbehaved";
+                        }
+                        else if (prisonerScores[i] == 2)
+                        {
+                            prisonerScoresTexts[i].text = "Neutral";
+                        }
+                        else if (prisonerScores[i] > 2)
+                        {
+                            prisonerScoresTexts[i].text = "Well Behaved";
+                        }
+                        
+                        if (!prisonerAlives[i].prisonerSO.isAlive)
+                        {
+                            prisonerScoresTexts[i].text = "Deceased";
+                        }
+                    }
+
+                    if (williamAttemptedExecution)
+                    {
+                        prisonerScoresTexts[3].text = "Nihil";
+                    }
+
                     fpController.seenExecuteTip = true;
                     isExecuting = true;
                     executeCanva.enabled = true;
@@ -178,8 +195,11 @@ public class Execution : MonoBehaviour
             {
                 prisonerAlives[i].button.interactable = false;
                 prisonerBlood[i].enabled = true;
+                behaviours[i].text = "Deceased";
             }
         }
+
+
     }
 
     public void ResetGeneral()
@@ -187,6 +207,14 @@ public class Execution : MonoBehaviour
         for (int i = 0; i < prisoners.Length; i++)
         {
             prisonerAlives[i].button.interactable = true;
+        }
+
+        if (williamAttemptedExecution)
+        {
+            prisonerAlives[3].button.interactable = false;
+            prisonerAlives[1].button.interactable = false;
+            prisonerBlood[1].enabled = true;
+            exitOffice.prisoners[1].prisonerName.isAlive = false;
         }
     }
 
@@ -202,6 +230,10 @@ public class Execution : MonoBehaviour
                 prisonerAlives[i].button.animator.SetTrigger("Selected");
                 bloodAudio.Play();
                 prisonerAlives[i].button.interactable = false;
+                if (prisonerAlives[i].prisonerName == "William Atkinson")
+                {
+                    williamAttemptedExecution = true;
+                }
             }
             else
             {
@@ -213,9 +245,20 @@ public class Execution : MonoBehaviour
 
     public IEnumerator DisplayTip()
     {
-        notifCanvas.enabled = true;
-        notifText.text = "I must interrogate the prisoners first";
+        hintAnimator.SetBool("ShowHint", true);
+        hintAnimator.SetBool("HideHint", false);
+        hintAnimator.SetBool("Off", false);
+        if (exitOffice.currentDay == 4)
+        {
+            hintText.text = "You can't kill him.";
+        }
+        else
+        {
+            hintText.text = "You must talk to the prisoners first, before you can execute them.";
+        }
         yield return new WaitForSeconds(3f);
-        notifCanvas.enabled = false;
+        hintAnimator.SetBool("ShowHint", false);
+        hintAnimator.SetBool("HideHint", true);
+        hintAnimator.SetBool("Off", false);
     }
 }
