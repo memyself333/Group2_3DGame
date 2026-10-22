@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "Who were your accomplices in the crime you\u2019ve committed?"
+    text: Which kingdom do you owe your loyalty to?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: Everyone is an accomplice, if everyone sins.
+    text: The kingdom of Belial, zealot.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: I have not and never will sin. K-Keep those dirty words out your mouth.
+    text: May God spite you down for uttering his name.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Will you stand in front of the church court?
+  - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 9a954a70a0fd7cb4fa89a4d9617ae3ab, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Who are you loyal to?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Do you have any relations?
     nextDialogue: {fileID: 11400000, guid: 58e604684cf10d447bd7a62768596fc1, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 720f9af4371afbe4f863227149fc1ec1, type: 2}
   requiredConvos: []

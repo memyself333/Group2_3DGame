@@ -14,18 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "Who were your accomplices in the crime you\u2019ve committed?"
+    text: Which kingdom do you owe your loyalty to?
   - speaker: {fileID: 11400000, guid: 9422cbed940533746945e8f2853fd658, type: 2}
-    text: "Although my mind is hazy\u2026 I seem to remember acting alone. "
+    text: I owe everything to this kingdom; I would never dare to stray.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 'Of course, a degenerate such as yourself should have no allies. '
+    text: 'Interesting. I could have sworn only scum of the highest order were kept
+      here for
+
+      as long as you have.'
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Will you stand in front of the church court?
+  - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 1eb927200a1d28e488c6578a5a922154, type: 2}
-  - optionText: Who will bring your food?
+  - optionText: Who are you loyal to?
+    nextDialogue: {fileID: 11400000}
+  - optionText: Do you have any relations?
     nextDialogue: {fileID: 11400000, guid: b62dfc4dd68a96245a7aeaae70cebd75, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 3f17781d17565a540a4f13844e2b8a43, type: 2}
   requiredConvos: []

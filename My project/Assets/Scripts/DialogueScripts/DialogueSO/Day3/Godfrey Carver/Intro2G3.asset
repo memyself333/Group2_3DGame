@@ -14,19 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: ...
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: ...Please...
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What should I ask?)
   options:
-  - optionText: 
+  - optionText: Do you work with the Devil?
     nextDialogue: {fileID: 11400000, guid: 9f1f558acf2a6f04a92a4f4a3320d03c, type: 2}
-  - optionText: 
+  - optionText: Am I safe?
     nextDialogue: {fileID: 11400000, guid: e4429baf24f95e248b8225d67483431c, type: 2}
-  - optionText: 
+  - optionText: Do you think you're evil?
     nextDialogue: {fileID: 11400000, guid: bd62ad738aab75542b1425d651839b85, type: 2}
-  - optionText: 
-    nextDialogue: {fileID: 11400000, guid: ffdbb35998eecf148b5ddf563638b17b, type: 2}
   requiredConvos:
   - {fileID: 11400000, guid: 7e6b91a13c1a322448ff64ae42239514, type: 2}

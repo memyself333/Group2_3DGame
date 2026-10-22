@@ -14,19 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Who will bring you food today?
+    text: Do you think you're evil?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: What sin? I only set the course of fate towards the correct destination,
-      to me!
+    text: I may have killed my own blood, but the blood of the covenant is thicker
+      than the water of the womb
+  - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
+    text: At least I kill for a reason, jared.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: These selfish remarks will do you no good in the eyes of the Lord.
+    text: What are you looking at? There is no one behind me.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: ill you stand in front of the church court?
+  - optionText: Do you work with the Devil?
     nextDialogue: {fileID: 11400000, guid: 9f1f558acf2a6f04a92a4f4a3320d03c, type: 2}
-  - optionText: Who were your accomplices?
+  - optionText: Am I safe?
     nextDialogue: {fileID: 11400000, guid: e4429baf24f95e248b8225d67483431c, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: ffdbb35998eecf148b5ddf563638b17b, type: 2}
+  - optionText: Do you think you're evil?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []

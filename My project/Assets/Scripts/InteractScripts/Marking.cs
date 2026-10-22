@@ -23,11 +23,11 @@ public class Marking : MonoBehaviour
     public TMP_Text[] questions;
     public CanvasGroup currentMenu;
     public ExitOffice exitOffice;
+    public FPController fpController;
 
     public string[] day1Questions;
     public string[] day2Questions;
     public string[] day3Questions;
-    public string[] day4Questions;
 
 
     public PlayerInput playerInput;
@@ -85,56 +85,61 @@ public class Marking : MonoBehaviour
     //Disable playerInput, make cursor visible, and make marking canva visible
     public void OnMark(InputAction.CallbackContext context)
     {
+
         if (context.performed)
         {
-            if (currentMenu != null)
+            if (exitOffice.currentDay < 4)
             {
-                currentMenu.alpha = 0;
-                currentMenu.blocksRaycasts = false;
-                currentMenu.interactable = false;
-            }
-            isMarking = true;
-            markCanva.enabled = true;
-            prisonerName.text = currentPrisoner;
-
-            for (int i = 0; i < prisoners.Length; i++)
-            {
-                if (prisoners[i].prisonerName == currentPrisoner)
+                if (currentMenu != null)
                 {
-                    for (int j = 0; j < prisoners[i].isToggleOn.Length; j++)
+                    currentMenu.alpha = 0;
+                    currentMenu.blocksRaycasts = false;
+                    currentMenu.interactable = false;
+                }
+                isMarking = true;
+                fpController.seenMarkTip = true;
+                markCanva.enabled = true;
+                prisonerName.text = currentPrisoner;
+
+                for (int i = 0; i < prisoners.Length; i++)
+                {
+                    if (prisoners[i].prisonerName == currentPrisoner)
                     {
-                        toggles[j].isOn = prisoners[i].isToggleOn[j];
+                        for (int j = 0; j < prisoners[i].isToggleOn.Length; j++)
+                        {
+                            toggles[j].isOn = prisoners[i].isToggleOn[j];
+                        }
                     }
                 }
-            }
 
-            for (int i = 0; i < questions.Length; i++)
+                for (int i = 0; i < questions.Length; i++)
+                {
+                    if (exitOffice.currentDay == 1)
+                    {
+                        questions[i].text = day1Questions[i];
+                    }
+                    else if (exitOffice.currentDay == 2)
+                    {
+                        questions[i].text = day2Questions[i];
+                    }
+                    else if (exitOffice.currentDay == 3)
+                    {
+                        questions[i].text = day3Questions[i];
+                    }
+                }
+
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
+                UnityEngine.Cursor.visible = true;
+
+                hudCanvas.enabled = false;
+
+                playerInput.actions.FindAction("Movement").Disable();
+                playerInput.actions.FindAction("Look").Disable();
+            }
+            else if (exitOffice.currentDay == 4)
             {
-                if (exitOffice.currentDay == 1)
-                {
-                    questions[i].text = day1Questions[i];
-                }
-                else if (exitOffice.currentDay == 2)
-                {
-                    questions[i].text = day2Questions[i];
-                }
-                else if (exitOffice.currentDay == 3)
-                {
-                    questions[i].text = day3Questions[i];
-                }
-                else if (exitOffice.currentDay == 4)
-                {
-                    questions[i].text = day4Questions[i];
-                }
+                return;
             }
-
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
-            UnityEngine.Cursor.visible = true;
-
-            hudCanvas.enabled = false;
-
-            playerInput.actions.FindAction("Movement").Disable();
-            playerInput.actions.FindAction("Look").Disable();
         }
     }
 

@@ -14,19 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: What crime did you commit to be sent here?
+    text: Do you repent for the sins you have commited?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: I rid the world, of scum like you, and when I am saved by Him, you will
-      feel the burn of his hatred.
+    text: Sins are what maketh the man, and they are not what should divide the humans.
+      No, I do not repent, for I have nothing to repent jailor.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Him? You think God will save you now?
+    text: What blasphemy you speak of! You should have been executed before your
+      eyes even saw light.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who are you loyal to?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: 5a488e8cf8945c244bde42405e4f266c, type: 2}
   - optionText: Do you repent for your sins?
+    nextDialogue: {fileID: 11400000}
+  - optionText: What was your motive?
     nextDialogue: {fileID: 11400000, guid: 02e454a273ed54f479dc84a2de5663f8, type: 2}
-  - optionText: Who do you worship?
-    nextDialogue: {fileID: 11400000, guid: 51059be4525630c459ce1f6f10f8c1fb, type: 2}
   requiredConvos: []

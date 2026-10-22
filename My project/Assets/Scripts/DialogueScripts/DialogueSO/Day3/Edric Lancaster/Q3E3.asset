@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: Do you think you're evil?
   - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
-    text: 
+    text: My Gods tell me there is a great evil lurking here. Please, release me!
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: 
+    text: I-I cannot release you. You are a prisoner, you...you deserve this.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: 
+  - optionText: Do you work with the Devil?
     nextDialogue: {fileID: 11400000, guid: a69f277990e452e46a534b67873d46a1, type: 2}
-  - optionText: 
+  - optionText: Am I safe?
     nextDialogue: {fileID: 11400000, guid: aee894f776d5e0b4e8c5d2f0c195a51a, type: 2}
-  - optionText: 
-    nextDialogue: {fileID: 11400000, guid: c7313203e243aae44b85bb699c1f6a94, type: 2}
+  - optionText: Do you think you're evil?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []

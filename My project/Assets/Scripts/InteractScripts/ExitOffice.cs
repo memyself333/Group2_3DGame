@@ -6,22 +6,20 @@ using UnityEngine.Timeline;
 using UnityEngine.Playables;
 using TMPro;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class ExitOffice : MonoBehaviour
 {
     public bool isExiting;
     public bool nearExit;
-    public Canvas notifCanvas;
-    public TMP_Text notifText;
+    public Animator hintAnimator;
+    public TMP_Text hintText;
     public PlayerInput playerInput;
     public Animator playerAnim;
     public Animator cameraAnim;
     public Marking marking;
     public Execution execution;
     public Canvas hudCanvas;
-    public TMP_Text readText;
-    [TextArea(3, 5)] public string textDay1;
-    [TextArea(3, 5)] public string textDay2;
 
     public Image cursor;
     public Sprite cursorReticle;
@@ -30,6 +28,13 @@ public class ExitOffice : MonoBehaviour
     public ObjectInteract interact;
     public FPController fpController;
 
+    public GameObject williamWall;
+    public GameObject jumpscareBox;
+    public GameObject[] triggerBoxes;
+    public GameObject[] prisonCells;
+    public Image williamCross;
+    public Image williamBlood;
+    public AudioSource musicPlayer;
 
     public int currentDay = 1;
     public TMP_Text dayText;
@@ -48,14 +53,16 @@ public class ExitOffice : MonoBehaviour
         public GameObject prisonerGameObject;
         public List<DialogueSO> prisonerConvosDay1;
         public List<DialogueSO> prisonerConvosDay2;
+        public List<DialogueSO> prisonerConvosDay3;
     }
 
-    [SerializeField] private Prisoner[] prisoners;
+    [SerializeField] public Prisoner[] prisoners;
 
 
     private void Awake()
     {
         isExiting = false;
+        williamCross.enabled = false;
 
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
@@ -66,15 +73,20 @@ public class ExitOffice : MonoBehaviour
         playerAnim.enabled = false;
         cameraAnim.enabled = false;
         bookObject.SetActive(false);
-        
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+
+        foreach (var bar in prisonCells)
+        {
+            bar.gameObject.SetActive(true);
+        }
+        williamWall.SetActive(true);
+        foreach (var boxes in triggerBoxes)
+        {
+            boxes.gameObject.SetActive(false);
+        }
+        jumpscareBox.SetActive(false);
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (nearExit)
@@ -143,15 +155,7 @@ public class ExitOffice : MonoBehaviour
         execution.ResetGeneral();
         execution.hasTalked = false;
         currentDay++;
-        if (currentDay == 3)
-        {
-            dayText.text = "The End";
-            dayText.fontSize = 600;
-        }
-        else
-        {
-            dayText.text = "Day " + currentDay.ToString();
-        }
+        dayText.text = "Day " + currentDay.ToString();
 
         director.Play();
         foreach (var prisoner in prisoners)
@@ -166,6 +170,8 @@ public class ExitOffice : MonoBehaviour
                 {
                     prisoner.prisonerName.isAlive = true;
                     prisoner.prisonerGameObject.SetActive(true);
+                    williamCross.enabled = true;
+                    williamBlood.enabled = false;
                 }
                 else
                 {
@@ -183,14 +189,40 @@ public class ExitOffice : MonoBehaviour
         {
             letterObject.SetActive(true);
             bookObject.SetActive(false);
-            readText.text = textDay1;
         }
         else if (currentDay == 2)
         {
+            letterObject.SetActive(true);
+            bookObject.SetActive(false);  
+        }
+        else if (currentDay == 3)
+        {
             letterObject.SetActive(false);
             bookObject.SetActive(true);
-            readText.text = textDay2;   
         }
+        else if (currentDay == 4)
+        {
+            letterObject.SetActive(true);
+            bookObject.SetActive(false);  
+
+            foreach (var prisoner in prisoners)
+            {
+                prisoner.prisonerGameObject.SetActive(false);
+            }
+            foreach (var bar in prisonCells)
+            {
+                bar.gameObject.SetActive(false);
+            }
+            williamWall.SetActive(false);
+            foreach (var boxes in triggerBoxes)
+            {
+                boxes.gameObject.SetActive(true);
+            }
+            jumpscareBox.SetActive(true);
+            
+        }
+
+        musicPlayer.Stop();
     }
 
 
@@ -198,10 +230,6 @@ public class ExitOffice : MonoBehaviour
     public void ControlReturn()
     {
 
-        if (currentDay == 3)
-        {
-            Application.Quit();
-        }
         execution.executionDone = false;
         hudCanvas.enabled = true;
         isExiting = false;
@@ -225,15 +253,31 @@ public class ExitOffice : MonoBehaviour
             {
                 prisoners[i].prisonerGameObject.GetComponent<NPC_Talk>().conversations = prisoners[i].prisonerConvosDay2;
             }
+            else if (currentDay == 3)
+            {
+                prisoners[i].prisonerGameObject.GetComponent<NPC_Talk>().conversations = prisoners[i].prisonerConvosDay3;
+            }
         }
 
     }
     public IEnumerator DisplayTip()
     {
-        notifCanvas.enabled = true;
-        notifText.text = "I must execute a prisoner first";
+        hintAnimator.SetBool("ShowHint", true);
+        hintAnimator.SetBool("HideHint", false);
+        hintAnimator.SetBool("Off", false);
+        if (currentDay == 4)
+        {
+            hintText.text = "You cannot leave.";
+        }
+        else
+        {
+            hintText.text = "You must execute a prisoner before you can exit the prison.";
+        }
         yield return new WaitForSeconds(3f);
-        notifCanvas.enabled = false;
+        hintAnimator.SetBool("ShowHint", false);
+        hintAnimator.SetBool("HideHint", true);
+        hintAnimator.SetBool("Off", false);
     }
+
 }
 

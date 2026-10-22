@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEditor.Rendering;
 using TMPro;
+using ChristinaCreatesGames.Typography.Typewriter;
 public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -38,10 +39,9 @@ public class FPController : MonoBehaviour
     public bool seenTalkTip;
     public bool seenExecuteTip;
     public bool seenExitTip;
+    public bool seenMarkTip;
 
 
-    public GameObject notifPrisoner1;
-    public GameObject notifPrisoner2;
     public GameObject notifExecute;
     public GameObject notifDoor;
     public GameObject notifExit;
@@ -49,6 +49,7 @@ public class FPController : MonoBehaviour
     public Execution execution;
     public JumpscareBox jumpscareBox;
     public ExitOffice exitOffice;
+    public Marking marking;
     public bool isTalking;
     public DialogueManager dm;
     public Animator hintAnimator;
@@ -63,28 +64,26 @@ public class FPController : MonoBehaviour
         seenExitTip = false;
         seenTalkTip = false;
     }
+
     private void Update()
     {
         isTalking = dm.isDialogueActive;
 
-        if (dm.isDialogueActive || execution.isExecuting || exitOffice.isExiting)
+        if (dm.isDialogueActive || execution.isExecuting || exitOffice.isExiting || marking.isMarking)
         {
             hintAnimator.SetBool("ShowHint", false);
             hintAnimator.SetBool("HideHint", false);
             hintAnimator.SetBool("Off", true);
         }
-            if (npcTalk.nearNPC)
+        if (npcTalk.nearNPC)
         {
-            Debug.Log("Step1");
             Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit cursorHit;
 
             if (Physics.Raycast(cursorRay, out cursorHit))
             {
-                Debug.Log("Step2");
                 if (cursorHit.collider.CompareTag("NPC"))
                 {
-                    Debug.Log("Step3");
                     cursor.sprite = cursorSpeech;
                     isLookingAtNPC = true;
                 }
@@ -298,23 +297,12 @@ public class FPController : MonoBehaviour
                     hintAnimator.SetBool("HideHint", false);
                     hintAnimator.SetBool("Off", true);
                 }
-            }
-        }
-        else
-        {
-            Debug.Log("Not found npc_talk");
-        }
 
-        if (other.gameObject == notifExecute)
-        {
-            execution.nearExecuter = false;
-
-            if (exitOffice.currentDay == 1)
-            {
-                if (!seenExecuteTip)
+                if (!seenMarkTip)
                 {
-                    hintAnimator.SetBool("ShowHint", false);
-                    hintAnimator.SetBool("HideHint", true);
+                    hintText.text = "Press [M] to open the marking sheet and tick the appropriate boxes.";
+                    hintAnimator.SetBool("ShowHint", true);
+                    hintAnimator.SetBool("HideHint", false);
                     hintAnimator.SetBool("Off", false);
                 }
                 else
@@ -324,33 +312,57 @@ public class FPController : MonoBehaviour
                     hintAnimator.SetBool("Off", true);
                 }
             }
-        }
-
-        if (other.gameObject == notifDoor)
-        {
-            jumpscareBox.inJumpscare = false;
-        }
-
-        if (other.gameObject == notifExit)
-        {
-            exitOffice.nearExit = false;
-
-            if (exitOffice.currentDay == 1)
+            else
             {
-                if (!seenExitTip)
-                {
-                    hintAnimator.SetBool("ShowHint", false);
-                    hintAnimator.SetBool("HideHint", true);
-                    hintAnimator.SetBool("Off", false);
-                }
-                else
-                {
-                    hintAnimator.SetBool("ShowHint", false);
-                    hintAnimator.SetBool("HideHint", false);
-                    hintAnimator.SetBool("Off", true);
-                }
+                Debug.Log("Not found npc_talk");
             }
         }
+            if (other.gameObject == notifExecute)
+            {
+                execution.nearExecuter = false;
+
+                if (exitOffice.currentDay == 1)
+                {
+                    if (!seenExecuteTip)
+                    {
+                        hintAnimator.SetBool("ShowHint", false);
+                        hintAnimator.SetBool("HideHint", true);
+                        hintAnimator.SetBool("Off", false);
+                    }
+                    else
+                    {
+                        hintAnimator.SetBool("ShowHint", false);
+                        hintAnimator.SetBool("HideHint", false);
+                        hintAnimator.SetBool("Off", true);
+                    }
+                }
+            }
+
+            if (other.gameObject == notifDoor)
+            {
+                jumpscareBox.inJumpscare = false;
+            }
+
+            if (other.gameObject == notifExit)
+            {
+                exitOffice.nearExit = false;
+
+                if (exitOffice.currentDay == 1)
+                {
+                    if (!seenExitTip)
+                    {
+                        hintAnimator.SetBool("ShowHint", false);
+                        hintAnimator.SetBool("HideHint", true);
+                        hintAnimator.SetBool("Off", false);
+                    }
+                    else
+                    {
+                        hintAnimator.SetBool("ShowHint", false);
+                        hintAnimator.SetBool("HideHint", false);
+                        hintAnimator.SetBool("Off", true);
+                    }
+                }
+            }
     }
 
     public void PlayStoneFootstep()
@@ -380,4 +392,5 @@ public class FPController : MonoBehaviour
         lastClipIndex2 = nextClipIndex;
         keyAudioSource.PlayOneShot(keyJingleClips[nextClipIndex]);
     }
+    
 }

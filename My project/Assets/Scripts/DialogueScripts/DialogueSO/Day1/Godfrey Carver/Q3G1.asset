@@ -14,19 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Do you repent for the sins you have commited?
+    text: What motive possesed you to commit this act?
   - speaker: {fileID: 11400000, guid: 329decddb3e896447a7d75201dd4f13b, type: 2}
-    text: What sin? I only set the course of fate towards the correct destination,
-      to me!
+    text: My reign was foretold to me centuries ago, on the relic bestowed to the
+      Carver family by the nomads of Greek ancestry. My face, my beautiful face was
+      carved on stone before I was even born, adorning the crown that I so rightly
+      deserve.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: These selfish remarks will do you no good in the eyes of the Lord.
+    text: You believe in a block of stone? You are even more foolish than those witches
+      in the West.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who are you loyal to?
-    nextDialogue: {fileID: 11400000, guid: 1b46730c38d04514f8e842f9c41ce266, type: 2}
   - optionText: What crime did you commit?
+    nextDialogue: {fileID: 11400000, guid: 1b46730c38d04514f8e842f9c41ce266, type: 2}
+  - optionText: Do you repent for your sins?
     nextDialogue: {fileID: 11400000, guid: 8d1e07f2010d85949b23c1b3c27d1178, type: 2}
-  - optionText: Who do you worship?
-    nextDialogue: {fileID: 11400000, guid: e8730aca28eaec2429ea5aab951bc45f, type: 2}
+  - optionText: What was your motive?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []

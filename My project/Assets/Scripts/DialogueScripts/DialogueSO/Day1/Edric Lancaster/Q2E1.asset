@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: What crime did you commit to be sent here?
+    text: Do you repent for the sins you have commited?
   - speaker: {fileID: 11400000, guid: ff554c407b93d574e84f5f1618aba610, type: 2}
-    text: 'I kept some of the taxes due to the king to feed my kin. '
+    text: The only sin I have committed is being captured before justice is dealt.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Those very same taxes are used to keep you here where you belong, thief.
+    text: Have faith, scum. Justice keeps you where you belong.
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: Who are you loyal to?
+  - optionText: What crime did you commit?
     nextDialogue: {fileID: 11400000, guid: 2525ae462b74c4f44b1210392b06bbd1, type: 2}
   - optionText: Do you repent for your sins?
+    nextDialogue: {fileID: 11400000}
+  - optionText: What was your motive?
     nextDialogue: {fileID: 11400000, guid: 25f09e20363240a4d8ce78f4ceb65664, type: 2}
-  - optionText: Who do you worship?
-    nextDialogue: {fileID: 11400000, guid: dbfbd1ba93ec3744cba734e80eb70a83, type: 2}
   requiredConvos: []

@@ -14,18 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: Who will bring you food today?
+    text: Do you have any relatives?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
-    text: I do not need to eat those rations. I have my meal right in front of me.
+    text: I do not need blood relations, the people who see the true light know what
+      is right, and will free me from this pitiful cell
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
-    text: "\u2026Y-You can\u2019t escape\u2026right?"
+    text: "There is no escape for you, demon\u2026 "
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
+    text: (Lord, please strengthen these bars)
   - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: (What else should I ask?)
   options:
-  - optionText: ill you stand in front of the church court?
+  - optionText: Who do you worship?
     nextDialogue: {fileID: 11400000, guid: 9a954a70a0fd7cb4fa89a4d9617ae3ab, type: 2}
-  - optionText: Who were your accomplices?
+  - optionText: Who are you loyal to?
     nextDialogue: {fileID: 11400000, guid: 852716af2161c974aa71b79e486b2407, type: 2}
-  - optionText: Was your crime the work of the Devil?
-    nextDialogue: {fileID: 11400000, guid: 720f9af4371afbe4f863227149fc1ec1, type: 2}
+  - optionText: Do you have any relations?
+    nextDialogue: {fileID: 11400000}
   requiredConvos: []
