@@ -19,6 +19,7 @@ public class ExitOffice : MonoBehaviour
     public Animator cameraAnim;
     public Marking marking;
     public Execution execution;
+    public Torch torch;
     public Canvas hudCanvas;
 
     public Image cursor;
@@ -41,6 +42,9 @@ public class ExitOffice : MonoBehaviour
 
     public GameObject letterObject;
     public GameObject bookObject;
+    public GameObject torchObject;
+    public GameObject notifTorch;
+    public GameObject torchCollider;
 
     public PlayableDirector director;
 
@@ -107,7 +111,7 @@ public class ExitOffice : MonoBehaviour
                 }
             }
         }
-        else if (execution.nearExecuter || interact.CheckUserCloseToTable() || fpController.nearANPC)
+        else if (execution.nearExecuter || interact.CheckUserCloseToTable() || fpController.nearANPC || torch.nearTorch)
         {
 
         }
@@ -203,7 +207,10 @@ public class ExitOffice : MonoBehaviour
         else if (currentDay == 4)
         {
             letterObject.SetActive(true);
-            bookObject.SetActive(false);  
+            bookObject.SetActive(false);
+            torchObject.SetActive(true);
+            notifTorch.SetActive(true);
+            torchCollider.SetActive(true);
 
             foreach (var prisoner in prisoners)
             {

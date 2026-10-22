@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     public Canvas hudCanvas;
     public Animator dialogueCanvasAnim;
     [SerializeField] private TypewriterEffect dialogueTypewriter;
+    public Image eTipImage;
 
     public bool isDialogueActive = false;
 
@@ -111,7 +112,7 @@ public class DialogueManager : MonoBehaviour
     {
 
         ClearChoices();
-
+        eTipImage.enabled = false;
 
         if (currentDialogue.options.Length  > 0)
         {

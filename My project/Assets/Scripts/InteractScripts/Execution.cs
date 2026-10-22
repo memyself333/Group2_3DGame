@@ -30,6 +30,7 @@ public class Execution : MonoBehaviour
     public Image cursor;
     public Sprite cursorReticle;
     public Sprite cursorQuill;
+    public Torch torch;
 
     public Animator hintAnimator;
     public TMP_Text hintText;
@@ -99,7 +100,7 @@ public class Execution : MonoBehaviour
                 }
             }
         }
-        else if (exitOffice.nearExit || interact.CheckUserCloseToTable() || fpController.nearANPC)
+        else if (exitOffice.nearExit || interact.CheckUserCloseToTable() || fpController.nearANPC || torch.nearTorch)
         {
 
         }

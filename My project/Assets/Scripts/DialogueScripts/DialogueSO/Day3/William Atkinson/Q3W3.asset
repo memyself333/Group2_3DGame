@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Q3W3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   lines:
-  - speaker: {fileID: 11400000, guid: 9654487669522e342abd6c3b3037cba1, type: 2}
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: Do you think I am evil?
   - speaker: {fileID: 11400000, guid: 7975f33c4f73b844ab43e8c752f00326, type: 2}
     text: Oh dear player, you are not evil, you are only clicking buttons, are you
       not? Unless, of course, you enjoyed killing them, jared.
-  - speaker: {fileID: 11400000, guid: 9654487669522e342abd6c3b3037cba1, type: 2}
+  - speaker: {fileID: 11400000, guid: d02f92ecb714b5a4daa6daa630cf91df, type: 2}
     text: ...
   options:
   - optionText: Do you work with the Devil?

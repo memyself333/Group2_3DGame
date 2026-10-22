@@ -9,6 +9,7 @@ TagManager:
   - ExecutionPaper
   - Door
   - Exit
+  - Torch
   layers:
   - Default
   - TransparentFX

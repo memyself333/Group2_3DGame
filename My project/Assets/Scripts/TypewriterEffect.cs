@@ -158,7 +158,7 @@ namespace ChristinaCreatesGames.Typography.Typewriter
 
         private void OnCharacterRevealed(char revealedCharacter)
         {
-            currentSpeaker = 0;
+            currentSpeaker = 4;
             switch (dm.actorName.text)
             {
                 case "Alfred":

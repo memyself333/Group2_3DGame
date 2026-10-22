@@ -28,6 +28,7 @@ public class ObjectInteract : MonoBehaviour
     public Execution execution;
     public FPController fpController;
     public ExitOffice exitOffice;
+    public Torch torch;
 
 
     public Canvas interactMenu;
@@ -181,7 +182,7 @@ public class ObjectInteract : MonoBehaviour
 
             }
         }
-        else if (execution.nearExecuter || fpController.nearANPC || exitOffice.nearExit)
+        else if (execution.nearExecuter || fpController.nearANPC || exitOffice.nearExit || torch.nearTorch)
         {
 
         }

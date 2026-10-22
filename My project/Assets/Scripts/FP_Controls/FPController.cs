@@ -40,16 +40,20 @@ public class FPController : MonoBehaviour
     public bool seenExecuteTip;
     public bool seenExitTip;
     public bool seenMarkTip;
+    public bool seenTorchTip;
 
 
     public GameObject notifExecute;
     public GameObject notifDoor;
     public GameObject notifExit;
+    public GameObject notifTorch;
+    public GameObject torchCollider;
     public NPC_Talk npcTalk;
     public Execution execution;
     public JumpscareBox jumpscareBox;
     public ExitOffice exitOffice;
     public Marking marking;
+    public Torch torch;
     public bool isTalking;
     public DialogueManager dm;
     public Animator hintAnimator;
@@ -63,13 +67,16 @@ public class FPController : MonoBehaviour
         seenExecuteTip = false;
         seenExitTip = false;
         seenTalkTip = false;
+        seenTorchTip = false;
+        notifTorch.SetActive(false);
+        torchCollider.SetActive(false);
     }
 
     private void Update()
     {
         isTalking = dm.isDialogueActive;
 
-        if (dm.isDialogueActive || execution.isExecuting || exitOffice.isExiting || marking.isMarking)
+        if (dm.isDialogueActive || execution.isExecuting || exitOffice.isExiting || marking.isMarking || seenTorchTip)
         {
             hintAnimator.SetBool("ShowHint", false);
             hintAnimator.SetBool("HideHint", false);
@@ -94,7 +101,7 @@ public class FPController : MonoBehaviour
                 }
             }
         }
-        else if (execution.nearExecuter || exitOffice.nearExit || interact.CheckUserCloseToTable())
+        else if (execution.nearExecuter || exitOffice.nearExit || interact.CheckUserCloseToTable() || torch.nearTorch)
         {
 
         }
@@ -271,6 +278,25 @@ public class FPController : MonoBehaviour
                 }
             }
         }
+
+        if (other.gameObject == notifTorch)
+        {
+            torch.nearTorch = true;
+
+            if (!seenTorchTip)
+            {
+                hintText.text = "Press [E] to pick up the torch.";
+                hintAnimator.SetBool("ShowHint", true);
+                hintAnimator.SetBool("HideHint", false);
+                hintAnimator.SetBool("Off", false);
+            }
+            else
+            {
+                hintAnimator.SetBool("ShowHint", false);
+                hintAnimator.SetBool("HideHint", false);
+                hintAnimator.SetBool("Off", true);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -363,6 +389,24 @@ public class FPController : MonoBehaviour
                     }
                 }
             }
+
+        if (other.gameObject == notifTorch)
+        {
+            torch.nearTorch = false;
+
+            if (!seenTorchTip)
+            {
+                hintAnimator.SetBool("ShowHint", false);
+                hintAnimator.SetBool("HideHint", true);
+                hintAnimator.SetBool("Off", false);
+            }
+            else
+            {
+                hintAnimator.SetBool("ShowHint", false);
+                hintAnimator.SetBool("HideHint", false);
+                hintAnimator.SetBool("Off", true);
+            }
+        }
     }
 
     public void PlayStoneFootstep()
