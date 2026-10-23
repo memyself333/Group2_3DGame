@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 8
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: a6840229267775d4a9791ae4d6a06e29, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 64c1a8338a3035846841751b47d6a144, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -764,31 +764,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 276
+      value: 229
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 154
+      value: 149
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 649
+      value: 682
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.18619677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.9825125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -796,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 201.462
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8ac2b98490866b842b9d1b0325fbb133, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1723,7 +1723,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9276729, g: 1, b: 0.9510819, a: 0.10980392}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.10980392}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2172,7 +2172,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 100, y: 1, z: 1}
+    m_Scale: {x: 110, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -2370,7 +2370,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 35
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6265,7 +6265,7 @@ Transform:
   m_GameObject: {fileID: 1485100518}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 534, y: -30, z: -0}
+  m_LocalPosition: {x: 562, y: 3, z: 431}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6564,7 +6564,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 156b730f6b1da3b4598c623201ad96db, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 0ae5b78f55c50394b8922ebc14766fe9, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -6587,7 +6587,7 @@ Transform:
   m_GameObject: {fileID: 2015387274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -94, z: 0}
+  m_LocalPosition: {x: -89, y: -90, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
