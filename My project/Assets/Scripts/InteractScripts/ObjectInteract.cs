@@ -29,6 +29,7 @@ public class ObjectInteract : MonoBehaviour
     public FPController fpController;
     public ExitOffice exitOffice;
     public Torch torch;
+    public IntroScript intro;
 
 
     public Canvas interactMenu;
@@ -37,6 +38,8 @@ public class ObjectInteract : MonoBehaviour
     private int currentPageIndex;
     public Image leftButton;
     public Image rightButton;
+    public PauseMenu pause;
+    public SettingsMenu settings;
 
     [TextArea(3, 5)] public string[] textsDay1;
     [TextArea(3, 5)] public string[] textsDay2;
@@ -61,10 +64,11 @@ public class ObjectInteract : MonoBehaviour
     public bool isHitting;
 
     public AudioSource musicPlayer;
-    public AudioClip day3Music;
-    public AudioClip day4Music;
+    public AudioClip[] songs;
 
-
+    public bool seenObjectHint;
+    public Animator hintAnimator;
+    public TMP_Text hintText;
 
     private Rect screenArea = new Rect(UnityEngine.Screen.width / 2 - 600, UnityEngine.Screen.height / 2 - 375, 1200, 750);
 
@@ -120,6 +124,11 @@ public class ObjectInteract : MonoBehaviour
 
         }
 
+        if (musicPlayer.isPlaying)
+        {
+            musicPlayer.volume = settings.targetVolume;
+        }
+
 
         if (exitOffice.currentDay == 1 || exitOffice.currentDay == 2 || exitOffice.currentDay == 4)
         {
@@ -132,17 +141,11 @@ public class ObjectInteract : MonoBehaviour
             {
                 rightButton.enabled = false;
                 leftButton.enabled = true;
-                if (!musicPlayer.isPlaying)
-                {
-                    musicPlayer.clip = day4Music;
-                    StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, .5f));
-                }
-
             }
             else if (currentPageIndex == 0)
             {
                 leftButton.enabled = false;
-                rightButton.enabled= true;
+                rightButton.enabled = true;
             }
             else
             {
@@ -152,11 +155,46 @@ public class ObjectInteract : MonoBehaviour
 
         }
 
+        if (!intro.introCurrentlyPlaying)
+        {
+            switch (exitOffice.currentDay)
+            {
+                case 1:
+                    musicPlayer.clip = songs[0];
+                    break;
+                case 2:
+                    musicPlayer.clip = songs[1];
+                    break;
+                case 3:
+                    musicPlayer.clip = songs[2];
+                    break;
+                case 4:
+                    musicPlayer.clip = songs[3];
+                    break;
+            }
+        }
+
 
         //It then checks if the player is close to an interactable object using the CheckUserClose() method.
         //If the player is close, it calls either Examine() or NonExamine() and enables or disables the canvas component accordingly.
         if (CheckUserCloseToTable())
         {
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenObjectHint)
+                {
+                    hintText.text = "Press [E] while facing the paper to interact with it. Click and hold the Left Mouse Button while interacting to rotate the object.";
+                    hintAnimator.SetBool("ShowHint", true);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
             Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit cursorHit;
             if (Physics.Raycast(cursorRay, out cursorHit))
@@ -189,6 +227,21 @@ public class ObjectInteract : MonoBehaviour
         else
         {
             cursor.sprite = cursorReticle;
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenObjectHint)
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", true);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
         }
 
     }
@@ -203,13 +256,9 @@ public class ObjectInteract : MonoBehaviour
         }
         isExamining = false;
         StopExamination();
-        if (exitOffice.currentDay == 4)
+        if (!musicPlayer.isPlaying)
         {
-            if (!musicPlayer.isPlaying)
-            {
-                musicPlayer.clip = day4Music;
-                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, .5f));
-            }
+            StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, settings.targetVolume));
         }
     }
 
@@ -308,6 +357,7 @@ public class ObjectInteract : MonoBehaviour
         lastMousePosition = mousePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        seenObjectHint = true;
         hudCanvas.enabled = false;
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable(); ;

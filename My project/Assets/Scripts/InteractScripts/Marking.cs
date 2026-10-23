@@ -29,6 +29,11 @@ public class Marking : MonoBehaviour
     public string[] day2Questions;
     public string[] day3Questions;
 
+    public AudioClip[] paperClips;
+    public AudioClip[] pencilClips;
+    public int lastClipIndex1 = -1;
+    public int lastClipIndex2 = -1;
+    public AudioSource paper;
 
     public PlayerInput playerInput;
 
@@ -90,6 +95,7 @@ public class Marking : MonoBehaviour
         {
             if (exitOffice.currentDay < 4)
             {
+                PlayPaper();
                 if (currentMenu != null)
                 {
                     currentMenu.alpha = 0;
@@ -145,6 +151,7 @@ public class Marking : MonoBehaviour
 
     public void ExitButtonPressed()
     {
+        PlayPaper();
         if (currentMenu != null)
         {
             currentMenu.alpha = 1;
@@ -236,5 +243,32 @@ public class Marking : MonoBehaviour
                 prisoner.isToggleOn[j] = false;
             }
         }
+    }
+
+    public void PlayPencil()
+    {
+        if (pencilClips.Length == 0) return;
+
+        int nextClipIndex;
+        do
+        {
+            nextClipIndex = UnityEngine.Random.Range(0, pencilClips.Length);
+        } while (nextClipIndex == lastClipIndex2); // Avoid repeating the same sound
+
+        lastClipIndex2 = nextClipIndex;
+        paper.PlayOneShot(pencilClips[nextClipIndex]);
+    }
+    public void PlayPaper()
+    {
+        if (paperClips.Length == 0) return;
+
+        int nextClipIndex;
+        do
+        {
+            nextClipIndex = UnityEngine.Random.Range(0, paperClips.Length);
+        } while (nextClipIndex == lastClipIndex2); // Avoid repeating the same sound
+
+        lastClipIndex2 = nextClipIndex;
+        paper.PlayOneShot(paperClips[nextClipIndex]);
     }
 }
