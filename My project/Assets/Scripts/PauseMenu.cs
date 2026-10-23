@@ -8,15 +8,11 @@ public class PauseMenu : MonoBehaviour
     public Canvas pauseMenu;
     public Canvas settingsMenu;
     public PlayerInput playerInput;
-    public FPController controller;
-    public AudioSource musicPlayer;
-    public float targetVolume = 0.5f;
 
     public void Awake()
     {
         pauseMenu.enabled = false;
         settingsMenu.enabled = false;
-        targetVolume = 0.5f;
 }
     public void Pause()
     {
@@ -50,20 +46,5 @@ public class PauseMenu : MonoBehaviour
         settingsMenu.enabled = true;
     }
 
-    public void CloseSettings()
-    {
-        pauseMenu.enabled = true;
-        settingsMenu.enabled = false;
-    }
 
-    public void OnLookSensChanged(float setting)
-    {
-        controller.lookSensitivity = setting;
-    }
-    
-    public void OnVolumeChanged(float setting)
-    {
-        targetVolume = setting;
-        musicPlayer.volume = setting;
-    }
 }

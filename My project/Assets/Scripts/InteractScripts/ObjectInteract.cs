@@ -39,6 +39,7 @@ public class ObjectInteract : MonoBehaviour
     public Image leftButton;
     public Image rightButton;
     public PauseMenu pause;
+    public SettingsMenu settings;
 
     [TextArea(3, 5)] public string[] textsDay1;
     [TextArea(3, 5)] public string[] textsDay2;
@@ -121,6 +122,11 @@ public class ObjectInteract : MonoBehaviour
 
         }
 
+        if (musicPlayer.isPlaying)
+        {
+            musicPlayer.volume = settings.targetVolume;
+        }
+
 
         if (exitOffice.currentDay == 1 || exitOffice.currentDay == 2 || exitOffice.currentDay == 4)
         {
@@ -137,7 +143,7 @@ public class ObjectInteract : MonoBehaviour
             else if (currentPageIndex == 0)
             {
                 leftButton.enabled = false;
-                rightButton.enabled= true;
+                rightButton.enabled = true;
             }
             else
             {
@@ -219,7 +225,7 @@ public class ObjectInteract : MonoBehaviour
         StopExamination();
         if (!musicPlayer.isPlaying)
         {
-            StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, pause.targetVolume));
+            StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, settings.targetVolume));
         }
     }
 

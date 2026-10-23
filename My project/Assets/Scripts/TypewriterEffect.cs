@@ -156,12 +156,11 @@ namespace ChristinaCreatesGames.Typography.Typewriter
             CompleteTextRevealed -= OnTextCompleted;
         }
 
-        private void OnCharacterRevealed(char revealedCharacter)
+        public void Update()
         {
-            currentSpeaker = 4;
             switch (dm.actorName.text)
             {
-                case "Alfred":
+                case "Aldred":
                     currentSpeaker = 0;
                     break;
                 case "Edric":
@@ -177,6 +176,9 @@ namespace ChristinaCreatesGames.Typography.Typewriter
                     currentSpeaker = 4;
                     break;
             }
+        }
+        private void OnCharacterRevealed(char revealedCharacter)
+        {
 
             char lowerChar = char.ToLower(revealedCharacter);
             if (lowerChar >= 'a' && lowerChar <= 'z')

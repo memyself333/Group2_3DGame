@@ -15,13 +15,14 @@ public class IntroScript : MonoBehaviour
     public PlayerInput playerInput;
     [TextArea(3, 5)] public string[] texts;
     public PauseMenu pause;
+    public SettingsMenu settings;
 
     void Start()
     {
         introCurrentlyPlaying = true;
         introCanvas.enabled = true;
         musicPlayer.clip = introClip;
-        StartCoroutine(AudioFade.FadeIn(musicPlayer, 2f, pause.targetVolume));
+        StartCoroutine(AudioFade.FadeIn(musicPlayer, 2f, settings.targetVolume));
         introAnim.Play("IntroAnim");
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable();

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using UnityEditor.Rendering;
 using TMPro;
 using ChristinaCreatesGames.Typography.Typewriter;
 public class FPController : MonoBehaviour
@@ -42,6 +41,8 @@ public class FPController : MonoBehaviour
     public bool seenMarkTip;
     public bool seenTorchTip;
 
+    public Animator monster;
+    public GameObject monsterGO;
 
     public GameObject notifExecute;
     public GameObject notifDoor;
@@ -49,6 +50,8 @@ public class FPController : MonoBehaviour
     public GameObject notifTorch;
     public GameObject torchCollider;
     public GameObject musicBox;
+    public GameObject monsterTrigger1;
+    public GameObject monsterTrigger2;
     public AudioSource musicPlayer;
     public NPC_Talk npcTalk;
     public Execution execution;
@@ -62,6 +65,7 @@ public class FPController : MonoBehaviour
     public TMP_Text hintText;
     public CanvasGroup hintCanvas;
     public PauseMenu pause;
+    public SettingsMenu settings;
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -78,6 +82,7 @@ public class FPController : MonoBehaviour
     private void Update()
     {
         isTalking = dm.isDialogueActive;
+        lookSensitivity = settings.lookSensitivity;
 
         if (dm.isDialogueActive || execution.isExecuting || exitOffice.isExiting || marking.isMarking || seenTorchTip)
         {
@@ -255,6 +260,20 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifDoor)
         {
             jumpscareBox.inJumpscare = true;
+
+            if (jumpscareBox.jumpscared == false)
+            {
+                hintText.text = "Press [E] to escape.";
+                hintAnimator.SetBool("ShowHint", true);
+                hintAnimator.SetBool("HideHint", false);
+                hintAnimator.SetBool("Off", false);
+            }
+            else
+            {
+                hintAnimator.SetBool("ShowHint", false);
+                hintAnimator.SetBool("HideHint", false);
+                hintAnimator.SetBool("Off", true);
+            }
         }
 
         if (other.gameObject == notifExit)
@@ -305,8 +324,22 @@ public class FPController : MonoBehaviour
         {
             if (!musicPlayer.isPlaying)
             {
-                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, pause.targetVolume));
+                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, settings.targetVolume));
             }
+        }
+
+        if (other.gameObject == monsterTrigger1)
+        {
+            monsterGO.SetActive(true);
+            monsterGO.transform.position = new Vector3(14f, -6f, 8.1f);
+            monster.SetBool("Idle", true);
+        }
+
+        if (other.gameObject == monsterTrigger2)
+        {
+            monsterGO.SetActive(true);
+            monsterGO.transform.position = new Vector3(21.5f, -6f, 7.5f);
+            monster.SetBool("Walk", true);
         }
     }
 
@@ -378,6 +411,19 @@ public class FPController : MonoBehaviour
         if (other.gameObject == notifDoor)
         {
             jumpscareBox.inJumpscare = false;
+
+            if (!jumpscareBox.jumpscared)
+            {
+                hintAnimator.SetBool("ShowHint", false);
+                hintAnimator.SetBool("HideHint", true);
+                hintAnimator.SetBool("Off", false);
+            }
+            else
+            {
+                hintAnimator.SetBool("ShowHint", false);
+                hintAnimator.SetBool("HideHint", false);
+                hintAnimator.SetBool("Off", true);
+            }
         }
 
         if (other.gameObject == notifExit)
@@ -417,6 +463,18 @@ public class FPController : MonoBehaviour
                 hintAnimator.SetBool("HideHint", false);
                 hintAnimator.SetBool("Off", true);
             }
+        }
+        if (other.gameObject == monsterTrigger1)
+        {
+            monster.SetBool("Idle", false);
+            monsterTrigger1.SetActive(false);
+        }
+
+        if (other.gameObject == monsterTrigger2)
+        {
+            monster.SetBool("Walk", false);
+            monsterGO.SetActive(false);
+            monsterTrigger2.SetActive(false);
         }
     }
 
