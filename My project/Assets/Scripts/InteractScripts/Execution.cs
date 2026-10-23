@@ -33,12 +33,15 @@ public class Execution : MonoBehaviour
     public Torch torch;
     public AudioSource musicPlayer;
 
+
     public Animator hintAnimator;
     public TMP_Text hintText;
     public bool williamAttemptedExecution;
     public TMP_Text[] behaviours;
 
-
+    public AudioClip[] paperClips;
+    public int lastClipIndex1 = -1;
+    public AudioSource paper;
 
     public PlayerInput playerInput;
 
@@ -121,6 +124,7 @@ public class Execution : MonoBehaviour
             {
                 if (hasTalked)
                 {
+                    PlayPaper();
                     for (int i = 0; i < prisonerScoresTexts.Length; i++)
                     {
                         prisonerScores[i] = prisoners[i].prisonerPoints;
@@ -173,6 +177,7 @@ public class Execution : MonoBehaviour
 
     public void ExitButtonPressed()
     {
+        PlayPaper();
         isExecuting = false;
         executeCanva.enabled = false;
 
@@ -263,5 +268,19 @@ public class Execution : MonoBehaviour
         hintAnimator.SetBool("ShowHint", false);
         hintAnimator.SetBool("HideHint", true);
         hintAnimator.SetBool("Off", false);
+    }
+
+    public void PlayPaper()
+    {
+        if (paperClips.Length == 0) return;
+
+        int nextClipIndex;
+        do
+        {
+            nextClipIndex = UnityEngine.Random.Range(0, paperClips.Length);
+        } while (nextClipIndex == lastClipIndex1); // Avoid repeating the same sound
+
+        lastClipIndex1 = nextClipIndex;
+        paper.PlayOneShot(paperClips[nextClipIndex]);
     }
 }

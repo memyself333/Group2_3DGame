@@ -66,7 +66,9 @@ public class ObjectInteract : MonoBehaviour
     public AudioSource musicPlayer;
     public AudioClip[] songs;
 
-
+    public bool seenObjectHint;
+    public Animator hintAnimator;
+    public TMP_Text hintText;
 
     private Rect screenArea = new Rect(UnityEngine.Screen.width / 2 - 600, UnityEngine.Screen.height / 2 - 375, 1200, 750);
 
@@ -177,6 +179,22 @@ public class ObjectInteract : MonoBehaviour
         //If the player is close, it calls either Examine() or NonExamine() and enables or disables the canvas component accordingly.
         if (CheckUserCloseToTable())
         {
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenObjectHint)
+                {
+                    hintText.text = "Press [E] while facing the paper to interact with it. Click and hold the Left Mouse Button while interacting to rotate the object.";
+                    hintAnimator.SetBool("ShowHint", true);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
             Ray cursorRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit cursorHit;
             if (Physics.Raycast(cursorRay, out cursorHit))
@@ -209,6 +227,21 @@ public class ObjectInteract : MonoBehaviour
         else
         {
             cursor.sprite = cursorReticle;
+            if (exitOffice.currentDay == 1)
+            {
+                if (!seenObjectHint)
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", true);
+                    hintAnimator.SetBool("Off", false);
+                }
+                else
+                {
+                    hintAnimator.SetBool("ShowHint", false);
+                    hintAnimator.SetBool("HideHint", false);
+                    hintAnimator.SetBool("Off", true);
+                }
+            }
         }
 
     }
@@ -324,6 +357,7 @@ public class ObjectInteract : MonoBehaviour
         lastMousePosition = mousePosition;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        seenObjectHint = true;
         hudCanvas.enabled = false;
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable(); ;

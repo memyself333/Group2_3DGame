@@ -19,6 +19,8 @@ public class Torch : MonoBehaviour
     public Execution execution;
     public PlayerInput playerInput;
     public GameObject notifTorch;
+    public AudioSource torchSource;
+    public AudioClip torchAmbience;
     public GameObject torchCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -75,6 +77,8 @@ public class Torch : MonoBehaviour
                 notifTorch.SetActive(false);
                 intTorch.SetActive(false);
                 holdTorch.SetActive(true);
+                torchSource.clip = torchAmbience;
+                torchSource.Play();
             }
         }
     }
