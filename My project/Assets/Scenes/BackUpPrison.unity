@@ -74732,8 +74732,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 582736709}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 1605687711}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: CloseSettings
         m_Mode: 1
         m_Arguments:
@@ -99465,8 +99465,8 @@ MonoBehaviour:
   execution: {fileID: 1723679994}
   playerInput: {fileID: 1290457556}
   notifTorch: {fileID: 867249722}
-  torchSource: {fileID: 0}
-  torchAmbience: {fileID: 0}
+  torchSource: {fileID: 888399594}
+  torchAmbience: {fileID: 8300000, guid: d4e04cdfab37205429b2692b1c523c2e, type: 3}
   torchCollider: {fileID: 1087524862}
 --- !u!1 &573054722
 GameObject:
@@ -102576,13 +102576,13 @@ MonoBehaviour:
   text1: {fileID: 803642362}
   text2: {fileID: 1662172175}
   text3: {fileID: 980189516}
-  musicPlayer: {fileID: 0}
-  introClip: {fileID: 0}
+  musicPlayer: {fileID: 1509163413}
+  introClip: {fileID: 8300000, guid: 91c24b1a823d5044b8b2594656005929, type: 3}
   introCurrentlyPlaying: 0
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 1290457556}
   texts: []
-  pause: {fileID: 0}
-  settings: {fileID: 0}
+  pause: {fileID: 582736709}
+  settings: {fileID: 1605687711}
 --- !u!95 &619332152
 Animator:
   serializedVersion: 7
@@ -135890,11 +135890,18 @@ MonoBehaviour:
   - devil worshipper?
   - safe?
   - evil?
-  paperClips: []
-  pencilClips: []
+  paperClips:
+  - {fileID: 8300000, guid: 38808d38b7cd8a240bc133f3fa20ffec, type: 3}
+  - {fileID: 8300000, guid: 698a88cdb920ae64b90ba1e3e4b9206b, type: 3}
+  - {fileID: 8300000, guid: 608d172d839266e49ac5e2ace22fe787, type: 3}
+  pencilClips:
+  - {fileID: 8300000, guid: 6e6b9b43d0b82864b9858defd535bb25, type: 3}
+  - {fileID: 8300000, guid: 8a9b7d32169f821458bd135a461ff5aa, type: 3}
+  - {fileID: 8300000, guid: 520cc68d2daa86347b1385cc0101016a, type: 3}
+  - {fileID: 8300000, guid: 6697d89b76d07094a86a51d205808e87, type: 3}
   lastClipIndex1: -1
   lastClipIndex2: -1
-  paper: {fileID: 0}
+  paper: {fileID: 1290457564}
   playerInput: {fileID: 1290457556}
   prisoners:
   - prisonerName: Aldred Weaver
@@ -204869,7 +204876,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 470ac506bb41af54faf1b5387115782f, type: 2}
+  - {fileID: 2100000, guid: c4eca63b61d660d4383d54fe554682e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -217733,7 +217740,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267788484}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -217864,11 +217871,11 @@ MonoBehaviour:
   jumpscareCanvas: {fileID: 1267788489}
   playerInput: {fileID: 1290457556}
   jumpscare: {fileID: 1267788486}
-  cursor: {fileID: 0}
-  cursorHand: {fileID: 0}
-  cursorReticle: {fileID: 0}
-  audioSource: {fileID: 0}
-  clip: {fileID: 0}
+  cursor: {fileID: 209229825}
+  cursorHand: {fileID: -1916275341, guid: e4bfe25d0807dfa4e9a1622fc3b27704, type: 3}
+  cursorReticle: {fileID: 2041622339, guid: 25a86946c935ce445a6ed4f73d5cc0d4, type: 3}
+  audioSource: {fileID: 1290457564}
+  clip: {fileID: 8300000, guid: e7caf7e14cae817459441caf885203c7, type: 3}
 --- !u!1001 &1270716820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218037,7 +218044,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 470ac506bb41af54faf1b5387115782f, type: 2}
+  - {fileID: 2100000, guid: c4eca63b61d660d4383d54fe554682e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224481,17 +224488,17 @@ MonoBehaviour:
   seenExitTip: 0
   seenMarkTip: 0
   seenTorchTip: 0
-  monster: {fileID: 0}
-  monsterGO: {fileID: 0}
+  monster: {fileID: 1203863700}
+  monsterGO: {fileID: 1203863698}
   notifExecute: {fileID: 1639358241}
   notifDoor: {fileID: 1540449868}
   notifExit: {fileID: 1987615131}
   notifTorch: {fileID: 867249722}
   torchCollider: {fileID: 1087524862}
-  musicBox: {fileID: 0}
-  monsterTrigger1: {fileID: 0}
-  monsterTrigger2: {fileID: 0}
-  musicPlayer: {fileID: 0}
+  musicBox: {fileID: 2016152114}
+  monsterTrigger1: {fileID: 502696271}
+  monsterTrigger2: {fileID: 1616538050}
+  musicPlayer: {fileID: 1509163413}
   npcTalk: {fileID: 1061180826}
   execution: {fileID: 1723679994}
   jumpscareBox: {fileID: 1267788491}
@@ -224503,8 +224510,8 @@ MonoBehaviour:
   hintAnimator: {fileID: 1078560090}
   hintText: {fileID: 875386577}
   hintCanvas: {fileID: 1078560089}
-  pause: {fileID: 0}
-  settings: {fileID: 0}
+  pause: {fileID: 582736709}
+  settings: {fileID: 1605687711}
 --- !u!114 &1290457556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232312,7 +232319,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 470ac506bb41af54faf1b5387115782f, type: 2}
+  - {fileID: 2100000, guid: c4eca63b61d660d4383d54fe554682e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -262479,14 +262486,14 @@ MonoBehaviour:
   fpController: {fileID: 1290457555}
   exitOffice: {fileID: 1987615133}
   torch: {fileID: 572644332}
-  intro: {fileID: 0}
+  intro: {fileID: 619332151}
   interactMenu: {fileID: 498034987}
   readMenu: {fileID: 1773709599}
   readText: {fileID: 2099063716}
   leftButton: {fileID: 11255611}
   rightButton: {fileID: 4213944}
-  pause: {fileID: 0}
-  settings: {fileID: 0}
+  pause: {fileID: 582736709}
+  settings: {fileID: 1605687711}
   textsDay1:
   - "Hark Fellow Keeper,\r\n\r\nWelcome to your new position as the jailor for Prison
     Scarwood\r\nThis new position requires you to interrogate the prisoners held
@@ -262637,10 +262644,14 @@ MonoBehaviour:
   bookAnimator: {fileID: 1416629953}
   isHitting: 0
   musicPlayer: {fileID: 1509163413}
-  songs: []
+  songs:
+  - {fileID: 8300000, guid: 3431a882de102534a9bca3de9a45962e, type: 3}
+  - {fileID: 8300000, guid: 35f50ac314f3f4149a2375745552c28e, type: 3}
+  - {fileID: 8300000, guid: df580e93651e457469937887cfafc33e, type: 3}
+  - {fileID: 8300000, guid: 630e4bffe131feb439bb35be0b168b5b, type: 3}
   seenObjectHint: 0
-  hintAnimator: {fileID: 0}
-  hintText: {fileID: 0}
+  hintAnimator: {fileID: 1078560090}
+  hintText: {fileID: 875386577}
 --- !u!4 &1634834539
 Transform:
   m_ObjectHideFlags: 0
@@ -272653,7 +272664,7 @@ MonoBehaviour:
   cursorReticle: {fileID: 2041622339, guid: 25a86946c935ce445a6ed4f73d5cc0d4, type: 3}
   cursorQuill: {fileID: -444598552, guid: 8c9a8db6f1e386348b1dc53418005cc9, type: 3}
   torch: {fileID: 572644332}
-  musicPlayer: {fileID: 0}
+  musicPlayer: {fileID: 1509163413}
   hintAnimator: {fileID: 1078560090}
   hintText: {fileID: 875386577}
   williamAttemptedExecution: 0
@@ -272662,9 +272673,12 @@ MonoBehaviour:
   - {fileID: 638586558}
   - {fileID: 1374557224}
   - {fileID: 1076179392}
-  paperClips: []
+  paperClips:
+  - {fileID: 8300000, guid: 38808d38b7cd8a240bc133f3fa20ffec, type: 3}
+  - {fileID: 8300000, guid: 698a88cdb920ae64b90ba1e3e4b9206b, type: 3}
+  - {fileID: 8300000, guid: 608d172d839266e49ac5e2ace22fe787, type: 3}
   lastClipIndex1: -1
-  paper: {fileID: 0}
+  paper: {fileID: 1290457564}
   playerInput: {fileID: 1290457556}
   bloodAnimations:
   - {fileID: 200706376}
@@ -311621,7 +311635,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 470ac506bb41af54faf1b5387115782f, type: 2}
+  - {fileID: 2100000, guid: c4eca63b61d660d4383d54fe554682e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318936,7 +318950,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 470ac506bb41af54faf1b5387115782f, type: 2}
+  - {fileID: 2100000, guid: c4eca63b61d660d4383d54fe554682e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

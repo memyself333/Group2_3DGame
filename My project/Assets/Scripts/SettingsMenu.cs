@@ -15,7 +15,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void CloseSettings()
     {
-        if (SceneManager.GetActiveScene().name == ("PrisonLevel"))
+        if (SceneManager.GetActiveScene().name == ("BackUpPrison"))
         {
             pauseMenu.enabled = true;
         }
