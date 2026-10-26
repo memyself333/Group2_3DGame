@@ -31,8 +31,6 @@ public class ExitOffice : MonoBehaviour
     public FPController fpController;
 
     public GameObject williamWall;
-    public GameObject jumpscareBox;
-    public GameObject[] triggerBoxes;
     public GameObject[] prisonCells;
     public Image williamCross;
     public Image williamBlood;
@@ -84,11 +82,6 @@ public class ExitOffice : MonoBehaviour
             bar.gameObject.SetActive(true);
         }
         williamWall.SetActive(true);
-        foreach (var boxes in triggerBoxes)
-        {
-            boxes.gameObject.SetActive(false);
-        }
-        jumpscareBox.SetActive(false);
 
     }
 
@@ -222,15 +215,9 @@ public class ExitOffice : MonoBehaviour
                 bar.gameObject.SetActive(false);
             }
             williamWall.SetActive(false);
-            foreach (var boxes in triggerBoxes)
-            {
-                boxes.gameObject.SetActive(true);
-            }
-            jumpscareBox.SetActive(true);
             
         }
 
-        musicPlayer.Stop();
     }
 
 
