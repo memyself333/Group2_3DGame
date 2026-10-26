@@ -258,7 +258,10 @@ public class ObjectInteract : MonoBehaviour
         StopExamination();
         if (!musicPlayer.isPlaying)
         {
-            StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, settings.targetVolume));
+            if (!execution.executionDone)
+            {
+                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, settings.targetVolume));
+            }
         }
     }
 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:My project/Assets/Materials/ForcepsMaterial.mat.meta
 guid: 2700550319e693a4fb9d52a722a757da
+========
+guid: e8e8a0da5d8101c4598bb07e3bf906d8
+>>>>>>>> FuckGithub:My project/Assets/Textures/TempWall_Material.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

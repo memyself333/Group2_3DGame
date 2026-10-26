@@ -211,7 +211,7 @@ public class FPController : MonoBehaviour
                 {
                     if (foundNpcTalk.thisNPC.name == "Prisoner1")
                     {
-                        hintText.text = "Press [E] while facing the prisoner to talk to him.";
+                        hintText.text = "Press [E] while facing the prisoner to talk to him. Press [M] when in menus to open the marking sheet.";
                         hintAnimator.SetBool("ShowHint", true);
                         hintAnimator.SetBool("HideHint", false);
                         hintAnimator.SetBool("Off", false);
@@ -223,6 +223,8 @@ public class FPController : MonoBehaviour
                     hintAnimator.SetBool("HideHint", false);
                     hintAnimator.SetBool("Off", true);
                 }
+
+
             }
         }
         else
@@ -368,25 +370,18 @@ public class FPController : MonoBehaviour
                     hintAnimator.SetBool("Off", true);
                 }
 
-                if (!seenMarkTip)
-                {
-                    hintText.text = "Press [M] to open the marking sheet and tick the appropriate boxes.";
-                    hintAnimator.SetBool("ShowHint", true);
-                    hintAnimator.SetBool("HideHint", false);
-                    hintAnimator.SetBool("Off", false);
-                }
-                else
-                {
-                    hintAnimator.SetBool("ShowHint", false);
-                    hintAnimator.SetBool("HideHint", false);
-                    hintAnimator.SetBool("Off", true);
-                }
+
             }
             else
             {
                 Debug.Log("Not found npc_talk");
             }
+
+
         }
+
+
+
         if (other.gameObject == notifExecute)
         {
             execution.nearExecuter = false;
