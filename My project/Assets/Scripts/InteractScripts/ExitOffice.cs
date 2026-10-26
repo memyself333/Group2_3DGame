@@ -45,6 +45,7 @@ public class ExitOffice : MonoBehaviour
     public GameObject notifTorch;
     public GameObject torchCollider;
 
+
     public PlayableDirector director;
 
 
@@ -152,7 +153,7 @@ public class ExitOffice : MonoBehaviour
         marking.ResetMarking();
         execution.ResetGeneral();
         execution.hasTalked = false;
-        currentDay++;
+        currentDay ++;
         dayText.text = "Day " + currentDay.ToString();
 
         director.Play();
