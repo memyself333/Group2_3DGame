@@ -15,11 +15,13 @@ public class NPC_Talk : MonoBehaviour
     public GameObject thisNPC;
     public Execution execution;
     public FPController playerController;
-
+    public Animator npcAnim;
 
     private void Awake()
     {
-        //animator = GetComponent<Animator>(); These will be added when models are added
+        npcAnim = this.gameObject.GetComponent<Animator>();
+        npcAnim.SetBool("Talk", false);
+        npcAnim.SetBool("Idle", true);
     }
     public void OnEnable()
     {
@@ -36,25 +38,38 @@ public class NPC_Talk : MonoBehaviour
     {
         if (context.performed)
         {
-            if (nearNPC)
+            Debug.Log("Step1");
+            if (playerController.npcTalk.nearNPC)
             {
-                if (playerController.isLookingAtNPC)
-                { 
-                    playerController.seenTalkTip = true;
-                    execution.hasTalked = true;
-                    if (DialogueManager.Instance.isDialogueActive)
+                Debug.Log("Step2");
+                if (playerController.npcTalk == this.gameObject.GetComponent<NPC_Talk>())
+                {
+                    if (playerController.isLookingAtNPC)
                     {
-                        DialogueManager.Instance.AdvanceDialogue();
-                    }
-                    else
-                    {
+                        Debug.Log("Step3");
+                        playerController.seenTalkTip = true;
+                        execution.hasTalked = true;
+                        if (DialogueManager.Instance.isDialogueActive)
+                        {
+                            DialogueManager.Instance.AdvanceDialogue();
+                        }
+                        else
+                        {
 
-                        CheckForNewConversation();
+                            CheckForNewConversation();
+                            DialogueManager.Instance.StartDialogue(currentConversation);
 
-                        DialogueManager.Instance.StartDialogue(currentConversation);
-
+                        }
                     }
                 }
+                else
+                {
+                    Debug.Log("fail to find player npc talk");
+                }
+            }
+            else
+            {
+                Debug.Log("Step4");
             }
         }
     }

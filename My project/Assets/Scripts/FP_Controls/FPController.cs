@@ -66,6 +66,7 @@ public class FPController : MonoBehaviour
     public CanvasGroup hintCanvas;
     public PauseMenu pause;
     public SettingsMenu settings;
+    public GameObject currentNPC;
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -198,6 +199,7 @@ public class FPController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var foundNpcTalk = other.GetComponentInParent<NPC_Talk>();
+        currentNPC = other.transform.parent.gameObject;
         if (foundNpcTalk != null)
         {
             Debug.Log("Found npc_talk");
