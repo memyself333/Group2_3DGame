@@ -31,7 +31,6 @@ public class Execution : MonoBehaviour
     public Sprite cursorReticle;
     public Sprite cursorQuill;
     public Torch torch;
-    public AudioSource musicPlayer;
 
 
     public Animator hintAnimator;
@@ -39,15 +38,11 @@ public class Execution : MonoBehaviour
     public bool williamAttemptedExecution;
     public TMP_Text[] behaviours;
 
-    public AudioClip[] paperClips;
     public int lastClipIndex1 = -1;
-    public AudioSource paper;
 
     public PlayerInput playerInput;
 
     public Animator[] bloodAnimations;
-    public AudioSource bloodAudio;
-    public AudioClip bloodClip;
 
     [System.Serializable]
     public struct PrisonerAlive
@@ -63,7 +58,6 @@ public class Execution : MonoBehaviour
     {
         isExecuting = false;
         executeCanva.enabled = false;
-        bloodAudio.clip = bloodClip;
     }
 
     public void Start()
@@ -124,7 +118,6 @@ public class Execution : MonoBehaviour
             {
                 if (hasTalked)
                 {
-                    PlayPaper();
                     for (int i = 0; i < prisonerScoresTexts.Length; i++)
                     {
                         prisonerScores[i] = prisoners[i].prisonerPoints;
@@ -155,6 +148,7 @@ public class Execution : MonoBehaviour
                     fpController.seenExecuteTip = true;
                     isExecuting = true;
                     executeCanva.enabled = true;
+                    SoundManager.instance.PlayRandomSound(SoundManager.instance.objtIntClips, -1, 3, 1, SoundManager.instance.audioSources[2]);
 
                     UnityEngine.Cursor.lockState = CursorLockMode.None;
                     UnityEngine.Cursor.visible = true;
@@ -177,7 +171,7 @@ public class Execution : MonoBehaviour
 
     public void ExitButtonPressed()
     {
-        PlayPaper();
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
         isExecuting = false;
         executeCanva.enabled = false;
 
@@ -231,11 +225,12 @@ public class Execution : MonoBehaviour
         {
             if (prisonerAlives[i].button == button)
             {
+                SoundManager.instance.PlaySound(SoundManager.instance.menuClips[4], 1, SoundManager.instance.audioSources[1], false, false);
+                SoundManager.instance.StopSound(SoundManager.instance.audioSources[0], false, 2f);
                 prisonerAlives[i].prisonerSO.isAlive = false;
                 prisonerBlood[i].enabled = true;
                 bloodAnimations[i].Play("P" + (i + 1) + "Blood");
                 prisonerAlives[i].button.animator.SetTrigger("Selected");
-                bloodAudio.Play();
                 prisonerAlives[i].button.interactable = false;
                 if (prisonerAlives[i].prisonerName == "William Atkinson")
                 {
@@ -248,7 +243,6 @@ public class Execution : MonoBehaviour
             }
         }
         exitButton.SetActive(true);
-        musicPlayer.Stop();
     }
 
     public IEnumerator DisplayTip()
@@ -268,19 +262,5 @@ public class Execution : MonoBehaviour
         hintAnimator.SetBool("ShowHint", false);
         hintAnimator.SetBool("HideHint", true);
         hintAnimator.SetBool("Off", false);
-    }
-
-    public void PlayPaper()
-    {
-        if (paperClips.Length == 0) return;
-
-        int nextClipIndex;
-        do
-        {
-            nextClipIndex = UnityEngine.Random.Range(0, paperClips.Length);
-        } while (nextClipIndex == lastClipIndex1); // Avoid repeating the same sound
-
-        lastClipIndex1 = nextClipIndex;
-        paper.PlayOneShot(paperClips[nextClipIndex]);
     }
 }

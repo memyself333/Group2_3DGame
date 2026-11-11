@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SettingsMenu : MonoBehaviour
     public Canvas settingsMenu;
     public float lookSensitivity;
     public float targetVolume;
+    [SerializeField] private AudioMixer audioMixer;
 
     public void Start()
     {
@@ -15,7 +17,8 @@ public class SettingsMenu : MonoBehaviour
     }
     public void CloseSettings()
     {
-        if (SceneManager.GetActiveScene().name == ("BackUpPrison"))
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
+        if (SceneManager.GetActiveScene().name == ("PrisonLevel"))
         {
             pauseMenu.enabled = true;
         }
@@ -27,9 +30,23 @@ public class SettingsMenu : MonoBehaviour
         lookSensitivity = setting;
     }
 
-    public void OnVolumeChanged(float setting)
+    public void SetMasterVolume(float level)
     {
-        targetVolume = setting;
+        audioMixer.SetFloat("masterVolume", level);
     }
 
+    public void SetMusicVolume(float level)
+    {
+        audioMixer.SetFloat("musicVolume", level);
+    }
+
+    public void SetSFXVolume(float level)
+    {
+        audioMixer.SetFloat("sfxVolume", level);
+    }
+
+    public void SetAmbienceVolume(float level)
+    {
+        audioMixer.SetFloat("ambienceVolume", level);
+    }
 }

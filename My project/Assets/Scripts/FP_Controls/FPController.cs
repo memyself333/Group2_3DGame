@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 using ChristinaCreatesGames.Typography.Typewriter;
+using System.Collections;
+using Unity.Cinemachine;
 public class FPController : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -21,13 +23,7 @@ public class FPController : MonoBehaviour
     private float verticalRotation = 0f;
     public bool isSprinting = false;
 
-    public AudioClip[] footstepStoneClips;
-    public AudioClip[] keyJingleClips;
-    public AudioSource audioSource;
-    public AudioSource keyAudioSource;
-    public int lastClipIndex1 = -1;
-    public int lastClipIndex2 = -1;
-
+    public GameObject cinemachineCamera;
     public Image cursor;
     public Sprite cursorSpeech;
     public Sprite cursorReticle;
@@ -52,7 +48,6 @@ public class FPController : MonoBehaviour
     public GameObject musicBox;
     public GameObject monsterTrigger1;
     public GameObject monsterTrigger2;
-    public AudioSource musicPlayer;
     public NPC_Talk npcTalk;
     public Execution execution;
     public JumpscareBox jumpscareBox;
@@ -66,6 +61,7 @@ public class FPController : MonoBehaviour
     public CanvasGroup hintCanvas;
     public PauseMenu pause;
     public SettingsMenu settings;
+    public GameObject currentNPC;
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -122,16 +118,6 @@ public class FPController : MonoBehaviour
         HandleMovement();
         HandleLook();
 
-        if (isSprinting)
-        {
-            audioSource.pitch = 1.5f; // Increase pitch for sprinting
-            keyAudioSource.pitch = 1.5f; // Increase pitch for sprinting
-        }
-        else
-        {
-            audioSource.pitch = 1f;
-            keyAudioSource.pitch = 1f;
-        }
 
         if (isSprinting)
         {
@@ -142,16 +128,15 @@ public class FPController : MonoBehaviour
             moveSpeed = 2f; // Normal speed
         }
 
-
-
-        if (!audioSource.isPlaying && controller.isGrounded && moveInput.magnitude > 0.1f)
+        if (controller.isGrounded && moveInput.magnitude > 0.1f)
         {
             PlayStoneFootstep();
         }
-        if (!keyAudioSource.isPlaying && controller.isGrounded && moveInput.magnitude > 0.1f)
+        if (controller.isGrounded && moveInput.magnitude > 0.1f)
         {
             PlayKeyJingle();
         }
+
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -198,6 +183,7 @@ public class FPController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var foundNpcTalk = other.GetComponentInParent<NPC_Talk>();
+        currentNPC = other.transform.parent.gameObject;
         if (foundNpcTalk != null)
         {
             Debug.Log("Found npc_talk");
@@ -324,9 +310,22 @@ public class FPController : MonoBehaviour
 
         if (other.gameObject == musicBox)
         {
-            if (!musicPlayer.isPlaying)
+            switch (exitOffice.currentDay)
             {
-                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, settings.targetVolume));
+                case 1:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[2], 1, SoundManager.instance.audioSources[0], true, true);
+                    break;
+                case 2:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[3], 1, SoundManager.instance.audioSources[0], true, true);
+                    break;
+                case 3:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[4], 1, SoundManager.instance.audioSources[0], true, true);
+                    break;
+                case 4:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[5], 1, SoundManager.instance.audioSources[0], true, true);
+                    SoundManager.instance.PlaySound(SoundManager.instance.noiseClips[5], 1, SoundManager.instance.audioSources[6], false, false);
+                    StartCoroutine(ShakeCamera());
+                    break;
             }
         }
 
@@ -483,30 +482,21 @@ public class FPController : MonoBehaviour
 
     public void PlayStoneFootstep()
     {
-        if (footstepStoneClips.Length == 0) return;
-
-        int nextClipIndex;
-        do
-        {
-            nextClipIndex = UnityEngine.Random.Range(0, footstepStoneClips.Length);
-        } while (nextClipIndex == lastClipIndex1); // Avoid repeating the same sound
-
-        lastClipIndex1 = nextClipIndex;
-        audioSource.PlayOneShot(footstepStoneClips[nextClipIndex]);
+        SoundManager.instance.PlayRandomSound(SoundManager.instance.footstepClips, -1, 5, 1, SoundManager.instance.audioSources[9]);
     }
 
     public void PlayKeyJingle()
     {
-        if (keyJingleClips.Length == 0) return;
 
-        int nextClipIndex;
-        do
-        {
-            nextClipIndex = UnityEngine.Random.Range(0, keyJingleClips.Length);
-        } while (nextClipIndex == lastClipIndex2); // Avoid repeating the same sound
-
-        lastClipIndex2 = nextClipIndex;
-        keyAudioSource.PlayOneShot(keyJingleClips[nextClipIndex]);
+        SoundManager.instance.PlayRandomSound(SoundManager.instance.keyClips, -1, 5, 1, SoundManager.instance.audioSources[10]);
     }
-    
+
+    public IEnumerator ShakeCamera()
+    {
+        cinemachineCamera.GetComponent<CinemachineBasicMultiChannelPerlin>().AmplitudeGain = 3f;
+        cinemachineCamera.GetComponent<CinemachineBasicMultiChannelPerlin>().FrequencyGain = 6f;
+        yield return new WaitForSeconds(4f);
+        cinemachineCamera.GetComponent<CinemachineBasicMultiChannelPerlin>().AmplitudeGain = 1f;
+        cinemachineCamera.GetComponent<CinemachineBasicMultiChannelPerlin>().FrequencyGain = 1f;
+    }
 }

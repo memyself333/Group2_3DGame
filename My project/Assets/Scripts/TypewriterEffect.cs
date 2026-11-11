@@ -42,10 +42,8 @@ namespace ChristinaCreatesGames.Typography.Typewriter
         public static event Action CompleteTextRevealed;
         public static event Action<char> CharacterRevealed;
 
-        public AudioSource audioSource;
         public DialogueManager dm;
         public int currentSpeaker;
-        public AudioClip[] speakerBlips;
         public GameObject eTipImage;
 
 
@@ -183,9 +181,7 @@ namespace ChristinaCreatesGames.Typography.Typewriter
             char lowerChar = char.ToLower(revealedCharacter);
             if (lowerChar >= 'a' && lowerChar <= 'z')
             {
-                if (!audioSource.isPlaying)
-                audioSource.clip = speakerBlips[currentSpeaker];
-                audioSource.Play();
+                SoundManager.instance.PlaySound(SoundManager.instance.dialogueClips[currentSpeaker], 1, SoundManager.instance.audioSources[3], false, false);
                 eTipImage.SetActive(false);
             }
 

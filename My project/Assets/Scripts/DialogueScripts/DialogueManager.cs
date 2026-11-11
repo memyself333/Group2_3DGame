@@ -17,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     public Animator dialogueCanvasAnim;
     [SerializeField] private TypewriterEffect dialogueTypewriter;
     public Image eTipImage;
+    public Animator npcAnim;
+    public FPController playerController;
 
     public bool isDialogueActive = false;
 
@@ -55,6 +57,9 @@ public class DialogueManager : MonoBehaviour
         currentDialogue = dialogueSO;
         dialogueIndex = 0;
         isDialogueActive = true;
+        npcAnim = playerController.currentNPC.GetComponent<Animator>();
+        npcAnim.SetBool("Talk", true);
+        npcAnim.SetBool("Idle", false);
         ShowDialogue();
 
         if (dialogueIndex >= currentDialogue.lines.Length)
@@ -160,6 +165,8 @@ public class DialogueManager : MonoBehaviour
 
         dialogueIndex = 0;
         isDialogueActive = false;
+        npcAnim.SetBool("Talk", false);
+        npcAnim.SetBool("Idle", true);
         ClearChoices();
 
         //DialogueBox_Close Anim (should close before canvas is disabled)
@@ -173,6 +180,8 @@ public class DialogueManager : MonoBehaviour
 
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
+
+
 
         
     }

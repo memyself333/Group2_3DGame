@@ -13,8 +13,6 @@ public class JumpscareBox : MonoBehaviour
     public Image cursor;
     public Sprite cursorHand;
     public Sprite cursorReticle;
-    public AudioSource audioSource;
-    public AudioClip clip;
 
     public void Awake()
     {
@@ -50,8 +48,7 @@ public class JumpscareBox : MonoBehaviour
             {
                 jumpscareCanvas.enabled = true;
                 jumpscare.Play("Jumpscare");
-                audioSource.clip = clip;
-                audioSource.Play();
+                SoundManager.instance.PlaySound(SoundManager.instance.objtIntClips[5], 1, SoundManager.instance.audioSources[2], false, false);
 
             }
             else

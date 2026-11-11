@@ -29,11 +29,6 @@ public class Marking : MonoBehaviour
     public string[] day2Questions;
     public string[] day3Questions;
 
-    public AudioClip[] paperClips;
-    public AudioClip[] pencilClips;
-    public int lastClipIndex1 = -1;
-    public int lastClipIndex2 = -1;
-    public AudioSource paper;
 
     public PlayerInput playerInput;
 
@@ -95,13 +90,13 @@ public class Marking : MonoBehaviour
         {
             if (exitOffice.currentDay < 4)
             {
-                PlayPaper();
                 if (currentMenu != null)
                 {
                     currentMenu.alpha = 0;
                     currentMenu.blocksRaycasts = false;
                     currentMenu.interactable = false;
                 }
+                SoundManager.instance.PlayRandomSound(SoundManager.instance.objtIntClips, -1, 3, 1, SoundManager.instance.audioSources[2]);
                 isMarking = true;
                 fpController.seenMarkTip = true;
                 markCanva.enabled = true;
@@ -151,7 +146,7 @@ public class Marking : MonoBehaviour
 
     public void ExitButtonPressed()
     {
-        PlayPaper();
+
         if (currentMenu != null)
         {
             currentMenu.alpha = 1;
@@ -167,7 +162,8 @@ public class Marking : MonoBehaviour
         markCanva.enabled = false;
 
         if (currentMenu == null)
-        { 
+        {
+            SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
 
@@ -180,6 +176,7 @@ public class Marking : MonoBehaviour
 
     public void RightArrowPressed()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
         currentPrisonerIndex = (currentPrisonerIndex + 1) % prisoners.Length;
         currentPrisoner = prisoners[currentPrisonerIndex].prisonerName;
         prisonerName.text = currentPrisoner;
@@ -198,6 +195,7 @@ public class Marking : MonoBehaviour
 
     public void LeftArrowPressed()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
         currentPrisonerIndex = (currentPrisonerIndex <= 0) ? prisoners.Length - 1 : currentPrisonerIndex - 1;
         currentPrisoner = prisoners[currentPrisonerIndex].prisonerName;
         prisonerName.text = currentPrisoner;
@@ -247,28 +245,6 @@ public class Marking : MonoBehaviour
 
     public void PlayPencil()
     {
-        if (pencilClips.Length == 0) return;
-
-        int nextClipIndex;
-        do
-        {
-            nextClipIndex = UnityEngine.Random.Range(0, pencilClips.Length);
-        } while (nextClipIndex == lastClipIndex2); // Avoid repeating the same sound
-
-        lastClipIndex2 = nextClipIndex;
-        paper.PlayOneShot(pencilClips[nextClipIndex]);
-    }
-    public void PlayPaper()
-    {
-        if (paperClips.Length == 0) return;
-
-        int nextClipIndex;
-        do
-        {
-            nextClipIndex = UnityEngine.Random.Range(0, paperClips.Length);
-        } while (nextClipIndex == lastClipIndex2); // Avoid repeating the same sound
-
-        lastClipIndex2 = nextClipIndex;
-        paper.PlayOneShot(paperClips[nextClipIndex]);
+        SoundManager.instance.PlayRandomSound(SoundManager.instance.menuClips, -1, 3, 1, SoundManager.instance.audioSources[1]);
     }
 }
