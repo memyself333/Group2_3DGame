@@ -63,8 +63,6 @@ public class ObjectInteract : MonoBehaviour
 
     public bool isHitting;
 
-    public AudioSource musicPlayer;
-    public AudioClip[] songs;
 
     public bool seenObjectHint;
     public Animator hintAnimator;
@@ -124,10 +122,6 @@ public class ObjectInteract : MonoBehaviour
 
         }
 
-        if (musicPlayer.isPlaying)
-        {
-            musicPlayer.volume = settings.targetVolume;
-        }
 
 
         if (exitOffice.currentDay == 1 || exitOffice.currentDay == 2 || exitOffice.currentDay == 4)
@@ -155,25 +149,8 @@ public class ObjectInteract : MonoBehaviour
 
         }
 
-        if (!intro.introCurrentlyPlaying)
-        {
-            switch (exitOffice.currentDay)
-            {
-                case 1:
-                    musicPlayer.clip = songs[0];
-                    break;
-                case 2:
-                    musicPlayer.clip = songs[1];
-                    break;
-                case 3:
-                    musicPlayer.clip = songs[2];
-                    break;
-                case 4:
-                    musicPlayer.clip = songs[3];
-                    break;
-            }
-        }
 
+        
 
         //It then checks if the player is close to an interactable object using the CheckUserClose() method.
         //If the player is close, it calls either Examine() or NonExamine() and enables or disables the canvas component accordingly.
@@ -256,11 +233,23 @@ public class ObjectInteract : MonoBehaviour
         }
         isExamining = false;
         StopExamination();
-        if (!musicPlayer.isPlaying)
+        if (!execution.executionDone)
         {
-            if (!execution.executionDone)
+            switch (exitOffice.currentDay)
             {
-                StartCoroutine(AudioFade.FadeIn(musicPlayer, 5f, settings.targetVolume));
+                case 1:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[2], 1, SoundManager.instance.audioSources[0], true, true);
+                    break;
+                case 2:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[3], 1, SoundManager.instance.audioSources[0], true, true);
+                    break;
+                case 3:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[4], 1, SoundManager.instance.audioSources[0], true, true);
+                    break;
+                case 4:
+                    SoundManager.instance.PlaySound(SoundManager.instance.musicClips[5], 1, SoundManager.instance.audioSources[0], true, true);
+                    SoundManager.instance.PlaySound(SoundManager.instance.noiseClips[5], 1, SoundManager.instance.audioSources[6], false, false);
+                    break;
             }
         }
     }

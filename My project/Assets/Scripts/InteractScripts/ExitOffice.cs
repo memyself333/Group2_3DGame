@@ -34,7 +34,6 @@ public class ExitOffice : MonoBehaviour
     public GameObject[] prisonCells;
     public Image williamCross;
     public Image williamBlood;
-    public AudioSource musicPlayer;
 
     public int currentDay = 1;
     public TMP_Text dayText;
@@ -44,6 +43,7 @@ public class ExitOffice : MonoBehaviour
     public GameObject torchObject;
     public GameObject notifTorch;
     public GameObject torchCollider;
+    public bool isRunning = false;
 
 
     public PlayableDirector director;
@@ -115,6 +115,17 @@ public class ExitOffice : MonoBehaviour
             isLookingAtExit = false;
             cursor.sprite = cursorReticle;
         }
+
+        if(currentDay == 2 || currentDay == 3)
+        {
+            if (!isExiting)
+            {
+                if (!isRunning)
+                {
+                    StartCoroutine(PlayNoises());
+                }
+            }
+        }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -149,6 +160,9 @@ public class ExitOffice : MonoBehaviour
 
     public void PlayExitAnimation()
     {
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[0], false, 2f);
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[4], true, 1f);
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[6], true, 1f);
         hudCanvas.enabled = false;
         marking.ResetMarking();
         execution.ResetGeneral();
@@ -225,7 +239,7 @@ public class ExitOffice : MonoBehaviour
 
     public void ControlReturn()
     {
-
+        SoundManager.instance.PlaySound(SoundManager.instance.ambienceClip, 1, SoundManager.instance.audioSources[4], true, true);
         execution.executionDone = false;
         executionBox.SetActive(true);
         hudCanvas.enabled = true;
@@ -274,6 +288,18 @@ public class ExitOffice : MonoBehaviour
         hintAnimator.SetBool("ShowHint", false);
         hintAnimator.SetBool("HideHint", true);
         hintAnimator.SetBool("Off", false);
+    }
+
+    public IEnumerator PlayNoises()
+    {
+        isRunning = true;
+        int rand = Random.Range(0, 5);
+        if (rand == 2)
+        {
+            SoundManager.instance.PlayRandomSound(SoundManager.instance.noiseClips, 0, 3, 1, SoundManager.instance.audioSources[6]);
+        }
+        yield return new WaitForSeconds(10f);
+        isRunning = false;
     }
 
 }

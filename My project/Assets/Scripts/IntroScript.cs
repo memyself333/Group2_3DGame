@@ -9,8 +9,6 @@ public class IntroScript : MonoBehaviour
     public TMP_Text text1;
     public TMP_Text text2;
     public TMP_Text text3;
-    public AudioSource musicPlayer;
-    public AudioClip introClip;
     public bool introCurrentlyPlaying;
     public PlayerInput playerInput;
     [TextArea(3, 5)] public string[] texts;
@@ -21,24 +19,22 @@ public class IntroScript : MonoBehaviour
     {
         introCurrentlyPlaying = true;
         introCanvas.enabled = true;
-        musicPlayer.clip = introClip;
-        StartCoroutine(AudioFade.FadeIn(musicPlayer, 2f, settings.targetVolume));
         introAnim.Play("IntroAnim");
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable();
     }
 
+    public void PlayIntroMusic()
+    {
+        SoundManager.instance.PlaySound(SoundManager.instance.musicClips[1], 1, SoundManager.instance.audioSources[0], true, true);
+    }
     public void TurnOffCanvas()
     {
         introCanvas.enabled = false;
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[0], true, 1f);
+        SoundManager.instance.PlaySound(SoundManager.instance.ambienceClip, 1, SoundManager.instance.audioSources[4], true, true);
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
-        StartCoroutine(AudioFade.FadeOut(musicPlayer, 2f, 0f));
     }
 
-    public void TurnOffMusic()
-    {
-        musicPlayer.Stop();
-        introCurrentlyPlaying = false;
-    }
 }

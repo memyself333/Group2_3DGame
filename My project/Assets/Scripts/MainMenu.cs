@@ -4,19 +4,21 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public AudioSource musicPlayer;
     public Canvas fadeCanvas;
     public Animator fade;
-    public AudioClip mainTheme;
     public string button;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        musicPlayer.clip = mainTheme;
-        StartCoroutine(AudioFade.FadeIn(musicPlayer, 2f, .5f));
         fadeCanvas.enabled = false;
     }
+
+    public void Awake()
+    {
+        SoundManager.instance.PlaySound(SoundManager.instance.musicClips[0], 1, SoundManager.instance.audioSources[0], true, true);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -28,15 +30,14 @@ public class MainMenu : MonoBehaviour
     {
         button = "Start";
         fadeCanvas.enabled = true;
-        StartCoroutine(AudioFade.FadeOut(musicPlayer, 2f, 0f));
         fade.Play("MainMenuFade");
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[0], true, 2f);
     }
 
     public void ExitButton()
     {
         button = "Exit";
         fadeCanvas.enabled = true;
-        StartCoroutine(AudioFade.FadeOut(musicPlayer, 2f, 0f));
         fade.Play("MainMenuFade");
     }
 
@@ -44,7 +45,7 @@ public class MainMenu : MonoBehaviour
     {
         if (button == "Start")
         {
-            SceneManager.LoadScene("BackUpPrison");
+            SceneManager.LoadScene("PrisonLevel");
         }
         else if (button == "Exit")
         {

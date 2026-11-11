@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
 }
     public void Pause()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
         playerInput.actions.FindAction("Movement").Disable();
@@ -26,12 +27,14 @@ public class PauseMenu : MonoBehaviour
 
     public void Exit()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Resume()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
         playerInput.actions.FindAction("Movement").Enable();
@@ -42,6 +45,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Settings()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.menuClips[3], 1, SoundManager.instance.audioSources[1], false, false);
         pauseMenu.enabled = false;
         settingsMenu.enabled = true;
     }
