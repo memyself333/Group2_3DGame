@@ -21,11 +21,14 @@ public class JumpscareBox : MonoBehaviour
     public GameObject parentEnemy;
     public GameObject torch;
     public GameObject spotLight;
+    public GameObject player;
+    public GameObject door;
 
     public void Awake()
     {
         jumpscareCanvas.enabled = false;
         spotLight.SetActive(false);
+        door.SetActive(true);
     }
     public void Update()
     {
@@ -83,6 +86,8 @@ public class JumpscareBox : MonoBehaviour
 
     public void PlayExitAnimation()
     {
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[0], false, 2f);
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[5], false, 2f);
         hudCanvas.enabled = false;
         torch.SetActive(false);
         spotLight.SetActive(true);
@@ -90,4 +95,8 @@ public class JumpscareBox : MonoBehaviour
         director.Play();
     }
 
+    public void MoveCamera()
+    {
+        player.transform.position = new Vector3(-9.844f, -5.212f, 5.591f);
+    }
 }

@@ -32,6 +32,7 @@ public class ExitOffice : MonoBehaviour
 
     public GameObject williamWall;
     public GameObject[] prisonCells;
+    public GameObject[] prisonerHeads;
     public Image williamCross;
     public Image williamBlood;
 
@@ -81,6 +82,10 @@ public class ExitOffice : MonoBehaviour
         foreach (var bar in prisonCells)
         {
             bar.gameObject.SetActive(true);
+        }
+        foreach (var head in prisonerHeads)
+        {
+            head.SetActive(false);
         }
         williamWall.SetActive(true);
 
@@ -167,7 +172,7 @@ public class ExitOffice : MonoBehaviour
         marking.ResetMarking();
         execution.ResetGeneral();
         execution.hasTalked = false;
-        currentDay ++;
+        currentDay = 4;
         dayText.text = "Day " + currentDay.ToString();
 
         director.Play();
@@ -224,6 +229,11 @@ public class ExitOffice : MonoBehaviour
             foreach (var prisoner in prisoners)
             {
                 prisoner.prisonerGameObject.SetActive(false);
+            }
+
+            foreach (var head in prisonerHeads)
+            {
+                head.SetActive(true);
             }
             foreach (var bar in prisonCells)
             {
