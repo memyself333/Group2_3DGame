@@ -157,8 +157,6 @@ public class Execution : MonoBehaviour
 
                     playerInput.actions.FindAction("Movement").Disable();
                     playerInput.actions.FindAction("Look").Disable();
-
-                    exitButton.SetActive(false);
                 }
                 else
                 {
@@ -183,9 +181,11 @@ public class Execution : MonoBehaviour
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
 
-        executionDone = true;
         nearExecuter = false;
-        executionBox.SetActive(false);
+        if (executionDone)
+        {
+            executionBox.SetActive(false);
+        }
     }
 
     public void CheckDeadPrisoners(string pName)
@@ -213,9 +213,24 @@ public class Execution : MonoBehaviour
         if (williamAttemptedExecution)
         {
             prisonerAlives[3].button.interactable = false;
-            prisonerAlives[1].button.interactable = false;
-            prisonerBlood[1].enabled = true;
-            exitOffice.prisoners[1].prisonerName.isAlive = false;
+            if (exitOffice.prisoners[1].prisonerName.isAlive)
+            {
+                prisonerAlives[1].button.interactable = false;
+                prisonerBlood[1].enabled = true;
+                exitOffice.prisoners[1].prisonerName.isAlive = false;
+            }
+            else if (exitOffice.prisoners[0].prisonerName.isAlive)
+            {
+                prisonerAlives[0].button.interactable = false;
+                prisonerBlood[0].enabled = true;
+                exitOffice.prisoners[0].prisonerName.isAlive = false;
+            }
+            else if (exitOffice.prisoners[2].prisonerName.isAlive)
+            {
+                prisonerAlives[2].button.interactable = false;
+                prisonerBlood[2].enabled = true;
+                exitOffice.prisoners[2].prisonerName.isAlive = false;
+            }
         }
     }
 
@@ -242,7 +257,7 @@ public class Execution : MonoBehaviour
                 prisonerAlives[i].button.interactable = false;
             }
         }
-        exitButton.SetActive(true);
+        executionDone = true;
     }
 
     public IEnumerator DisplayTip()

@@ -248,7 +248,6 @@ public class ObjectInteract : MonoBehaviour
                     break;
                 case 4:
                     SoundManager.instance.PlaySound(SoundManager.instance.musicClips[5], 1, SoundManager.instance.audioSources[0], true, true);
-                    SoundManager.instance.PlaySound(SoundManager.instance.noiseClips[5], 1, SoundManager.instance.audioSources[6], false, false);
                     break;
             }
         }
