@@ -48,7 +48,6 @@ public class NPC_Talk : MonoBehaviour
                     {
                         Debug.Log("Step3");
                         playerController.seenTalkTip = true;
-                        execution.hasTalked = true;
                         if (DialogueManager.Instance.isDialogueActive)
                         {
                             DialogueManager.Instance.AdvanceDialogue();

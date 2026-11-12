@@ -22,6 +22,9 @@ public class IntroScript : MonoBehaviour
         introAnim.Play("IntroAnim");
         playerInput.actions.FindAction("Movement").Disable();
         playerInput.actions.FindAction("Look").Disable();
+
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
     }
 
     public void PlayIntroMusic()
@@ -35,6 +38,20 @@ public class IntroScript : MonoBehaviour
         SoundManager.instance.PlaySound(SoundManager.instance.ambienceClip, 1, SoundManager.instance.audioSources[4], true, true);
         playerInput.actions.FindAction("Movement").Enable();
         playerInput.actions.FindAction("Look").Enable();
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+    }
+
+    public void SkipIntro()
+    {
+        introCurrentlyPlaying = false;
+        introCanvas.enabled = false;
+        SoundManager.instance.StopSound(SoundManager.instance.audioSources[0], true, 1f);
+        SoundManager.instance.PlaySound(SoundManager.instance.ambienceClip, 1, SoundManager.instance.audioSources[4], true, true);
+        playerInput.actions.FindAction("Movement").Enable();
+        playerInput.actions.FindAction("Look").Enable();
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
 
 }

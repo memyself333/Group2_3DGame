@@ -339,7 +339,7 @@ public class FPController : MonoBehaviour
         if (other.gameObject == monsterTrigger2)
         {
             monsterGO.SetActive(true);
-            monsterGO.transform.position = new Vector3(21.5f, -6f, 7.5f);
+            monsterGO.transform.position = new Vector3(19f, -6f, 5.5f);
             monster.SetBool("Walk", true);
         }
     }
@@ -467,7 +467,6 @@ public class FPController : MonoBehaviour
         if (other.gameObject == monsterTrigger2)
         {
             monster.SetBool("Walk", false);
-            monsterGO.SetActive(false);
             monsterTrigger2.SetActive(false);
         }
     }
