@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class JumpscareBox : MonoBehaviour
@@ -13,10 +14,18 @@ public class JumpscareBox : MonoBehaviour
     public Image cursor;
     public Sprite cursorHand;
     public Sprite cursorReticle;
+    public PlayableDirector director;
+    public Animator playerAnim;
+    public Animator cameraAnim;
+    public Canvas hudCanvas;
+    public GameObject parentEnemy;
+    public GameObject torch;
+    public GameObject spotLight;
 
     public void Awake()
     {
         jumpscareCanvas.enabled = false;
+        spotLight.SetActive(false);
     }
     public void Update()
     {
@@ -46,10 +55,17 @@ public class JumpscareBox : MonoBehaviour
         {
             if (isLookingAtJumpscare)
             {
-                jumpscareCanvas.enabled = true;
-                jumpscare.Play("Jumpscare");
-                SoundManager.instance.PlaySound(SoundManager.instance.objtIntClips[5], 1, SoundManager.instance.audioSources[2], false, false);
 
+                    UnityEngine.Cursor.lockState = CursorLockMode.None;
+                    UnityEngine.Cursor.visible = true;
+
+                    playerInput.actions.FindAction("Movement").Disable();
+                    playerInput.actions.FindAction("Look").Disable();
+
+                    playerAnim.enabled = true;
+                    cameraAnim.enabled = true;
+
+                    PlayExitAnimation();
             }
             else
             {
@@ -65,6 +81,13 @@ public class JumpscareBox : MonoBehaviour
         Application.Quit();
     }
 
-    //The Jumpscare is a very simple png jumpscare for now, but once we have started animating and importing our models, the actual monster will jumpscare.
+    public void PlayExitAnimation()
+    {
+        hudCanvas.enabled = false;
+        torch.SetActive(false);
+        spotLight.SetActive(true);
+        parentEnemy.transform.position = new Vector3(20.5f, -6f, 11f);
+        director.Play();
+    }
 
 }
