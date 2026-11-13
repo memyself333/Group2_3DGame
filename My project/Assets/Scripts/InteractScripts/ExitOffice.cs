@@ -173,7 +173,7 @@ public class ExitOffice : MonoBehaviour
         hudCanvas.enabled = false;
         marking.ResetMarking();
         execution.hasTalked = false;
-        currentDay = 4;
+        currentDay ++;
         execution.ResetGeneral();
         dayText.text = "Day " + currentDay.ToString();
 
