@@ -37,8 +37,6 @@ public class DialogueHistoryTracker : MonoBehaviour
         {
             if (spokenConvos.Contains(day2Convos[3]))
             {
-                if (exitOffice.currentDay == 2)
-                {
                     if (!prisoners[0].isAlive)
                     {
                         if (spokenConvos.Contains(day2Convos[1]) && spokenConvos.Contains(day2Convos[2]))
@@ -60,7 +58,6 @@ public class DialogueHistoryTracker : MonoBehaviour
                             execution.hasTalked = true;
                         }
                     }
-                }
             }
         }
         else if (exitOffice.currentDay == 3)

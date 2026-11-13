@@ -462,12 +462,14 @@ public class FPController : MonoBehaviour
         {
             monster.SetBool("Idle", false);
             monsterTrigger1.SetActive(false);
+
         }
 
         if (other.gameObject == monsterTrigger2)
         {
             monster.SetBool("Walk", false);
             monsterTrigger2.SetActive(false);
+            monsterGO.transform.position = new Vector3(0f, 0f, 0f);
         }
     }
 
@@ -487,7 +489,7 @@ public class FPController : MonoBehaviour
     public void PlayKeyJingle()
     {
 
-        SoundManager.instance.PlayRandomSound(SoundManager.instance.keyClips, -1, 5, 1, SoundManager.instance.audioSources[10]);
+        SoundManager.instance.PlaySound(SoundManager.instance.keyClip, 1, SoundManager.instance.audioSources[10], false, false);
     }
 
     public IEnumerator ShakeCamera()

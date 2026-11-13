@@ -269,7 +269,14 @@ public class ObjectInteract : MonoBehaviour
                     
                     if (!execution.prisonerAlives[i].prisonerSO.isAlive)
                     {
-                        textsDay2[0] = textsDay2Letters[i];
+                        if (execution.williamAttemptedExecution)
+                        {
+                            textsDay2[0] = textsDay2Letters[3];
+                        }
+                        else
+                        {
+                            textsDay2[0] = textsDay2Letters[i];
+                        }
                     }
                     
                 }

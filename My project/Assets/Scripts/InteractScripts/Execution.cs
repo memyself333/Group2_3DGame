@@ -210,26 +210,32 @@ public class Execution : MonoBehaviour
             prisonerAlives[i].button.interactable = true;
         }
 
-        if (williamAttemptedExecution)
+        if (exitOffice.currentDay == 2)
         {
-            prisonerAlives[3].button.interactable = false;
-            if (exitOffice.prisoners[1].prisonerName.isAlive)
+            if (williamAttemptedExecution)
             {
-                prisonerAlives[1].button.interactable = false;
-                prisonerBlood[1].enabled = true;
-                exitOffice.prisoners[1].prisonerName.isAlive = false;
-            }
-            else if (exitOffice.prisoners[0].prisonerName.isAlive)
-            {
-                prisonerAlives[0].button.interactable = false;
-                prisonerBlood[0].enabled = true;
-                exitOffice.prisoners[0].prisonerName.isAlive = false;
-            }
-            else if (exitOffice.prisoners[2].prisonerName.isAlive)
-            {
-                prisonerAlives[2].button.interactable = false;
-                prisonerBlood[2].enabled = true;
-                exitOffice.prisoners[2].prisonerName.isAlive = false;
+                prisonerAlives[3].button.interactable = false;
+                if (exitOffice.prisoners[1].prisonerName.isAlive)
+                {
+                    prisonerAlives[1].button.interactable = false;
+                    prisonerBlood[1].enabled = true;
+                    exitOffice.prisoners[1].prisonerName.isAlive = false;
+                    return;
+                }
+                else if (exitOffice.prisoners[0].prisonerName.isAlive)
+                {
+                    prisonerAlives[0].button.interactable = false;
+                    prisonerBlood[0].enabled = true;
+                    exitOffice.prisoners[0].prisonerName.isAlive = false;
+                    return;
+                }
+                else if (exitOffice.prisoners[2].prisonerName.isAlive)
+                {
+                    prisonerAlives[2].button.interactable = false;
+                    prisonerBlood[2].enabled = true;
+                    exitOffice.prisoners[2].prisonerName.isAlive = false;
+                    return;
+                }
             }
         }
     }

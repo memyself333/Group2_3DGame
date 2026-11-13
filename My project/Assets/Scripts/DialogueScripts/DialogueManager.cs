@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     public Image eTipImage;
     public Animator npcAnim;
     public FPController playerController;
+    public ExitOffice exitOffice;
 
     public bool isDialogueActive = false;
 
@@ -58,8 +59,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIndex = 0;
         isDialogueActive = true;
         npcAnim = playerController.currentNPC.GetComponent<Animator>();
-        npcAnim.SetBool("Talk", true);
-        npcAnim.SetBool("Idle", false);
+            npcAnim.SetBool("Talk", true);
+            npcAnim.SetBool("Idle", false);
         ShowDialogue();
 
         if (dialogueIndex >= currentDialogue.lines.Length)

@@ -44,6 +44,7 @@ public class ExitOffice : MonoBehaviour
     public GameObject torchObject;
     public GameObject notifTorch;
     public GameObject torchCollider;
+    public GameObject rubble;
     public bool isRunning = false;
 
 
@@ -88,6 +89,7 @@ public class ExitOffice : MonoBehaviour
             head.SetActive(false);
         }
         williamWall.SetActive(true);
+        rubble.SetActive(false);
 
     }
 
@@ -170,9 +172,9 @@ public class ExitOffice : MonoBehaviour
         SoundManager.instance.StopSound(SoundManager.instance.audioSources[6], true, 1f);
         hudCanvas.enabled = false;
         marking.ResetMarking();
-        execution.ResetGeneral();
         execution.hasTalked = false;
         currentDay = 4;
+        execution.ResetGeneral();
         dayText.text = "Day " + currentDay.ToString();
 
         director.Play();
@@ -195,9 +197,8 @@ public class ExitOffice : MonoBehaviour
                 {
                     prisoner.prisonerGameObject.SetActive(false);
                     marking.CheckDeadPrisoners(prisoner.prisonerNameString);
-                    execution.ResetGeneral();
                     execution.CheckDeadPrisoners(prisoner.prisonerNameString);
-                    
+
                 }
                 
             }
@@ -230,7 +231,7 @@ public class ExitOffice : MonoBehaviour
             {
                 prisoner.prisonerGameObject.SetActive(false);
             }
-
+            rubble.SetActive(true);
             foreach (var head in prisonerHeads)
             {
                 head.SetActive(true);
